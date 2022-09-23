@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux519
-pkgver=5.19.10
+pkgver=5.19.11
 pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=5.19

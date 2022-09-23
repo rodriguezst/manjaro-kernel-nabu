@@ -81,7 +81,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
         '3029-arm64-dts-rockchip-Add-HDMI-sound-node-to-SoQuartz-C.patch'
         '3030-arm64-dts-rockchip-Add-PCIe-2-nodes-to-quartz64-b.patch'             # Quartz64 and associated patches that are still being upstreamed: END
         'config')
-md5sums=('27f36de913657dcad0e9b44bd1e0d9d4'
+md5sums=('5c7afbd61691adfeaea52cb724cbd3c3'
          '9aa0591c2d601a104d664a802a44728c'
          'e6fe272dc95a1c0a8f871924699fea16'
          '9f27b2a05eaeb1995fc0fcf6a8b923c4'

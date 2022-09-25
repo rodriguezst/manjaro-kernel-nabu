@@ -5,7 +5,7 @@
 
 pkgbase=linux519
 pkgver=5.19.11
-pkgrel=1
+pkgrel=2
 _kernelname=-MANJARO-ARM
 _basekernel=5.19
 _newversion=false
@@ -145,7 +145,7 @@ md5sums=('5c7afbd61691adfeaea52cb724cbd3c3'
          'a2271452ecf71f2ee160ad76f8bcadef'
          '7a39de5aa1c29e81d03096c2f9163456'
          '92d5c7dd3052f5d7a670bd06213d75fb'
-         'c6632bc3e2dc90ce6d6dffcd78bae835')
+         'a7b202165ae2eb756ac4271e6ac0a53d')
 
 prepare() {
   apply_patches() {

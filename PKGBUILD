@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux60
-pkgver=6.0.5
+pkgver=6.0.6
 pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=6.0
@@ -63,7 +63,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
         '3018-arm64-dts-rockchip-Enable-video-output-on-rk3566-roc-pc.patch'       # Station M2; (by Furkan)
         '3019-board-rock3a-gmac1.patch'
         'config')
-md5sums=('6c36b53e3928ba45b656f64303b71662'
+md5sums=('4e01a82c673ea0fb85f751672f99dc96'
          '9aa0591c2d601a104d664a802a44728c'
          'e6fe272dc95a1c0a8f871924699fea16'
          '9f27b2a05eaeb1995fc0fcf6a8b923c4'
@@ -109,7 +109,7 @@ md5sums=('6c36b53e3928ba45b656f64303b71662'
          '92d5c7dd3052f5d7a670bd06213d75fb'
          'b241ca1a4566d37bd29cde8db238762d'
          'e8ea5b4f0937c3799a846991a9259b4b'
-         'c73904a3eab2bb8e1cfa63e501abefa5')
+         '2289a064ca28f65ecf3faccd51060f1b')
 
 prepare() {
   apply_patches() {

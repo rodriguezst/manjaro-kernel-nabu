@@ -5,7 +5,7 @@
 
 pkgbase=linux60
 pkgver=6.0.7
-pkgrel=1
+pkgrel=2
 _kernelname=-MANJARO-ARM
 _basekernel=6.0
 _newversion=false
@@ -57,6 +57,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
         '3011-drm-panel-simple-Add-init-sequence-support.patch'
         '3012-arm64-dts-rockchip-Move-Quartz64-A-to-mdio-setup.patch'
         '3013-arm64-dts-rockchip-Add-Quartz64-A-battery-node.patch'
+        '3014-arm64-dts-rockchip-Lower-sd-speed-on-soquartz.patch'
         '3015-arm64-dts-rockchip-Add-HDMI-sound-node-to-Quartz64-B.patch'          # (applied in linux-next)
         '3016-arm64-dts-rockchip-Add-HDMI-sound-node-to-SoQuartz-C.patch'
         '3017-arm64-dts-rockchip-Add-PCIe-2-nodes-to-quartz64-b.patch'             # Quartz64 and associated patches that are still being upstreamed: END (applied in linux-next)
@@ -104,6 +105,7 @@ md5sums=('690e3de421b693bf111ec74a97476ea7'
          '742bcd8aa51845850a8e5144221ea770'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
+         '4f81752a97ad44f42d6f3177acf19928'
          'a2271452ecf71f2ee160ad76f8bcadef'
          '7a39de5aa1c29e81d03096c2f9163456'
          '92d5c7dd3052f5d7a670bd06213d75fb'

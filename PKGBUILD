@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux60
-pkgver=6.0.8
+pkgver=6.0.9
 pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=6.0
@@ -33,7 +33,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
         '3004-power-supply-Add-charger-driver-for-Rockchip-RK817.patch'            # (applied in linux-next)
         '3005-drm-panel-simple-Add-init-sequence-support.patch'
         'config')
-md5sums=('a5dcc8133dc25fc6300051a00af55134'
+md5sums=('3de364bdbacd2115950cc3dd94157ab6'
          '9f27b2a05eaeb1995fc0fcf6a8b923c4'
          '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'

@@ -5,7 +5,7 @@
 
 pkgbase=linux60
 pkgver=6.0.9
-pkgrel=2
+pkgrel=3
 _kernelname=-MANJARO-ARM
 _basekernel=6.0
 _newversion=false
@@ -144,7 +144,7 @@ _package() {
   cp arch/$KARCH/boot/Image "${pkgdir}/usr/lib/modules/${_kernver}/vmlinuz"
 
   # Used by mkinitcpio to name the kernel
-  echo "linux-${_kernver}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/pkgbase"
+  echo "${_kernver}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/pkgbase"
   echo "${_basekernel}-${CARCH}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/kernelbase"
 
   # add kernel version

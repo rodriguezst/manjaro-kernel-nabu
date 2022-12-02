@@ -49,7 +49,7 @@ md5sums=('7a47796e842b77519613abbca6037c91'
          '7064a13bc729ace382027dec0b18b0aa'
          '1a34dd9c8fb49b974c2cbeb9aaa0de46'
          '742bcd8aa51845850a8e5144221ea770'
-         '2289a064ca28f65ecf3faccd51060f1b')
+         '5cd550ba3d30804464be1ba6646226ef')
 
 prepare() {
   apply_patches() {

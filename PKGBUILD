@@ -3,11 +3,12 @@
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
-pkgbase=linux60
-pkgver=6.0.12
+pkgbase=linux61
+pkgver=6.1.0
 pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=6.0
+_srcname="linux-${pkgver/%.0/}"
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
 _desc="AArch64 multi-platform"
@@ -16,40 +17,27 @@ url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
-source=("http://www.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
-        '1001-drm-bridge-analogix_dp-Add-enable_psr-param.patch'                   # Pinebook Pro;  From list: https://patchwork.kernel.org/project/dri-devel/patch/20200626033023.24214-2-shawn@anastas.io/ (no updates since June 2020) (schedule for removal in 6.1-rc1)
-        '1002-gpu-drm-add-new-display-resolution-2560x1440.patch'                  # Odroid;  Not upstreamable
-        '1003-panfrost-Silence-Panfrost-gem-shrinker-loggin.patch'                 # Panfrost (preference patch, might not be upstreamable)
-        '1004-rk3399-rp64-pcie-Reimplement-rockchip-PCIe-bus-scan-delay.patch'     # RockPro64 (by @nuumio, perhaps upstreamable?)
-        '1005-drm-rockchip-support-gamma-control-on-RK3399.patch'                  # RK3399 VOP;  From list: https://patchwork.kernel.org/project/linux-arm-kernel/cover/20211019215843.42718-1-sigmaris@gmail.com/ (applied in linux-next)
-        '1006-ASOC-sun9i-hdmi-audio-Initial-implementation.patch'                  # Allwinner H6 HDMI audio (by Furkan)
-        '1007-Add-YT8531C-phy-support.patch'                                       # Motorcomm PHY (by Furkan)
-        '1008-add-phy-rockchip-Support-PCIe-v3.patch'                              # Rockchip; (applied in linux-next)
+source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
+        '1001-gpu-drm-add-new-display-resolution-2560x1440.patch'                  # Odroid;  Not upstreamable
+        '1002-panfrost-Silence-Panfrost-gem-shrinker-loggin.patch'                 # Panfrost (preference patch, might not be upstreamable)
+        '1003-rk3399-rp64-pcie-Reimplement-rockchip-PCIe-bus-scan-delay.patch'     # RockPro64 (by @nuumio, perhaps upstreamable?)
+        '1004-ASOC-sun9i-hdmi-audio-Initial-implementation.patch'                  # Allwinner H6 HDMI audio (by Furkan)
+        '1005-Add-YT8531C-phy-support.patch'                                       # Motorcomm PHY (by Furkan)
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable
-        '2002-brcmfmac-USB-probing-provides-no-board-type.patch'                   # Bluetooth;  Will be submitted upstream by Dragan
+        #'2002-brcmfmac-USB-probing-provides-no-board-type.patch'                   # Bluetooth;  Will be submitted upstream by Dragan (needs to be redone for 6.1)
         '3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch'                  # Quartz64 and associated patches that are still being upstreamed: START
-        '3002-dt-bindings-Add-Rockchip-rk817-battery-charger-suppo.patch'          # (applied in linux-next)
-        '3003-mfd-Add-Rockchip-rk817-battery-charger-support.patch'                # (applied in linux-next)
-        '3004-power-supply-Add-charger-driver-for-Rockchip-RK817.patch'            # (applied in linux-next)
-        '3005-drm-panel-simple-Add-init-sequence-support.patch'
+        '3002-drm-panel-simple-Add-init-sequence-support.patch'
         'config')
-md5sums=('44933812ad926f5000f01ac108d41ee8'
-         '9f27b2a05eaeb1995fc0fcf6a8b923c4'
+md5sums=('475320de08f16c9fa486fc4edfe98b30'
          '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'
          '245858f26512dfc48adbf509b6fc8364'
-         '19e2279811700cd8aa4ab326603d2f61'
-         '680aec843f385e7233763d37b98ed2e0'
+         '48aaca95111b1e8016414e72486bca18'
          '77200aa6b89276b9035f13c4bb422b98'
-         '8cf60a66691809a648a1c763a62ec5de'
-         '9f2deefc9cd4f6b07386fc866ba76ff8'
-         'd2654df7fc87e5c874505a2d98cbce1c'
+         '3cb7e8c18b920bb49ff1e51e92732db2'
          'a829e0d4711d8feff5fee1973938b25a'
-         '396bddfe770b2211d49810d587ab2d68'
-         '7064a13bc729ace382027dec0b18b0aa'
-         '1a34dd9c8fb49b974c2cbeb9aaa0de46'
          '742bcd8aa51845850a8e5144221ea770'
-         '5cd550ba3d30804464be1ba6646226ef')
+         '714f957057b89ac33d4f1c0547834ed2')
 
 prepare() {
   apply_patches() {
@@ -63,7 +51,7 @@ prepare() {
       done
   }
 
-  cd "linux-${pkgver}"
+  cd "${_srcname}"
 
   # Assorted Manjaro ARM patches
   apply_patches 1
@@ -85,7 +73,7 @@ prepare() {
 }
 
 build() {
-  cd "linux-${pkgver}"
+  cd "${_srcname}"
 
   # Get the kernel version
   if [[ "${_newversion}" = false ]]; then
@@ -129,7 +117,7 @@ _package() {
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=${pkgname}.install
 
-  cd "linux-${pkgver}"
+  cd "${_srcname}"
   
   KARCH=arm64
 
@@ -169,7 +157,7 @@ _package-headers() {
   pkgdesc="Header files and scripts for building modules for linux ${_basekernel} kernel - ${_desc}"
   provides=("linux-headers=${pkgver}")
 
-  cd "linux-${pkgver}"
+  cd "${_srcname}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers

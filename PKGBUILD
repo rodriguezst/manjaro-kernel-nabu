@@ -5,9 +5,9 @@
 
 pkgbase=linux61
 pkgver=6.1.1
-pkgrel=1
+pkgrel=2
 _kernelname=-MANJARO-ARM
-_basekernel=6.0
+_basekernel=6.1
 _srcname="linux-${pkgver/%.0/}"
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true

@@ -5,7 +5,7 @@
 
 pkgbase=linux61
 pkgver=6.1.6
-pkgrel=1
+pkgrel=2
 _kernelname=-MANJARO-ARM
 _basekernel=6.1
 _srcname="linux-${pkgver/%.0/}"

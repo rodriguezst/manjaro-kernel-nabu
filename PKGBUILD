@@ -23,6 +23,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1003-rk3399-rp64-pcie-Reimplement-rockchip-PCIe-bus-scan-delay.patch'     # RockPro64 (by @nuumio, perhaps upstreamable?)
         '1004-ASOC-sun9i-hdmi-audio-Initial-implementation.patch'                  # Allwinner H6 HDMI audio (by Furkan)
         '1005-Add-YT8531C-phy-support.patch'                                       # Motorcomm PHY (by Furkan)
+        '1006-Revert-mmc-meson-gx-add-SDIO-interrupt-support.patch'                # AMlogic temp fix for wifi
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable
         #'2002-brcmfmac-USB-probing-provides-no-board-type.patch'                   # Bluetooth;  Will be submitted upstream by Dragan (needs to be redone for 6.1)
         '3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch'                  # Quartz64 and associated patches that are still being upstreamed: START
@@ -34,6 +35,7 @@ md5sums=('7b48ffc829a3cdc40000ca00eac2cad6'
          '245858f26512dfc48adbf509b6fc8364'
          '48aaca95111b1e8016414e72486bca18'
          '77200aa6b89276b9035f13c4bb422b98'
+         'f91b305c9cf0bf98a3a5bacb8364e049'
          '3cb7e8c18b920bb49ff1e51e92732db2'
          'a829e0d4711d8feff5fee1973938b25a'
          '742bcd8aa51845850a8e5144221ea770'

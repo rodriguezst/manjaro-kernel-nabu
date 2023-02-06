@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux61
-pkgver=6.1.9
+pkgver=6.1.10
 pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=6.1
@@ -29,7 +29,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch'                  # Quartz64 and associated patches that are still being upstreamed: START
         '3002-drm-panel-simple-Add-init-sequence-support.patch'
         'config')
-md5sums=('ab1ac5556bd2c808e62bde0db04915f6'
+md5sums=('6a62cb00f6cf4296105fc041c641aa91'
          '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'
          '245858f26512dfc48adbf509b6fc8364'

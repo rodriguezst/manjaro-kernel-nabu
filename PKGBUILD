@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.5.7
+pkgver=6.6
 pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -26,7 +26,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1007-arm64-dts-rockchip-Add-PCIe-bus-scan-delay-to-RockPr.patch'          # RockPro64 (relies on patch 1005)
         #'1008-arm64-dts-rockchip-switch-to-hs200-on-rockpi4.patch'                 # Radxa Rock Pi 4;  Temporary hotfix, not for upstreaming (by Dragan)
         '1009-arm64-dts-rockchip-Add-PCIe-bus-scan-delay-to-Rock-P.patch'          # Radxa Rock Pi 4 (relies on patch 1005)
-        '1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan) - Failed to Apply on 6.3
+        #'1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan) - Failed to Apply on 6.3
         '1011-arm64-dts-meson-radxa-zero-add-support-for-the-usb-t.patch'          # Radxa Zero (by Furkan)
         #'1012-pwm-meson-Explicitly-set-.polarity-in-.get_state.patch'              # Meson; Temp fix for boot issues added in 6.2.11
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable Failed to compile on 6.3 - Need to Update
@@ -55,15 +55,14 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('0323da8de9d6aaa017b20d403cc3505a'
+md5sums=('452098d80ba925af3a4ab35998f3aef5'
          'e6fe272dc95a1c0a8f871924699fea16'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
-         '245858f26512dfc48adbf509b6fc8364'
+         '0892035d83463c736df7ad0290e1c6f9'
          '1b92d7617e60d3c525a4b18ab4351185'
          '28982d87c45ed8f5aab966d82f8455d8'
          'a0cf3209d3f856522ef14c4618837ae7'
-         'a962b5154197121c3e38024b367eb5e6'
          'e9377e7295ebd76cc68b9dd42891c0c8'
          '538e0aa76c44e2f7e0e883a11758e72d'
          '9aa0591c2d601a104d664a802a44728c'
@@ -72,7 +71,7 @@ md5sums=('0323da8de9d6aaa017b20d403cc3505a'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
-         '91e9adf8e7513fc41cfc4e109882397b'
+         'b13b7cef6656ea4495ac420919d0a7ff'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

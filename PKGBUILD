@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.6.16
+pkgver=6.7.6
 pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -29,7 +29,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         #'1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan) - Failed to Apply on 6.3
         '1011-arm64-dts-meson-radxa-zero-add-support-for-the-usb-t.patch'          # Radxa Zero (by Furkan)
         #'1012-pwm-meson-Explicitly-set-.polarity-in-.get_state.patch'              # Meson; Temp fix for boot issues added in 6.2.11
-        '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable Failed to compile on 6.3 - Need to Update
+        #'2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable Failed to compile on 6.3 - Need to Update Fails on 6.7
 	#'2003-arm64-dts-rockchip-Work-around-daughterboard-issues.patch'           # Pinebook Pro microSD;  Will be submitted upstream by Dragan - Failed to apply on 6.3, already present.
         '2004-arm64-dts-allwinner-add-hdmi-sound-to-pine-devices.patch'            # Allwinner HDMI Sound; (by Dan)
         #'3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch' 		# Failed to apply on 6.4
@@ -55,7 +55,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('ebd444b2d4d33676cd6a4bb6f38ab0a9'
+md5sums=('8b4a23ce33184bcd4e9c4b9ff0e5ddb0'
          'e6fe272dc95a1c0a8f871924699fea16'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
@@ -64,7 +64,6 @@ md5sums=('ebd444b2d4d33676cd6a4bb6f38ab0a9'
          '28982d87c45ed8f5aab966d82f8455d8'
          'a0cf3209d3f856522ef14c4618837ae7'
          'e9377e7295ebd76cc68b9dd42891c0c8'
-         '538e0aa76c44e2f7e0e883a11758e72d'
          '9aa0591c2d601a104d664a802a44728c'
          '467b3ff965db6867f4289f5d256ca93e'
          '56605685714f21646f88fbc187a4bf47'

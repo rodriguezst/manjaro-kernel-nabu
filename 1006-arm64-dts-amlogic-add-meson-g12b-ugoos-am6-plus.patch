@@ -46,9 +46,9 @@ diff --git /dev/null b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6-plus.dts
 +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
 +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
 +				"TDM_B Playback", "TDMOUT_B OUT",
-+				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
++				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
++				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
++				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3";
 +
 +		assigned-clocks = <&clkc CLKID_MPLL2>,
 +				  <&clkc CLKID_MPLL0>,
@@ -88,7 +88,7 @@ diff --git /dev/null b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6-plus.dts
 +
 +		/* spdif hdmi or toslink interface */
 +		dai-link-4 {
-+			sound-dai = <&spdifout>;
++			sound-dai = <&spdifout_a>;
 +
 +			codec-0 {
 +				sound-dai = <&spdif_dit>;
@@ -143,7 +143,7 @@ diff --git /dev/null b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6-plus.dts
 +	linux,rc-map-name = "rc-khadas";
 +};
 +
-+&spdifout {
++&spdifout_a {
 +	pinctrl-0 = <&spdif_out_h_pins>;
 +	pinctrl-names = "default";
 +	status = "okay";

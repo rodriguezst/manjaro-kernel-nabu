@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.7.9
+pkgver=6.8.9
 pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -16,7 +16,8 @@ url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
-source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
+source=(#"https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
+	"https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1001-arm64-dts-allwinner-add-ohci-ehci-to-h5-nanopi.patch'                # Nanopi Neo Plus 2 (by Furkan?)
         #'1002-gpu-drm-add-new-display-resolution-2560x1440.patch'                  # Odroid;  Not upstreamable Does not apply in 6.4
         '1003-panfrost-Silence-Panfrost-gem-shrinker-loggin.patch'                 # Panfrost (preference patch, might not be upstreamable)
@@ -55,7 +56,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('b4b858f3664bdf1ca966b40b37d6a9ef'
+md5sums=('95b3e4b76c4449bad8dd39ec16140a62'
          'e6fe272dc95a1c0a8f871924699fea16'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
@@ -70,7 +71,7 @@ md5sums=('b4b858f3664bdf1ca966b40b37d6a9ef'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
-         '2619a125bf931912f3d1d3143177019b'
+         'e5716e9e3912a831b2c90e60fc42d96f'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

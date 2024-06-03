@@ -4,10 +4,10 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.8.10
+pkgver=6.9.3
 pkgrel=1
 _newversion=false
-_stopbuild=false     # Will also stop if ${_newversion} is true
+_stopbuild=false    # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
 _kernelname="${pkgbase#linux}"
 _desc="AArch64 multi-platform"
@@ -56,7 +56,7 @@ source=(#"https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('e6f7eebefb85cad7cb4609f1232ecceb'
+md5sums=('1cedde7aa0f267c61897cead90a74788'
          'e6fe272dc95a1c0a8f871924699fea16'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
@@ -64,14 +64,14 @@ md5sums=('e6f7eebefb85cad7cb4609f1232ecceb'
          '1d9afe3ce3bbf1394cfa572880a5625b'
          '28982d87c45ed8f5aab966d82f8455d8'
          'a0cf3209d3f856522ef14c4618837ae7'
-         'e9377e7295ebd76cc68b9dd42891c0c8'
+         'd474c18a5a3c8954b274efb8122c3df8'
          '9aa0591c2d601a104d664a802a44728c'
          '467b3ff965db6867f4289f5d256ca93e'
          '56605685714f21646f88fbc187a4bf47'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
-         'e5716e9e3912a831b2c90e60fc42d96f'
+         'c938cf5fecddd3375c10ea56fe28b19e'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

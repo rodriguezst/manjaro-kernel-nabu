@@ -463,10 +463,11 @@ md5sums=('b4d1dd34887178ad0b90973f779e238b'
          'ee62e3de64f7e70bc86d6f5b3ed20a72'
          '196abd0617146fd8f5e2160d9f2bc13b'
          '4def847fb205c4e8c360bc7d6b6e771e'
-         '54b7d7e0670c1849704363cb98fd9f8b'
+         '7faadaf5f817ba38991092d3448f78de'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
+
 
 prepare() {
   apply_patches() {

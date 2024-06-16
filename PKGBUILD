@@ -4,8 +4,8 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.9.3
-pkgrel=3
+pkgver=6.9.4
+pkgrel=1
 _newversion=false
 _stopbuild=false    # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
@@ -205,7 +205,7 @@ source=(#"https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
 	"0951-arm64-dts-brcm-add-rpi5-dt.patch"
 	"0952-arm64-dts-broadcom-Add-in-DRM-pipeline-to-2712.patch"
 	"0953-arm64-dts-add-rpivid-rpi4-rpi5.patch"
-	"0954-arm64-dts-disable-hdmi-audio-on-2712.patch"
+        "0955-arm64-dts-add-audio-support-rpi5.patch"
 	"1002-irqchip-fix-its-timeout-issue.patch"
 	"1003-phy-rockchip-usbdp-add-usb3-drd-support.patch"
 	"1005-crypto-rockchip-rk3688-add-crypto-support.patch"
@@ -259,7 +259,7 @@ source=(#"https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('1cedde7aa0f267c61897cead90a74788'
+md5sums=('b4d1dd34887178ad0b90973f779e238b'
          'f3d785ef736b534ac7f5c501965adef6'
          'e2706a83da3208d8c2735a482aab4ce9'
          'b3784de0372d33af27d09b521e777cab'
@@ -413,7 +413,7 @@ md5sums=('1cedde7aa0f267c61897cead90a74788'
          'aa3f2502665899ac354c80bc5f0ffc83'
          '6e97c36c1bfb4305ac38672d50036c5e'
          '671e0b345f6c2d0b69ec2b173d388223'
-         'cc4fff1612f3765fcc4b276bc3a7b93e'
+         '2e708d4bd638c2a7b0cb0b80d4b85adb'
          '99bd886f8297e15779df841c4f8ce186'
          'c62ac242b3b51b76d848e925f06cf0e9'
          'ac620d2fc3b559b577d26d77487f1f3d'
@@ -463,7 +463,7 @@ md5sums=('1cedde7aa0f267c61897cead90a74788'
          'ee62e3de64f7e70bc86d6f5b3ed20a72'
          '196abd0617146fd8f5e2160d9f2bc13b'
          '4def847fb205c4e8c360bc7d6b6e771e'
-         'c86b559d75bc438dfec6a55067d24cb7'
+         '54b7d7e0670c1849704363cb98fd9f8b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

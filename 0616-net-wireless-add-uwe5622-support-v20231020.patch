@@ -45299,7 +45299,7 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 +				continue;
 +			scan_ssids->len = ssids[i].ssid_len;
 +			strncpy(scan_ssids->ssid, ssids[i].ssid,
-+				ssids[i].ssid_len);
++				strlen(ssids[i].ssid));
 +			scan_ssids_len += (ssids[i].ssid_len
 +					   + sizeof(scan_ssids->len));
 +			scan_ssids = (struct sprdwl_scan_ssid *)
@@ -51395,11 +51395,11 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 +						NL80211_CHAN_HT20);
 +		else
 +			wl_err("%s, ch is null!\n", __func__);
-+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5,19, 2))
-+		cfg80211_ch_switch_notify(vif->ndev, &chandef, 0, 0);
-+#else
-+		cfg80211_ch_switch_notify(vif->ndev, &chandef);
-+#endif
++
++		cfg80211_ch_switch_notify(vif->ndev, &chandef, 0);
++
++
++
 +	}
 +}
 +

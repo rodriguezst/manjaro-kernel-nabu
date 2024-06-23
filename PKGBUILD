@@ -5,7 +5,7 @@
 
 pkgbase=linux
 pkgver=6.9.4
-pkgrel=1
+pkgrel=2
 _newversion=false
 _stopbuild=false    # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
@@ -134,7 +134,6 @@ source=(#"https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
 	"0607-drivers-drm-wip-add-h616-hdmi-jernejsk-24102023.patch"
 	"0608-sound-soc-sunxi-add-codec-driver-for-h616.patch"
 	"0609-sound-soc-add-sunxi_v2-for-h616-ahub.patch"
-	"0614-clk-sunxi-ng-ccu-sun6i-rtc-fix-32k-clk.patch"
 	"0615-drivers-iommu-sun50i-iommu-fix-iommu-on-h616.patch"
 	"0616-net-wireless-add-uwe5622-support-v20231020.patch"
 	"0617-sound-soc-sunxi-add-spdif-spdif.patch"
@@ -142,7 +141,6 @@ source=(#"https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
 	"0630-arm64-dts-allwinner-h616.dtsi-add-audio-hdmi-vdec.patch"
 	"0631-arm64-dts-allwinner-h616.dtsi-add-ths-cpu-gpu-opp-and-dvfs.patch"
 	"0632-arm64-dts-allwinner-h616.dtsi-add-emac1.patch"
-	"0633-arm64-dts-allwinner-h616.dtsi-fix-x96q-failing-mmc3.patch"
 	"0641-arm64-dts-allwinner-h616-OrangePI-Zero23-enable-ths-hdmi-audio.patch"
 	"0642-arm64-dts-allwinner-h616-add-Tanix-TX6s-TVbox.patch"
 	"0643-arm64-dts-allwinner-h616-add-Tanix-TX6s-axp313-TVbox.patch"
@@ -335,31 +333,29 @@ md5sums=('b4d1dd34887178ad0b90973f779e238b'
          '92b0ea4ef05a765139b277aad7509b50'
          '12cea7e2a3e7f6882976440e1bb504af'
          'f443813381896cb685b0012b1d7108d4'
-         'd6bc69d425eb352c2a3775b5a226d18b'
+         'fcb73ac95b7d4ec12737b734f318ff59'
          '63e44cc95a8b2ede6a5f8ee830e795bc'
          '226ff38d2a1ead67c4457210b2f8f42f'
          '590861813b731c3783645007146b0d09'
          '1565568ca247a3bd83ca3c010957cf7d'
          'e3b858bf6d8c214e3d7d6b1fe7a28c1c'
          'c1eee7f21c1f41d84fab1429618f68b9'
-         'f68f47d2728f964b399f5ee302f4aaeb'
          '564e5f7fd492d19c6e4044eb82f406a3'
-         'bc432e4d25a0a6d92dc5392a6662f0fc'
+         'c581a3c6d84c80c1c16d56e9e05a99b0'
          '06af7233187c50bda4eaf4e86a5165ac'
          'cb90ddcc4fdfdacc23cdc0a6f9161037'
          '05acdd45b2c4b380e042ad873c70a9ff'
-         '6eeb6e00bab6564f8f6544473e3c56d0'
+         'b5bf5a88d17a0dbbf5aaa7d17b45f04f'
          'abe67e12862f6aab45af666d27a689ae'
-         '2322b63bd374e80189211273b5e21785'
-         '4b037d68e432096b9472fb3f6a2f6254'
+         'f1922674f8846d756da0db04de3eb6cb'
          '8c60993ad4135f9172bffc19b8a497d7'
          '06993a566f08dc7992a70b33933aa709'
-         '850809f508ef15a25a5d782dff3617e0'
-         'd1d88941044ecf76575c4ec63004711a'
+         'dcdbf18f0d1c995dc0cc9420bf89cc11'
+         'ad5babe5b0c0a8d904604dca522b8d9a'
          '94d912705606cb07da4975e3898dccf1'
          '075326f81f4796925c82f3cfd28b914e'
-         '4a38a4e04622812a56e035cc2913f16f'
-         'f70187a8e64f92401db38d3ff67fc124'
+         '4af0732e3cc9349c9a4eb895cc2ad4f6'
+         'ccf8eaa390b51303ffd6df749c118591'
          '637985e20b9cf4fcf626dbca9dfd2935'
          'c7f1d6191f815be44437b9586d8f8aec'
          '32e8556d1a85cabb1029fa65f780a85d'
@@ -463,7 +459,7 @@ md5sums=('b4d1dd34887178ad0b90973f779e238b'
          'ee62e3de64f7e70bc86d6f5b3ed20a72'
          '196abd0617146fd8f5e2160d9f2bc13b'
          '4def847fb205c4e8c360bc7d6b6e771e'
-         '7faadaf5f817ba38991092d3448f78de'
+         '5838917928d098bd0a7af54d197e82f2'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

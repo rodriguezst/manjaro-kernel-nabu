@@ -5,7 +5,7 @@
 
 pkgbase=linux
 pkgver=6.9.4
-pkgrel=2
+pkgrel=3
 _newversion=false
 _stopbuild=false    # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
@@ -341,11 +341,11 @@ md5sums=('b4d1dd34887178ad0b90973f779e238b'
          'e3b858bf6d8c214e3d7d6b1fe7a28c1c'
          'c1eee7f21c1f41d84fab1429618f68b9'
          '564e5f7fd492d19c6e4044eb82f406a3'
-         'c581a3c6d84c80c1c16d56e9e05a99b0'
+         '33dcd1a4e9a6446633252c8425759fc8'
          '06af7233187c50bda4eaf4e86a5165ac'
          'cb90ddcc4fdfdacc23cdc0a6f9161037'
          '05acdd45b2c4b380e042ad873c70a9ff'
-         'b5bf5a88d17a0dbbf5aaa7d17b45f04f'
+         '292d9138857aa195640f6f9c05cb185b'
          'abe67e12862f6aab45af666d27a689ae'
          'f1922674f8846d756da0db04de3eb6cb'
          '8c60993ad4135f9172bffc19b8a497d7'
@@ -459,7 +459,7 @@ md5sums=('b4d1dd34887178ad0b90973f779e238b'
          'ee62e3de64f7e70bc86d6f5b3ed20a72'
          '196abd0617146fd8f5e2160d9f2bc13b'
          '4def847fb205c4e8c360bc7d6b6e771e'
-         '5838917928d098bd0a7af54d197e82f2'
+         '173d57db54969c29c6732951b5b1b15e'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

@@ -818,7 +818,7 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/net/wireless/uwe5622/tty-sdio/tty.c linux-6.7-rc6/drivers/net/wireless/uwe5622/tty-sdio/tty.c
 --- linux-6.7-rc6/drivers/net/wireless/uwe5622/tty-sdio/tty.c	1970-01-01 01:00:00.000000000 +0100
 +++ linux-6.7-rc6/drivers/net/wireless/uwe5622/tty-sdio/tty.c	2023-12-27 20:22:50.603356562 +0100
-@@ -0,0 +1,851 @@
+@@ -0,0 +1,852 @@
 +/*
 + * Copyright (C) 2015 Spreadtrum Communications Inc.
 + *
@@ -847,6 +847,7 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 +#include <linux/vmalloc.h>
 +#include <linux/atomic.h>
 +#ifdef CONFIG_OF
++#include <linux/of.h>
 +#include <linux/of_device.h>
 +#endif
 +#include <linux/compat.h>
@@ -32128,7 +32129,7 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/net/wireless/uwe5622/unisocwcn/sdio/sdiohal_main.c linux-6.7-rc6/drivers/net/wireless/uwe5622/unisocwcn/sdio/sdiohal_main.c
 --- linux-6.7-rc6/drivers/net/wireless/uwe5622/unisocwcn/sdio/sdiohal_main.c	1970-01-01 01:00:00.000000000 +0100
 +++ linux-6.7-rc6/drivers/net/wireless/uwe5622/unisocwcn/sdio/sdiohal_main.c	2023-12-27 20:22:50.613356563 +0100
-@@ -0,0 +1,2312 @@
+@@ -0,0 +1,2314 @@
 +/*
 + * Copyright (C) 2017 Spreadtrum Communications Inc.
 + *
@@ -32152,8 +32153,10 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 +#include <linux/irq.h>
 +#include <linux/kthread.h>
 +#include <linux/module.h>
++#include <linux/of.h>
 +#include <linux/of_device.h>
 +#include <linux/of_gpio.h>
++#include <linux/of_platform.h>
 +#include <linux/pm_runtime.h>
 +#include <linux/mmc/card.h>
 +#include <linux/mmc/core.h>
@@ -47867,7 +47870,7 @@ diff --speed-large-files --no-dereference --minimal -Naur linux-6.7-rc6/drivers/
 +
 +struct sprdwl_scan_ssid {
 +	u8 len;
-+	u8 ssid[0];
++	u8 ssid[256];
 +} __packed;
 +
 +struct sprdwl_sched_scan_buf {

@@ -17,7 +17,7 @@ url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
-source=("https://github.com/rodriguezst/linux/archive/refs/heads/v${pkgver}-nabu.tar.xz"
+source=("https://github.com/rodriguezst/linux/archive/refs/heads/v${pkgver}-nabu.tar.gz"
         'config')
 md5sums=('11884a427176aca06d1ce744cdcaf22d'
          '896e8245830724a952d3038a0a05cc7e')

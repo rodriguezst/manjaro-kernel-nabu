@@ -66,11 +66,11 @@ build() {
   # Configure the kernel; adjust the line below to your choice
   # or simply manually edit the ".config" file
   if [[ "${_newversion}" = true ]]; then
-    make menuconfig   # CLI menu for configuration
+    make oldconfig     # Using old config from previous kernel version
   fi
+  #make menuconfig   # CLI menu for configuration
   #make nconfig       # New CLI menu for configuration
   #make xconfig       # X-based configuration
-  #make oldconfig     # Using old config from previous kernel version
 
   # Stash the configuration (use with new major kernel version)
   if [[ "${_newversion}" = true ]]; then

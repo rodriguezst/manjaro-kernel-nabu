@@ -9,18 +9,17 @@ pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=6.1
 _srcname="linux-${pkgver}-nabu"
-_newversion=true
+_newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
+_defconfig=xiaomi_nabu_defconfig
 _desc="AArch64 multi-platform"
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
-source=("https://github.com/rodriguezst/linux/archive/refs/heads/v${pkgver}-nabu.tar.gz"
-        'config')
-md5sums=('11884a427176aca06d1ce744cdcaf22d'
-         '896e8245830724a952d3038a0a05cc7e')
+source=("https://github.com/rodriguezst/linux/archive/refs/heads/v${pkgver}-nabu.tar.gz")
+md5sums=('11884a427176aca06d1ce744cdcaf22d')
 
 prepare() {
   apply_patches() {
@@ -46,7 +45,7 @@ prepare() {
   apply_patches 3
 
   # Apply our kernel configuration
-  cat "${srcdir}/config" > .config
+  make ${_defconfig}
 
   # Add pkgrel to extraversion
   sed -ri "s|^(EXTRAVERSION =)(.*)|\1 \2-${pkgrel}|" Makefile

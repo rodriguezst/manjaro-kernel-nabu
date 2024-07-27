@@ -4,11 +4,11 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux61
-pkgver=6.1.92
+pkgver=6.1.98
 pkgrel=1
 _kernelname=-MANJARO-ARM
 _basekernel=6.1
-_srcname="linux-${pkgver/%.0/}"
+_srcname="linux-${pkgver}-nabu"
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
 _desc="AArch64 multi-platform"
@@ -17,28 +17,10 @@ url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
-source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
-        '1001-gpu-drm-add-new-display-resolution-2560x1440.patch'                  # Odroid;  Not upstreamable
-        '1002-panfrost-Silence-Panfrost-gem-shrinker-loggin.patch'                 # Panfrost (preference patch, might not be upstreamable)
-        '1003-rk3399-rp64-pcie-Reimplement-rockchip-PCIe-bus-scan-delay.patch'     # RockPro64 (by @nuumio, perhaps upstreamable?)
-        '1004-ASOC-sun9i-hdmi-audio-Initial-implementation.patch'                  # Allwinner H6 HDMI audio (by Furkan)
-        '1005-Add-YT8531C-phy-support.patch'                                       # Motorcomm PHY (by Furkan)
-        #'1006-Revert-mmc-meson-gx-add-SDIO-interrupt-support.patch'                # AMlogic temp fix for wifi Removed in 6.1.92 fails to apply.
-        '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable
-        #'2002-brcmfmac-USB-probing-provides-no-board-type.patch'                   # Bluetooth;  Will be submitted upstream by Dragan (needs to be redone for 6.1)
-        '3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch'                  # Quartz64 and associated patches that are still being upstreamed: START
-        '3002-drm-panel-simple-Add-init-sequence-support.patch'
+source=("https://github.com/rodriguezst/linux/archive/refs/heads/v${pkgver}-nabu.tar.xz"
         'config')
-md5sums=('c10b7518530ecc525380cc2880cbb051'
-         '6f592c11f6adc1de0f06e5d18f8c2862'
-         'f8f0b124c741be61d86bea8d44e875f9'
-         '245858f26512dfc48adbf509b6fc8364'
-         '48aaca95111b1e8016414e72486bca18'
-         '77200aa6b89276b9035f13c4bb422b98'
-         '3cb7e8c18b920bb49ff1e51e92732db2'
-         'a829e0d4711d8feff5fee1973938b25a'
-         '742bcd8aa51845850a8e5144221ea770'
-         '8b4fb86ff64db574644a31eab51dddc2')
+md5sums=('11884a427176aca06d1ce744cdcaf22d'
+         '896e8245830724a952d3038a0a05cc7e')
 
 prepare() {
   apply_patches() {

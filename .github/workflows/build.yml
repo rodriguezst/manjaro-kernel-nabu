@@ -123,7 +123,7 @@ jobs:
           ls -lasih /var/cache/manjaro-arm-tools/pkg
           
           mkdir -p ./artifacts
-          cp -rf /var/cache/manjaro-arm-tools/pkg/*.tar.xz ./artifacts/
+          find /var/cache/manjaro-arm-tools/pkg/ -type f -name '*.tar.xz' -exec cp '{}' ./artifacts/ ';'
       -
         name: Release assets
         uses: softprops/action-gh-release@v2

@@ -21,91 +21,17 @@ jobs:
         uses: boredland/get-time-action@2.0.0
         with:
           format: 'YYYYMMDD'
-      -  
-        name: install-build-dependencies
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt install \
-            gdisk \
-            zip \
-            systemd-container \
-            bmap-tools asciidoc \
-            libarchive-tools \
-            git \
-            build-essential \
-            cmake \
-            libarchive-dev \
-            pkg-config \
-            libcurl4-openssl-dev \
-            libgpgme-dev \
-            libssl-dev \
-            dh-autoreconf \
-            qemu-utils \
-            qemu-efi-aarch64 \
-            qemu-system-arm \
-            qemu-user-static \
-            gcc-aarch64-linux-gnu \
-            pkg-config \
-            libtool \
-            autopoint \
-            xmlto docbook-xsl kmod inetutils-tools bc git device-tree-compiler
-
-          sudo pip3 install meson
-          sudo pip3 install ninja
-          
       -
-        name: install-pacman
-        shell: bash
-        run: |
-          wget "https://github.com/ThePoorPilot/pacman-utils/releases/download/5.2.2-2_2.31-0/pacman-utils_5.2.2-2_amd64.deb"
-          sudo apt-get install ./pacman-utils_5.2.2-2_amd64.deb
-      -
-        name: setup-qemu-binfmt
-        shell: bash
-        run: |
-          sudo wget https://gitlab.manjaro.org/packages/community/manjaro-arm-qemu-static/-/raw/master/qemu-static.conf -O /usr/lib/binfmt.d/qemu-static.conf
-          sudo service systemd-binfmt restart
-          
+        name: Makepkg Build and Check
+        id: makepkg
+        uses: edlanglois/pkgbuild-action@v1
+        with:
+          makepkgArgs: -s --config "./makepkg-arm.conf"
       - 
-        name: install-arch-install-scripts
-        shell: bash
-        env:
-          VERSION: 28
+        name: Print Package Files
         run: |
-          sudo wget https://github.com/archlinux/arch-install-scripts/archive/refs/tags/v${VERSION}.tar.gz -O arch-install-scripts.tar.gz
-          sudo tar -xvf arch-install-scripts.tar.gz
-          sudo make -C arch-install-scripts-${VERSION}
-          sudo make -C arch-install-scripts-${VERSION} check
-          sudo make -C arch-install-scripts-${VERSION} PREFIX=/usr install
-      -
-        name: install-manjaro-arm-tools
-        shell: bash
-        run: |
-          sudo git clone https://gitlab.manjaro.org/manjaro-arm/applications/manjaro-arm-tools.git
-          install_m_a_tools() {
-              pkgname=manjaro-arm-tools
-              sudo install -dm777 /usr/share/$pkgname/lib
-              sudo install -dm777 /usr/share/$pkgname/profiles
-              sudo install -d /etc/$pkgname/
-              sudo install -dm777 /var/lib/$pkgname/{pkg,img,tmp,profiles}
-              sudo install -dm777 /var/cache/$pkgname/{pkg/pkg-cache,img}
-              sudo install -Dm755 $pkgname/lib/* /usr/share/$pkgname/lib/
-              sudo install -Dm755 $pkgname/bin/* /usr/bin/
-              sudo install -Dm755 $pkgname/lib/manjaro-arm-tools.conf /etc/manjaro-arm-tools/
-          }
-          install_m_a_tools
-          
-          sudo sed -i -e 's|1>/dev/null||g' /usr/share/manjaro-arm-tools/lib/functions.sh   
-          sudo sed -i -e 's|1> /dev/null 2>&1||g' /usr/share/manjaro-arm-tools/lib/functions.sh
-          sudo sed -i -e 's|2>/dev/null||g' /usr/share/manjaro-arm-tools/lib/functions.sh 
-      -
-        name: build
-        shell: bash
-        run: |
-          cd linux
-          ./makepkg-arm -d
-          
+          echo "Successfully created the following package archive"
+          echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
           mkdir -p ./artifacts
           find . -type f -name '*.pkg.tar.*' -exec cp '{}' ./artifacts/ ';'
       -

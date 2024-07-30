@@ -47,4 +47,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ./linux/artifacts/*.pkg.tar.*
+            ./artifacts/*.pkg.tar.*

@@ -45,7 +45,8 @@ jobs:
             qemu-utils \
             qemu-efi-aarch64 \
             qemu-system-arm \
-            qemu-user-static
+            qemu-user-static \
+            aarch64-linux-gnu-gcc
           sudo pip3 install meson
           sudo pip3 install ninja
           
@@ -118,12 +119,10 @@ jobs:
         name: build
         shell: bash
         run: |
-          sudo buildarmpkg -p linux
-          
-          ls -lasih /var/cache/manjaro-arm-tools/pkg
+          ./makepkg-arm
           
           mkdir -p ./artifacts
-          find /var/cache/manjaro-arm-tools/pkg/ -type f -name '*.pkg.tar.*' -exec cp '{}' ./artifacts/ ';'
+          find . -type f -name '*.pkg.tar.*' -exec cp '{}' ./artifacts/ ';'
       -
         name: Release assets
         uses: softprops/action-gh-release@v2

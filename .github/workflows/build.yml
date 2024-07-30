@@ -121,6 +121,7 @@ jobs:
         name: build
         shell: bash
         run: |
+          cd linux
           ./makepkg-arm
           
           mkdir -p ./artifacts
@@ -136,4 +137,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ./artifacts/*.pkg.tar.*
+            ./linux/artifacts/*.pkg.tar.*

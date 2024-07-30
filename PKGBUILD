@@ -16,7 +16,7 @@ _desc="AArch64 multi-platform"
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'aarch64-linux-gnu-gcc')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'aarch64-linux-gnu-gcc' 'aarch64-linux-gnu-strip')
 options=('!strip')
 source=("https://github.com/rodriguezst/linux/archive/refs/heads/v${pkgver}-nabu.tar.gz")
 md5sums=('11884a427176aca06d1ce744cdcaf22d')
@@ -205,7 +205,7 @@ _package-headers() {
         strip $STRIP_SHARED "$file" ;;
     esac
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
-  #strip $STRIP_STATIC "${_builddir}/vmlinux"
+  ${CROSS_COMPILE}strip $STRIP_STATIC "${_builddir}/vmlinux"
   
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete

@@ -16,6 +16,9 @@ jobs:
         with:
           fetch-depth: '1'
       - 
+        run: |
+          find .
+      - 
         id: time
         uses: boredland/get-time-action@2.0.0
         with:
@@ -25,7 +28,7 @@ jobs:
         id: makepkg
         uses: edlanglois/pkgbuild-action@v1
         with:
-          makepkgArgs: -s --config "$GITHUB_WORKSPACE/makepkg-arm.conf"
+          makepkgArgs: -s --config "/github/workspace/makepkg-arm.conf"
       - 
         name: Print Package Files
         run: |

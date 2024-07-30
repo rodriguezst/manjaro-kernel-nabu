@@ -46,8 +46,10 @@ jobs:
             qemu-efi-aarch64 \
             qemu-system-arm \
             qemu-user-static \
-            gcc-aarch64-linux-gnu
-
+            gcc-aarch64-linux-gnu \
+            pkg-config \
+            libtool \
+            autopoint
 
           sudo pip3 install meson
           sudo pip3 install ninja

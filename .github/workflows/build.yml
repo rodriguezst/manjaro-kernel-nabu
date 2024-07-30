@@ -40,7 +40,6 @@ jobs:
             libcurl4-openssl-dev \
             libgpgme-dev \
             libssl-dev \
-            fakeroot \
             dh-autoreconf \
             qemu-utils \
             qemu-efi-aarch64 \

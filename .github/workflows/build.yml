@@ -57,29 +57,9 @@ jobs:
       -
         name: install-pacman
         shell: bash
-        env:
-          PACMAN_VERSION: 6.0.2
         run: |
-          sudo git clone --depth 1 https://gitlab.manjaro.org/packages/core/pacman.git
-          pushd pacman
-            sudo wget https://sources.archlinux.org/other/pacman/pacman-${PACMAN_VERSION}.tar.xz
-            sudo tar -xvf pacman-${PACMAN_VERSION}.tar.xz
-            pushd pacman-${PACMAN_VERSION}
-              sudo meson --prefix=/usr \
-                        --buildtype=plain \
-                        -Ddoc=disabled \
-                        -Ddoxygen=enabled \
-                        -Dscriptlet-shell=/usr/bin/bash \
-                        -Dldconfig=/usr/bin/ldconfig \
-                        build
-              sudo meson compile -C build
-              sudo meson install -C build
-            popd
-            sudo install -m644 pacman.conf /etc/pacman.conf
-            sudo install -m644 makepkg.conf /etc/
-            sudo mkdir -p /etc/pacman.d
-            sudo touch /etc/pacman.d/mirrorlist
-          popd
+          wget "https://github.com/ThePoorPilot/pacman-utils/releases/download/6.0.1-2_2.31-0/pacman-utils_6.0.1-2_amd64.deb"
+          sudo apt-get install ./pacman-utils_6.0.1-2_amd64.deb
       -
         name: setup-qemu-binfmt
         shell: bash

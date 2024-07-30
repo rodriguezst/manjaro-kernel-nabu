@@ -48,7 +48,8 @@ jobs:
             gcc-aarch64-linux-gnu \
             pkg-config \
             libtool \
-            autopoint
+            autopoint \
+            xmlto docbook-xsl kmod inetutils-tools bc git device-tree-compiler
 
           sudo pip3 install meson
           sudo pip3 install ninja
@@ -103,7 +104,7 @@ jobs:
         shell: bash
         run: |
           cd linux
-          ./makepkg-arm
+          ./makepkg-arm -d
           
           mkdir -p ./artifacts
           find . -type f -name '*.pkg.tar.*' -exec cp '{}' ./artifacts/ ';'

@@ -26,7 +26,7 @@ jobs:
         id: makepkg
         uses: edlanglois/pkgbuild-action@v1
         with:
-          makepkgArgs: -s --config "./makepkg-arm.conf"
+          makepkgArgs: -s --config "/github/workspace/makepkg-arm.conf"
       - 
         name: Print Package Files
         run: |

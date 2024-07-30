@@ -58,7 +58,7 @@ jobs:
         shell: bash
         run: |
           wget "https://github.com/ThePoorPilot/pacman-utils/releases/download/6.0.1-2_2.31-0/pacman-utils_6.0.1-2_amd64.deb"
-          sudo apt-get install ./pacman-utils_6.0.1-2_amd64.deb
+          sudo dpkg -i --force-overwrite pacman-utils_6.0.1-2_amd64.deb
       -
         name: setup-qemu-binfmt
         shell: bash

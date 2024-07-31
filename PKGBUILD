@@ -3,7 +3,7 @@
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
-pkgbase=linux61
+pkgbase=linux61-nabu
 pkgver=6.1.98
 pkgrel=1
 _kernelname=-MANJARO-ARM

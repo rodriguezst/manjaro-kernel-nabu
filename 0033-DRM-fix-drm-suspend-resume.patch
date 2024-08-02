@@ -1,0 +1,275 @@
+From 73bae128821d5872ca361ab7855adf3536d9a619 Mon Sep 17 00:00:00 2001
+From: maverick <maverick_jia@sina.com>
+Date: Mon, 18 Dec 2023 10:59:50 +0800
+Subject: [PATCH 33/45] DRM: fix drm suspend/resume
+
+---
+ drivers/clk/qcom/dispcc-sm8250.c | 45 +++++++++++++++-----
+ drivers/clk/qcom/gdsc.c          | 71 +++++++++-----------------------
+ 2 files changed, 54 insertions(+), 62 deletions(-)
+
+diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
+index 709076f0f..c23d91e99 100644
+--- a/drivers/clk/qcom/dispcc-sm8250.c
++++ b/drivers/clk/qcom/dispcc-sm8250.c
+@@ -462,6 +462,20 @@ static struct clk_branch disp_cc_mdss_edp_link_clk = {
+ 	},
+ };
+ 
++static struct clk_regmap_div disp_cc_mdss_edp_link_div_clk_src = {
++	.reg = 0x2288,
++	.shift = 0,
++	.width = 2,
++	.clkr.hw.init = &(struct clk_init_data) {
++		.name = "disp_cc_mdss_edp_link_div_clk_src",
++		.parent_hws = (const struct clk_hw*[]){
++			&disp_cc_mdss_edp_link_clk_src.clkr.hw,
++		},
++		.num_parents = 1,
++		.ops = &clk_regmap_div_ro_ops,
++	},
++};
++
+ static struct clk_branch disp_cc_mdss_edp_link_intf_clk = {
+ 	.halt_reg = 0x2074,
+ 	.halt_check = BRANCH_HALT,
+@@ -471,7 +485,7 @@ static struct clk_branch disp_cc_mdss_edp_link_intf_clk = {
+ 		.hw.init = &(struct clk_init_data){
+ 			.name = "disp_cc_mdss_edp_link_intf_clk",
+ 			.parent_hws = (const struct clk_hw*[]){
+-				&disp_cc_mdss_edp_link_clk_src.clkr.hw,
++				&disp_cc_mdss_edp_link_div_clk_src.clkr.hw,
+ 			},
+ 			.num_parents = 1,
+ 			.flags = CLK_GET_RATE_NOCACHE,
+@@ -1137,7 +1151,7 @@ static struct gdsc mdss_gdsc = {
+ 		.name = "mdss_gdsc",
+ 	},
+ 	.pwrsts = PWRSTS_OFF_ON,
+-	.flags = HW_CTRL,
++	.flags = HW_CTRL | RETAIN_FF_ENABLE,
+ };
+ 
+ static struct clk_regmap *disp_cc_sm8250_clocks[] = {
+@@ -1236,19 +1250,12 @@ static const struct of_device_id disp_cc_sm8250_match_table[] = {
+ };
+ MODULE_DEVICE_TABLE(of, disp_cc_sm8250_match_table);
+ 
+-static void disp_cc_sm8250_pm_runtime_disable(void *data)
+-{
+-	pm_runtime_disable(data);
+-}
+-
+ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+ {
+ 	struct regmap *regmap;
+ 	int ret;
+ 
+-	pm_runtime_enable(&pdev->dev);
+-
+-	ret = devm_add_action_or_reset(&pdev->dev, disp_cc_sm8250_pm_runtime_disable, &pdev->dev);
++	ret = devm_pm_runtime_enable(&pdev->dev);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1274,6 +1281,16 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+ 		disp_cc_pll1_config.config_ctl_hi1_val = 0x00000024;
+ 		disp_cc_pll1_config.user_ctl_hi1_val = 0x000000D0;
+ 		disp_cc_pll1_init.ops = &clk_alpha_pll_trion_ops;
++
++		disp_cc_mdss_dp_link_intf_clk.clkr.hw.init->parent_hws[0] =
++			&disp_cc_mdss_dp_link_clk_src.clkr.hw;
++		disp_cc_mdss_dp_link1_intf_clk.clkr.hw.init->parent_hws[0] =
++			&disp_cc_mdss_dp_link1_clk_src.clkr.hw;
++		disp_cc_mdss_edp_link_intf_clk.clkr.hw.init->parent_hws[0] =
++			&disp_cc_mdss_edp_link_clk_src.clkr.hw;
++
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_DP_LINK1_DIV_CLK_SRC] = NULL;
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_DP_LINK_DIV_CLK_SRC] = NULL;
+ 	} else if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8350-dispcc")) {
+ 		static struct clk_rcg2 * const rcgs[] = {
+ 			&disp_cc_mdss_byte0_clk_src,
+@@ -1285,7 +1302,11 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+ 			&disp_cc_mdss_dp_pixel1_clk_src,
+ 			&disp_cc_mdss_dp_pixel2_clk_src,
+ 			&disp_cc_mdss_dp_pixel_clk_src,
++			&disp_cc_mdss_edp_aux_clk_src,
++			&disp_cc_mdss_edp_link_clk_src,
++			&disp_cc_mdss_edp_pixel_clk_src,
+ 			&disp_cc_mdss_esc0_clk_src,
++			&disp_cc_mdss_esc1_clk_src,
+ 			&disp_cc_mdss_mdp_clk_src,
+ 			&disp_cc_mdss_pclk0_clk_src,
+ 			&disp_cc_mdss_pclk1_clk_src,
+@@ -1297,6 +1318,7 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+ 			&disp_cc_mdss_byte1_div_clk_src,
+ 			&disp_cc_mdss_dp_link1_div_clk_src,
+ 			&disp_cc_mdss_dp_link_div_clk_src,
++			&disp_cc_mdss_edp_link_div_clk_src,
+ 		};
+ 		unsigned int i;
+ 		static bool offset_applied;
+@@ -1330,6 +1352,9 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+ 		disp_cc_pll1_config.test_ctl_hi1_val = 0x01800000;
+ 		disp_cc_pll1_init.ops = &clk_alpha_pll_lucid_5lpe_ops;
+ 		disp_cc_pll1.vco_table = lucid_5lpe_vco;
++
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_EDP_GTC_CLK] = NULL;
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_EDP_GTC_CLK_SRC] = NULL;
+ 	}
+ 
+ 	clk_lucid_pll_configure(&disp_cc_pll0, regmap, &disp_cc_pll0_config);
+diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+index ccf63771e..b7943a6f4 100644
+--- a/drivers/clk/qcom/gdsc.c
++++ b/drivers/clk/qcom/gdsc.c
+@@ -47,6 +47,7 @@
+ #define RETAIN_MEM		BIT(14)
+ #define RETAIN_PERIPH		BIT(13)
+ 
++#define STATUS_POLL_TIMEOUT_US	1500
+ #define TIMEOUT_US		500
+ 
+ #define domain_to_gdsc(domain) container_of(domain, struct gdsc, pd)
+@@ -56,22 +57,6 @@ enum gdsc_status {
+ 	GDSC_ON
+ };
+ 
+-static int gdsc_pm_runtime_get(struct gdsc *sc)
+-{
+-	if (!sc->dev)
+-		return 0;
+-
+-	return pm_runtime_resume_and_get(sc->dev);
+-}
+-
+-static int gdsc_pm_runtime_put(struct gdsc *sc)
+-{
+-	if (!sc->dev)
+-		return 0;
+-
+-	return pm_runtime_put_sync(sc->dev);
+-}
+-
+ /* Returns 1 if GDSC status is status, 0 if not, and < 0 on error */
+ static int gdsc_check_status(struct gdsc *sc, enum gdsc_status status)
+ {
+@@ -124,7 +109,7 @@ static int gdsc_poll_status(struct gdsc *sc, enum gdsc_status status)
+ 	do {
+ 		if (gdsc_check_status(sc, status))
+ 			return 0;
+-	} while (ktime_us_delta(ktime_get(), start) < TIMEOUT_US);
++	} while (ktime_us_delta(ktime_get(), start) < STATUS_POLL_TIMEOUT_US);
+ 
+ 	if (gdsc_check_status(sc, status))
+ 		return 0;
+@@ -271,8 +256,9 @@ static void gdsc_retain_ff_on(struct gdsc *sc)
+ 	regmap_update_bits(sc->regmap, sc->gdscr, mask, mask);
+ }
+ 
+-static int _gdsc_enable(struct gdsc *sc)
++static int gdsc_enable(struct generic_pm_domain *domain)
+ {
++	struct gdsc *sc = domain_to_gdsc(domain);
+ 	int ret;
+ 
+ 	if (sc->pwrsts == PWRSTS_ON)
+@@ -328,22 +314,11 @@ static int _gdsc_enable(struct gdsc *sc)
+ 	return 0;
+ }
+ 
+-static int gdsc_enable(struct generic_pm_domain *domain)
++static int gdsc_disable(struct generic_pm_domain *domain)
+ {
+ 	struct gdsc *sc = domain_to_gdsc(domain);
+ 	int ret;
+ 
+-	ret = gdsc_pm_runtime_get(sc);
+-	if (ret)
+-		return ret;
+-
+-	return _gdsc_enable(sc);
+-}
+-
+-static int _gdsc_disable(struct gdsc *sc)
+-{
+-	int ret;
+-
+ 	if (sc->pwrsts == PWRSTS_ON)
+ 		return gdsc_assert_reset(sc);
+ 
+@@ -388,18 +363,6 @@ static int _gdsc_disable(struct gdsc *sc)
+ 	return 0;
+ }
+ 
+-static int gdsc_disable(struct generic_pm_domain *domain)
+-{
+-	struct gdsc *sc = domain_to_gdsc(domain);
+-	int ret;
+-
+-	ret = _gdsc_disable(sc);
+-
+-	gdsc_pm_runtime_put(sc);
+-
+-	return ret;
+-}
+-
+ static int gdsc_init(struct gdsc *sc)
+ {
+ 	u32 mask, val;
+@@ -447,13 +410,8 @@ static int gdsc_init(struct gdsc *sc)
+ 				return ret;
+ 		}
+ 
+-		/* ...and the power-domain */
+-		ret = gdsc_pm_runtime_get(sc);
+-		if (ret) {
+-			if (sc->rsupply)
+-				regulator_disable(sc->rsupply);
+-			return ret;
+-		}
++		if (sc->dev)
++			pm_runtime_resume_and_get(sc->dev);
+ 
+ 		/*
+ 		 * Votable GDSCs can be ON due to Vote from other masters.
+@@ -462,14 +420,14 @@ static int gdsc_init(struct gdsc *sc)
+ 		if (sc->flags & VOTABLE) {
+ 			ret = gdsc_update_collapse_bit(sc, false);
+ 			if (ret)
+-				return ret;
++				goto err_disable_supply;
+ 		}
+ 
+ 		/* Turn on HW trigger mode if supported */
+ 		if (sc->flags & HW_CTRL) {
+ 			ret = gdsc_hwctrl(sc, true);
+ 			if (ret < 0)
+-				return ret;
++				goto err_disable_supply;
+ 		}
+ 
+ 		/*
+@@ -496,9 +454,18 @@ static int gdsc_init(struct gdsc *sc)
+ 		sc->pd.power_off = gdsc_disable;
+ 	if (!sc->pd.power_on)
+ 		sc->pd.power_on = gdsc_enable;
+-	pm_genpd_init(&sc->pd, NULL, !on);
++
++	ret = pm_genpd_init(&sc->pd, NULL, !on);
++	if (ret)
++		goto err_disable_supply;
+ 
+ 	return 0;
++
++err_disable_supply:
++	if (on && sc->rsupply)
++		regulator_disable(sc->rsupply);
++
++	return ret;
+ }
+ 
+ int gdsc_register(struct gdsc_desc *desc,
+-- 
+2.34.1
+

@@ -1,0 +1,223 @@
+From 4fa0fdc2efc698f1b09bc16c60d44f197947497b Mon Sep 17 00:00:00 2001
+From: maverick <maverick_jia@sina.com>
+Date: Wed, 28 Jun 2023 08:51:23 +0800
+Subject: [PATCH 12/45] enable type-c dual role switch
+
+---
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  4 +-
+ .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 41 +++++++++++++---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 18 +++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 47 +++++++------------
+ 4 files changed, 72 insertions(+), 38 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+index ae1f3ca09..048d79ef7 100644
+--- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+@@ -58,7 +58,7 @@ pm8150b_vbus: dcdc@1100 {
+ 			status = "disabled";
+ 			reg = <0x1100>;
+ 		};
+-#if 1
++
+ 		pm8150b_typec: typec@1500 {
+ 			compatible = "qcom,pm8150b-typec";
+ 			reg = <0x1500>,
+@@ -98,7 +98,7 @@ pm8150b_typec: typec@1500 {
+ 			vdd-pdphy-supply = <&vreg_l2a_3p1>;
+ 			vdd-vbus-supply = <&pm8150b_vbus>;
+ 		};
+-#endif
++
+ 		pm8150b_temp: temp-alarm@2400 {
+ 			compatible = "qcom,spmi-temp-alarm";
+ 			reg = <0x2400>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts
+index fb3c13bc6..c3e6b3b7a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts
+@@ -719,6 +719,10 @@ &usb_1_qmpphy {
+ 	vdda-pll-supply = <&vreg_l5a_0p875>;
+ };
+ 
++&usb_1_qmpphy_typec_mux_in {
++	remote-endpoint = <&pm8150b_typec_mux_out>;
++};
++
+ &usb_2_qmpphy {
+ 	status = "okay";
+ 	vdda-phy-supply = <&vreg_l3c_1p2>;
+@@ -734,10 +738,15 @@ &usb_2 {
+ };
+ 
+ &usb_1_dwc3 {
+-	dr_mode = "peripheral";
++//	dr_mode = "peripheral";
++	dr_mode = "otg";
+ 	usb-role-switch;
+ };
+ 
++&usb_1_dwc3_role_switch_in {
++	remote-endpoint = <&pm8150b_role_switch_out>;
++};
++
+ &usb_2_dwc3 {
+ 	dr_mode = "host";
+ };
+@@ -753,19 +762,37 @@ &pm8150b_typec {
+ 
+ 	connector {
+ 		compatible = "usb-c-connector";
+-#if 1
+-		power-role = "source";
++
++		power-role = "dual";
+ 		data-role = "dual";
++		try-power-role = "sink";
+ 		self-powered;
+ 
+ 		source-pdos = <PDO_FIXED(5000, 1500,
+ 					 PDO_FIXED_DUAL_ROLE |
+ 					 PDO_FIXED_USB_COMM |
+ 					 PDO_FIXED_DATA_SWAP)>;
+-#else
+-		pd-disable;
+-		typec-power-opmode = "default";
+-#endif
++
++		sink-pdos = <PDO_FIXED(5000, 400, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP | PDO_FIXED_USB_COMM)>;
++		op-sink-microwatt = <15000000>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				pm8150b_role_switch_out: endpoint {
++					remote-endpoint = <&usb_1_dwc3_role_switch_in>;
++				};
++			};
++			port@1 {
++				reg = <1>;
++				pm8150b_typec_mux_out: endpoint {
++					remote-endpoint = <&usb_1_qmpphy_typec_mux_in>;
++				};
++			};
++		};
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 6834db558..bdfbc3b81 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3406,6 +3406,20 @@ usb_1_ssphy: phy@88e9200 {
+ 				clock-names = "pipe0";
+ 				clock-output-names = "usb3_phy_pipe_clk_src";
+ 			};
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++					usb_1_qmpphy_typec_mux_in: endpoint {};
++				};
++
++				port@1 {
++					reg = <1>;
++				};
++			};
+ 		};
+ 
+ 		usb_2_qmpphy: phy@88eb000 {
+@@ -3544,6 +3558,10 @@ usb_1_dwc3: usb@a600000 {
+ 				snps,dis_enblslpm_quirk;
+ 				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+ 				phy-names = "usb2-phy", "usb3-phy";
++
++				port {
++					usb_1_dwc3_role_switch_in: endpoint {};
++				};
+ 			};
+ 		};
+ 
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+index f0ba35bb7..abbd2560f 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+@@ -2601,7 +2601,6 @@ static int qmp_usb_probe(struct platform_device *pdev)
+ 	struct phy_provider *phy_provider;
+ 	void __iomem *serdes;
+ 	const struct qmp_phy_cfg *cfg = NULL;
+-	int num, id;
+ 	int ret;
+ 
+ 	qmp = devm_kzalloc(dev, sizeof(*qmp), GFP_KERNEL);
+@@ -2641,12 +2640,7 @@ static int qmp_usb_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, ret,
+ 				     "failed to get regulator supplies\n");
+ 
+-	num = of_get_available_child_count(dev->of_node);
+-	/* do we have a rogue child node ? */
+-	if (num > 1)
+-		return -EINVAL;
+-
+-	qmp->phys = devm_kcalloc(dev, num, sizeof(*qmp->phys), GFP_KERNEL);
++	qmp->phys = devm_kcalloc(dev, 1, sizeof(*qmp->phys), GFP_KERNEL);
+ 	if (!qmp->phys)
+ 		return -ENOMEM;
+ 
+@@ -2660,30 +2654,25 @@ static int qmp_usb_probe(struct platform_device *pdev)
+ 	 */
+ 	pm_runtime_forbid(dev);
+ 
+-	id = 0;
+-	for_each_available_child_of_node(dev->of_node, child) {
+-		/* Create per-lane phy */
+-		ret = qmp_usb_create(dev, child, id, serdes, cfg);
+-		if (ret) {
+-			dev_err(dev, "failed to create lane%d phy, %d\n",
+-				id, ret);
+-			goto err_node_put;
+-		}
+-
+-		/*
+-		 * Register the pipe clock provided by phy.
+-		 * See function description to see details of this pipe clock.
+-		 */
+-		ret = phy_pipe_clk_register(qmp, child);
+-		if (ret) {
+-			dev_err(qmp->dev,
+-				"failed to register pipe clock source\n");
+-			goto err_node_put;
+-		}
+-
+-		id++;
++	child = of_get_next_available_child(dev->of_node, NULL);
++	/* Create per-lane phy */
++	ret = qmp_usb_create(dev, child, 0, serdes, cfg);
++	if (ret) {
++		dev_err(dev, "failed to create lane%d phy, %d\n",
++			0, ret);
++		goto err_node_put;
+ 	}
+ 
++	/*
++	 * Register the pipe clock provided by phy.
++	 * See function description to see details of this pipe clock.
++	 */
++	ret = phy_pipe_clk_register(qmp, child);
++	if (ret) {
++		dev_err(qmp->dev,
++			"failed to register pipe clock source\n");
++		goto err_node_put;
++	}
+ 	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+ 
+ 	return PTR_ERR_OR_ZERO(phy_provider);
+-- 
+2.34.1
+

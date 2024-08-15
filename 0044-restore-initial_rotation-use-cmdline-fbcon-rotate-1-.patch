@@ -1,0 +1,26 @@
+From ffd655454ff2518a23a50b1eebcbc0a4d354bae1 Mon Sep 17 00:00:00 2001
+From: maverick <maverick_jia@sina.com>
+Date: Sat, 17 Feb 2024 14:22:59 +0800
+Subject: [PATCH 44/45] restore initial_rotation, use cmdline "fbcon=rotate:1"
+ instead
+
+---
+ drivers/video/fbdev/core/fbcon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 07fc4881b..14498a0d1 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -157,7 +157,7 @@ static char fontname[40];
+ static int info_idx = -1;
+ 
+ /* console rotation */
+-static int initial_rotation = 1;
++static int initial_rotation = -1;
+ static int fbcon_has_sysfs;
+ static int margin_color;
+ 
+-- 
+2.34.1
+

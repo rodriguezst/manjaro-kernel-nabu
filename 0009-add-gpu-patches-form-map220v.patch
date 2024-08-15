@@ -1,0 +1,229 @@
+From 096e43890dbfcc45d61d18a71f7553b76963b2bf Mon Sep 17 00:00:00 2001
+From: maverick <maverick_jia@sina.com>
+Date: Sun, 11 Jun 2023 19:43:53 +0800
+Subject: [PATCH 09/45] add gpu patches form map220v
+
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c       |  8 ++++++--
+ .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c  |  2 ++
+ .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c  |  5 ++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  2 ++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c        | 15 +++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h        |  2 ++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c            | 14 ++++++++++----
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h            |  1 +
+ 9 files changed, 43 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+index 3632f0768..1ec474e3d 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+@@ -1112,14 +1112,18 @@ static void dpu_encoder_virt_atomic_mode_set(struct drm_encoder *drm_enc,
+ 			return;
+ 		}
+ 
+-		if (!hw_ctl[i]) {
++		/* Use first (and only) CTL if active CTLs are supported */
++		if (dpu_kms->catalog->caps->has_active_ctls)
++			phys->hw_ctl = to_dpu_hw_ctl(hw_ctl[0]);
++		else
++			phys->hw_ctl = to_dpu_hw_ctl(hw_ctl[i]);
++		if (!phys->hw_ctl) {
+ 			DPU_ERROR_ENC(dpu_enc,
+ 				"no ctl block assigned at idx: %d\n", i);
+ 			return;
+ 		}
+ 
+ 		phys->hw_pp = dpu_enc->hw_pp[i];
+-		phys->hw_ctl = to_dpu_hw_ctl(hw_ctl[i]);
+ 
+ 		phys->cached_mode = crtc_state->adjusted_mode;
+ 		if (phys->ops.atomic_mode_set)
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c
+index ce58d9781..52b3fb518 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c
+@@ -58,6 +58,8 @@ static void _dpu_encoder_phys_cmd_update_intf_cfg(
+ 		return;
+ 
+ 	intf_cfg.intf = phys_enc->intf_idx;
++	if (phys_enc->split_role == ENC_ROLE_MASTER)
++		intf_cfg.intf_master = phys_enc->hw_intf->idx;
+ 	intf_cfg.intf_mode_sel = DPU_CTL_MODE_SEL_CMD;
+ 	intf_cfg.stream_sel = cmd_enc->stream_sel;
+ 	intf_cfg.mode_3d = dpu_encoder_helper_get_3d_blend_mode(phys_enc);
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+index 2baade1cd..447bd3b43 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+@@ -273,6 +273,8 @@ static void dpu_encoder_phys_vid_setup_timing_engine(
+ 	DPU_DEBUG_VIDENC(phys_enc, "fmt_fourcc 0x%X\n", fmt_fourcc);
+ 
+ 	intf_cfg.intf = phys_enc->hw_intf->idx;
++	if (phys_enc->split_role == ENC_ROLE_MASTER)
++		intf_cfg.intf_master = phys_enc->hw_intf->idx;
+ 	intf_cfg.intf_mode_sel = DPU_CTL_MODE_SEL_VID;
+ 	intf_cfg.stream_sel = 0; /* Don't care value for video mode */
+ 	intf_cfg.mode_3d = dpu_encoder_helper_get_3d_blend_mode(phys_enc);
+@@ -350,7 +352,8 @@ static void dpu_encoder_phys_vid_underrun_irq(void *arg, int irq_idx)
+ static bool dpu_encoder_phys_vid_needs_single_flush(
+ 		struct dpu_encoder_phys *phys_enc)
+ {
+-	return phys_enc->split_role != ENC_ROLE_SOLO;
++	return !(phys_enc->hw_ctl->caps->features & BIT(DPU_CTL_ACTIVE_CFG)) &&
++		phys_enc->split_role != ENC_ROLE_SOLO;
+ }
+ 
+ static void dpu_encoder_phys_vid_atomic_mode_set(
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index b2f330e99..16dfbd8e6 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -335,6 +335,7 @@ static const struct dpu_caps sm8150_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 4096,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ 	.max_hdeci_exp = MAX_HORZ_DECIMATION,
+@@ -367,6 +368,7 @@ static const struct dpu_caps sm8250_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 4096,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+index 77c46ce5a..35509bd93 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+@@ -397,6 +397,7 @@ struct dpu_caps {
+ 	bool has_dim_layer;
+ 	bool has_idle_pc;
+ 	bool has_3d_merge;
++	bool has_active_ctls;
+ 	/* SSPP limits */
+ 	u32 max_linewidth;
+ 	u32 pixel_ram_size;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+index 696c32d30..9800dea30 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+@@ -519,6 +519,7 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+ 	u32 intf_active = 0;
+ 	u32 wb_active = 0;
+ 	u32 mode_sel = 0;
++	u32 merge_3d_active = 0;
+ 
+ 	/* CTL_TOP[31:28] carries group_id to collate CTL paths
+ 	 * per VM. Explicitly disable it until VM support is
+@@ -542,10 +543,17 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+ 	if (cfg->wb)
+ 		wb_active |= BIT(cfg->wb - WB_0);
+ 
++	merge_3d_active = DPU_REG_READ(c, CTL_MERGE_3D_ACTIVE);
++	if (cfg->merge_3d)
++		merge_3d_active |= BIT(cfg->merge_3d - MERGE_3D_0);
++
+ 	DPU_REG_WRITE(c, CTL_TOP, mode_sel);
+ 	DPU_REG_WRITE(c, CTL_INTF_ACTIVE, intf_active);
+ 	DPU_REG_WRITE(c, CTL_WB_ACTIVE, wb_active);
+ 
++	if (cfg->intf_master)
++		DPU_REG_WRITE(c, CTL_INTF_MASTER, BIT(cfg->intf_master - INTF_0));
++
+ 	if (cfg->merge_3d)
+ 		DPU_REG_WRITE(c, CTL_MERGE_3D_ACTIVE,
+ 			      BIT(cfg->merge_3d - MERGE_3D_0));
+@@ -553,6 +561,13 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+ 		DPU_REG_WRITE(&ctx->hw, CTL_FLUSH, BIT(DSC_IDX));
+ 		DPU_REG_WRITE(c, CTL_DSC_ACTIVE, cfg->dsc);
+ 	}
++	if (cfg->merge_3d)
++		DPU_REG_WRITE(c, CTL_MERGE_3D_ACTIVE, merge_3d_active);
++
++	if (cfg->intf_master)
++		DPU_DEBUG_DRIVER("ACTIVE: %x %x %lx\n", intf_active, merge_3d_active, BIT(cfg->intf_master - INTF_0));
++	else
++		DPU_DEBUG_DRIVER("ACTIVE: %x %x\n", intf_active, merge_3d_active);
+ }
+ 
+ static void dpu_hw_ctl_intf_cfg(struct dpu_hw_ctl *ctx,
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+index 96c012ec8..e801a6daf 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+@@ -36,6 +36,7 @@ struct dpu_hw_stage_cfg {
+ /**
+  * struct dpu_hw_intf_cfg :Describes how the DPU writes data to output interface
+  * @intf :                 Interface id
++ * @intf_master:           Master interface id in the dual pipe topology
+  * @mode_3d:               3d mux configuration
+  * @merge_3d:              3d merge block used
+  * @intf_mode_sel:         Interface mode, cmd / vid
+@@ -44,6 +45,7 @@ struct dpu_hw_stage_cfg {
+  */
+ struct dpu_hw_intf_cfg {
+ 	enum dpu_intf intf;
++	enum dpu_intf intf_master;
+ 	enum dpu_wb wb;
+ 	enum dpu_3d_blend_mode mode_3d;
+ 	enum dpu_merge_3d merge_3d;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c
+index 58abf5fe9..5f4af2007 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c
+@@ -224,6 +224,7 @@ int dpu_rm_init(struct dpu_rm *rm,
+ 		}
+ 		rm->ctl_blks[ctl->id - CTL_0] = &hw->base;
+ 	}
++	rm->has_active_ctls = cat->caps->has_active_ctls;
+ 
+ 	for (i = 0; i < cat->dspp_count; i++) {
+ 		struct dpu_hw_dspp *hw;
+@@ -443,10 +444,15 @@ static int _dpu_rm_reserve_ctls(
+ 	int i = 0, j, num_ctls;
+ 	bool needs_split_display;
+ 
+-	/* each hw_intf needs its own hw_ctrl to program its control path */
+-	num_ctls = top->num_intf;
++	if (rm->has_active_ctls) {
++		num_ctls = 1;
++		needs_split_display = false;
++	} else {
++		/* each hw_intf needs its own hw_ctrl to program its control path */
++		num_ctls = top->num_intf;
+ 
+-	needs_split_display = _dpu_rm_needs_split_display(top);
++		needs_split_display = _dpu_rm_needs_split_display(top);
++	}
+ 
+ 	for (j = 0; j < ARRAY_SIZE(rm->ctl_blks); j++) {
+ 		const struct dpu_hw_ctl *ctl;
+@@ -464,7 +470,7 @@ static int _dpu_rm_reserve_ctls(
+ 
+ 		DPU_DEBUG("ctl %d caps 0x%lX\n", j + CTL_0, features);
+ 
+-		if (needs_split_display != has_split_display)
++		if (!rm->has_active_ctls && needs_split_display != has_split_display)
+ 			continue;
+ 
+ 		ctl_idx[i] = j;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h
+index 59de72b38..2b9f7557d 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h
+@@ -31,6 +31,7 @@ struct dpu_rm {
+ 	struct dpu_hw_blk *dspp_blks[DSPP_MAX - DSPP_0];
+ 	struct dpu_hw_blk *merge_3d_blks[MERGE_3D_MAX - MERGE_3D_0];
+ 	struct dpu_hw_blk *dsc_blks[DSC_MAX - DSC_0];
++	bool has_active_ctls;
+ };
+ 
+ /**
+-- 
+2.34.1
+

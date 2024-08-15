@@ -1,0 +1,191 @@
+From 2c1a62a8cab56507e9adea5b3d969ec38d3bef23 Mon Sep 17 00:00:00 2001
+From: maverick <maverick_jia@sina.com>
+Date: Wed, 15 Nov 2023 09:35:09 +0800
+Subject: [PATCH 25/45] NABU: set i2c7 speed to 1M
+
+---
+ .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 161 +++++++++---------
+ 1 file changed, 81 insertions(+), 80 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts
+index 64b77eb45..8c1b98e0d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts
+@@ -564,6 +564,87 @@ codec {
+ 	};
+ };
+ 
++&i2c0 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	backlight: backlight@11 {
++		compatible = "kinetic,ktz8866";
++		reg = <0x11>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&bl_en_state>;
++	};
++};
++
++&i2c7 {
++	status = "okay";
++	clock-frequency = <1000000>;
++
++	cs35l41_br: cs35l41@40 {
++		compatible = "cirrus,cs35l41";
++		reg = <0x40>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
++		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
++		#sound-dai-cells = <1>;
++		sound-name-prefix = "BR";
++		cirrus,boost-peak-milliamp = <4000>;
++		cirrus,boost-ind-nanohenry = <1000>;
++		cirrus,boost-cap-microfarad = <15>;
++		cirrus,asp-sdout-hiz = <3>;
++		cirrus,gpio2-src-select = <4>;
++		cirrus,gpio2-output-enable;
++	};
++
++	cs35l41_tr: cs35l41@41 {
++		compatible = "cirrus,cs35l41";
++		reg = <0x41>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <90 IRQ_TYPE_LEVEL_LOW>;
++		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
++		#sound-dai-cells = <1>;
++		sound-name-prefix = "TR";
++		cirrus,boost-peak-milliamp = <4000>;
++		cirrus,boost-ind-nanohenry = <1000>;
++		cirrus,boost-cap-microfarad = <15>;
++		cirrus,asp-sdout-hiz = <3>;
++		cirrus,gpio2-src-select = <4>;
++		cirrus,gpio2-output-enable;
++	};
++
++	cs35l41_bl: cs35l41@42 {
++		compatible = "cirrus,cs35l41";
++		reg = <0x42>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <91 IRQ_TYPE_LEVEL_LOW>;
++		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
++		#sound-dai-cells = <1>;
++		sound-name-prefix = "BL";
++		cirrus,boost-peak-milliamp = <4000>;
++		cirrus,boost-ind-nanohenry = <1000>;
++		cirrus,boost-cap-microfarad = <15>;
++		cirrus,asp-sdout-hiz = <3>;
++		cirrus,gpio2-src-select = <4>;
++		cirrus,gpio2-output-enable;
++	};
++
++	cs35l41_tl: cs35l41@43 {
++		compatible = "cirrus,cs35l41";
++		reg = <0x43>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <93 IRQ_TYPE_LEVEL_LOW>;
++		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
++		#sound-dai-cells = <1>;
++		sound-name-prefix = "TL";
++		cirrus,boost-peak-milliamp = <4000>;
++		cirrus,boost-ind-nanohenry = <1000>;
++		cirrus,boost-cap-microfarad = <15>;
++		cirrus,asp-sdout-hiz = <3>;
++		cirrus,gpio2-src-select = <4>;
++		cirrus,gpio2-output-enable;
++	};
++};
++
+ &spi18 {
+ 	status = "okay";
+ 
+@@ -690,86 +771,6 @@ config {
+ 	};
+ };
+ 
+-&i2c0 {
+-	status = "okay";
+-	clock-frequency = <400000>;
+-
+-	backlight: backlight@11 {
+-		compatible = "kinetic,ktz8866";
+-		reg = <0x11>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&bl_en_state>;
+-	};
+-};
+-
+-&i2c7 {
+-	status = "okay";
+-
+-	cs35l41_br: cs35l41@40 {
+-		compatible = "cirrus,cs35l41";
+-		reg = <0x40>;
+-		interrupt-parent = <&tlmm>;
+-		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
+-		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+-		#sound-dai-cells = <1>;
+-		sound-name-prefix = "BR";
+-		cirrus,boost-peak-milliamp = <4000>;
+-		cirrus,boost-ind-nanohenry = <1000>;
+-		cirrus,boost-cap-microfarad = <15>;
+-		cirrus,asp-sdout-hiz = <3>;
+-		cirrus,gpio2-src-select = <4>;
+-		cirrus,gpio2-output-enable;
+-	};
+-
+-	cs35l41_tr: cs35l41@41 {
+-		compatible = "cirrus,cs35l41";
+-		reg = <0x41>;
+-		interrupt-parent = <&tlmm>;
+-		interrupts = <90 IRQ_TYPE_LEVEL_LOW>;
+-		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+-		#sound-dai-cells = <1>;
+-		sound-name-prefix = "TR";
+-		cirrus,boost-peak-milliamp = <4000>;
+-		cirrus,boost-ind-nanohenry = <1000>;
+-		cirrus,boost-cap-microfarad = <15>;
+-		cirrus,asp-sdout-hiz = <3>;
+-		cirrus,gpio2-src-select = <4>;
+-		cirrus,gpio2-output-enable;
+-	};
+-
+-	cs35l41_bl: cs35l41@42 {
+-		compatible = "cirrus,cs35l41";
+-		reg = <0x42>;
+-		interrupt-parent = <&tlmm>;
+-		interrupts = <91 IRQ_TYPE_LEVEL_LOW>;
+-		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+-		#sound-dai-cells = <1>;
+-		sound-name-prefix = "BL";
+-		cirrus,boost-peak-milliamp = <4000>;
+-		cirrus,boost-ind-nanohenry = <1000>;
+-		cirrus,boost-cap-microfarad = <15>;
+-		cirrus,asp-sdout-hiz = <3>;
+-		cirrus,gpio2-src-select = <4>;
+-		cirrus,gpio2-output-enable;
+-	};
+-
+-	cs35l41_tl: cs35l41@43 {
+-		compatible = "cirrus,cs35l41";
+-		reg = <0x43>;
+-		interrupt-parent = <&tlmm>;
+-		interrupts = <93 IRQ_TYPE_LEVEL_LOW>;
+-		reset-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+-		#sound-dai-cells = <1>;
+-		sound-name-prefix = "TL";
+-		cirrus,boost-peak-milliamp = <4000>;
+-		cirrus,boost-ind-nanohenry = <1000>;
+-		cirrus,boost-cap-microfarad = <15>;
+-		cirrus,asp-sdout-hiz = <3>;
+-		cirrus,gpio2-src-select = <4>;
+-		cirrus,gpio2-output-enable;
+-	};
+-};
+-
+ &uart2 {
+ 	status = "okay";
+ };
+-- 
+2.34.1
+

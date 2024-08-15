@@ -1,0 +1,50 @@
+From d9546ae900a4ae8365791ae647a45b22b9e2dcfc Mon Sep 17 00:00:00 2001
+From: maverick <maverick_jia@sina.com>
+Date: Fri, 9 Jun 2023 09:51:47 +0800
+Subject: [PATCH 04/45] fix drm probe failures
+
+---
+ drivers/firmware/arm_scmi/bus.c | 2 ++
+ drivers/gpio/gpiolib.c          | 6 ++++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/firmware/arm_scmi/bus.c b/drivers/firmware/arm_scmi/bus.c
+index 35bb70724..1d8a6a8d9 100644
+--- a/drivers/firmware/arm_scmi/bus.c
++++ b/drivers/firmware/arm_scmi/bus.c
+@@ -12,6 +12,7 @@
+ #include <linux/kernel.h>
+ #include <linux/slab.h>
+ #include <linux/device.h>
++#include <linux/of.h>
+ 
+ #include "common.h"
+ 
+@@ -192,6 +193,7 @@ scmi_device_create(struct device_node *np, struct device *parent, int protocol,
+ 	scmi_dev->protocol_id = protocol;
+ 	scmi_dev->dev.parent = parent;
+ 	scmi_dev->dev.of_node = np;
++	scmi_dev->dev.fwnode = of_fwnode_handle(np);
+ 	scmi_dev->dev.bus = &scmi_bus_type;
+ 	scmi_dev->dev.release = scmi_device_release;
+ 	dev_set_name(&scmi_dev->dev, "scmi_dev.%d", id);
+diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+index 9d8c78312..8fd09a70a 100644
+--- a/drivers/gpio/gpiolib.c
++++ b/drivers/gpio/gpiolib.c
+@@ -522,6 +522,12 @@ static int gpiochip_setup_dev(struct gpio_device *gdev)
+ {
+ 	int ret;
+ 
++	/*
++	 * If fwnode doesn't belong to another device, it's safe to clear its
++	 * initialized flag.
++	 */
++	if (!gdev->dev.fwnode->dev)
++		fwnode_dev_initialized(gdev->dev.fwnode, false);
+ 	ret = gcdev_register(gdev, gpio_devt);
+ 	if (ret)
+ 		return ret;
+-- 
+2.34.1
+

@@ -215,7 +215,8 @@ _package() {
   rm "${pkgdir}"/usr/lib/modules/${_kernver}/{source,build}
 
   # now we call depmod...
-  depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
+  #depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
+  depmod -b "${pkgdir}" -F System.map "${_kernver}"
 }
 
 _package-headers() {

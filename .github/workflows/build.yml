@@ -23,9 +23,9 @@ jobs:
       -
         name: Makepkg Build and Check
         id: makepkg
-        uses: edlanglois/pkgbuild-action@v1
+        uses: rodriguezst/pkgbuild-arm64-action@v1
         with:
-          makepkgArgs: -s --config /github/workspace/makepkg-arm.conf
+          makepkgArgs: -s
       - 
         name: Copy Package Files
         run: |

@@ -16,7 +16,7 @@ _desc="AArch64 multi-platform"
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'aarch64-linux-gnu-gcc' 'aarch64-linux-gnu-binutils')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
 source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
     '0001-add-xiaomi-keyboard-support.patch'

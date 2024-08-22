@@ -6,7 +6,7 @@
 pkgbase=linux61-nabu
 pkgver=6.1.98
 pkgrel=1
-_kernelname=-MANJARO-ARM
+_kernelname=-NABU
 _basekernel=6.1
 _srcname="linux-${pkgver/%.0/}"
 _newversion=false

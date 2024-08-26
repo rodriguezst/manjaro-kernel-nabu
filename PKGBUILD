@@ -64,7 +64,12 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
     '0043-dsi-fix-display-sync-problem-from-map220v.patch'
     '0044-restore-initial_rotation-use-cmdline-fbcon-rotate-1-.patch'
     '0045-charge-support-standard-pps-charges.patch'
-    'config' )
+    'config' 
+    'linux.preset'
+    '60-linux.hook'
+    '90-linux.hook'
+    'uki.conf'
+    'cmdline' )
 sha256sums=( '97cdc9127c7700556ea0891267a0c24cf372f4b81636fb8203a914f3a69f3406'
     '03ecfc9445d08f2a3d0b7608f28a4752e542e124f8b3c688df3031556a3dd69d'
     '63ca96ae49de42de0f9b40ee7805d132a9285946dae63d92072db8824cc1688f'
@@ -111,7 +116,12 @@ sha256sums=( '97cdc9127c7700556ea0891267a0c24cf372f4b81636fb8203a914f3a69f3406'
     '5826b94f17b79aaa20274abbe4837e918338126962303364d8ee77fbbce86d7e'
     '9032497b5b1acb1f85e3e77c9409770dee5d941f6dc3a55fb6ded88c22e510c8'
     'e067bd89d598102041504d8a5dd2b59df049d13efdde738790e29cf05a89679a'
-    'cf8d74c5434ba08d1103e5ac01b78313da2376804765168931695bba845b6817' )
+    'cf8d74c5434ba08d1103e5ac01b78313da2376804765168931695bba845b6817'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP' )
 
 prepare() {
   cd "${_srcname}"
@@ -175,10 +185,11 @@ build() {
 
 _package() {
   pkgdesc="The Linux ${_basekernel} Kernel and modules - ${_desc}"
-  depends=('coreutils' 'kmod' 'initramfs')
+  depends=('coreutils' 'kmod' 'initramfs' 'systemd-ukify')
   optdepends=('crda: to set the correct wireless channels of your country'
               'linux-firmware: additional firmware')
   provides=("linux=${pkgver}")
+  conflicts=('linux61')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=${pkgname}.install
 
@@ -193,6 +204,7 @@ _package() {
   make LOCALVERSION= INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 modules_install
 
   # install kernel and dtb
+  cp arch/$KARCH/boot/Image "${pkgdir}/boot/vmlinux-${_kernver}"
   cp arch/$KARCH/boot/Image.gz "${pkgdir}/boot/vmlinuz-${_kernver}"
   cp arch/$KARCH/boot/dts/${_dtbfile} "${pkgdir}/boot/dtb-${_kernver}"
 
@@ -216,7 +228,28 @@ _package() {
 
   # now we call depmod...
   #depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
-  depmod -b "${pkgdir}" -F System.map "${_kernver}"
+  #depmod -b "${pkgdir}" -F System.map "${_kernver}"
+
+  # sed expression for following substitutions
+  local _subst="
+    s|%PKGBASE%|${pkgbase}|g
+    s|%KERNVER%|${_kernver}|g
+    s|%EXTRAMODULES%|${_extramodules}|g
+  "
+  # install mkinitcpio preset file
+  sed "${_subst}" "${srcdir}/linux.preset" |
+    install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgbase}.preset"
+
+  # install pacman hooks
+  sed "${_subst}" ../60-linux.hook |
+    install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/60-${pkgbase}.hook"
+  sed "${_subst}" ../90-linux.hook |
+    install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgbase}.hook"
+  
+  # install uki.conf file and cmdline
+  sed "${_subst}" "${srcdir}/uki.conf" |
+    install -Dm644 /dev/stdin "${pkgdir}/etc/kernel/uki.conf"
+  install -Dm644 "${srcdir}/cmdline" "${pkgdir}/etc/kernel/cmdline"
 }
 
 _package-headers() {

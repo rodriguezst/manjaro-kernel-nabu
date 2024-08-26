@@ -1,0 +1,1 @@
+console=tty0 root=PARTLABEL=linux rw rootwait selinux=0 quiet splash

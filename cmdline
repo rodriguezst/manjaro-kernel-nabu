@@ -1,1 +1,1 @@
-console=tty0 root=PARTLABEL=linux rw rootwait selinux=0 quiet splash
+console=tty0 root=PARTLABEL=linux rw rootwait debug=vc selinux=0 audit=0

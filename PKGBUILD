@@ -6,7 +6,7 @@
 pkgbase=linux61-nabu
 pkgver=6.1.98
 pkgrel=1
-_kernelname=-NABU
+_kernelname=-MANJARO-NABU
 _basekernel=6.1
 _srcname="linux-${pkgver/%.0/}"
 _newversion=false
@@ -116,7 +116,7 @@ sha256sums=( '97cdc9127c7700556ea0891267a0c24cf372f4b81636fb8203a914f3a69f3406'
     '5826b94f17b79aaa20274abbe4837e918338126962303364d8ee77fbbce86d7e'
     '9032497b5b1acb1f85e3e77c9409770dee5d941f6dc3a55fb6ded88c22e510c8'
     'e067bd89d598102041504d8a5dd2b59df049d13efdde738790e29cf05a89679a'
-    'cf8d74c5434ba08d1103e5ac01b78313da2376804765168931695bba845b6817'
+    'SKIP'
     'SKIP'
     'SKIP'
     'SKIP'
@@ -150,6 +150,7 @@ build() {
 
   # Get the kernel version
   if [[ "${_newversion}" = false ]]; then
+    make olddefconfig
     make prepare
   fi
 
@@ -179,8 +180,7 @@ build() {
 
   # Build the kernel and the modules
   unset LDFLAGS
-  make ${MAKEFLAGS} Image Image.gz modules
-  make ${MAKEFLAGS} DTC_FLAGS="-@" dtbs
+  make ${MAKEFLAGS} Image.gz modules dtbs
 }
 
 _package() {
@@ -198,10 +198,10 @@ _package() {
   KARCH=arm64
 
   # get kernel version
-  _kernver="$(make LOCALVERSION= kernelrelease)"
+  _kernver="$(make kernelrelease)"
 
   mkdir -p "${pkgdir}"/{boot,usr/lib/modules}
-  make LOCALVERSION= INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 modules_install
+  make INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 modules_install
 
   # install kernel and dtb
   cp arch/$KARCH/boot/Image "${pkgdir}/boot/vmlinux-${_kernver}"
@@ -213,10 +213,10 @@ _package() {
   echo "${_basekernel}-${CARCH}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/kernelbase"
 
   # add kernel version
-  echo "${pkgver}-${pkgrel}-MANJARO-ARM aarch64" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
+  echo "${pkgver}-${pkgrel}-MANJARO-NABU aarch64" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
 
   # make room for external modules
-  local _extramodules="extramodules-${_basekernel}${_kernelname:--MANJARO-ARM}"
+  local _extramodules="extramodules-${_basekernel}${_kernelname:--MANJARO-NABU}"
   ln -s "../${_extramodules}" "${pkgdir}/usr/lib/modules/${_kernver}/extramodules"
 
   # add real version for building modules and running depmod from hook

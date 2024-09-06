@@ -16,11 +16,6 @@ jobs:
         with:
           fetch-depth: '1'
       - 
-        id: time
-        uses: boredland/get-time-action@2.0.0
-        with:
-          format: 'YYYYMMDD'
-      - 
         name: Install dependencies
         shell: bash
         run: |
@@ -69,6 +64,8 @@ jobs:
           export CROSS_COMPILE='aarch64-linux-gnu-'
           EOM
           makepkg -d
+          source PKGBUILD
+          echo "PACKAGE_NAME=$pkgbase-$pkgver-$pkgrel" >> $GITHUB_ENV
       - 
         name: Copy Package Files
         run: |
@@ -80,8 +77,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.time.outputs.time }}
-          name: ${{ steps.time.outputs.time }}
+          tag_name: ${{ env.PACKAGE_NAME }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ env.PACKAGE_NAME }}
           draft: false
           prerelease: false
           files: |

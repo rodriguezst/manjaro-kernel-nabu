@@ -1,4 +1,4 @@
-From 56cc9306ae6c19805bb20303a06342d8632947dd Mon Sep 17 00:00:00 2001
+From 91a6f5f8188e68f2bc75ea7b2891d6fc7a041213 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 23 Oct 2023 16:37:53 +0800
 Subject: [PATCH 17/45] add minimal dts for nabu
@@ -565,5 +565,5 @@ index 000000000..ec03a0730
 +};
 +
 -- 
-2.34.1
+2.46.0
 

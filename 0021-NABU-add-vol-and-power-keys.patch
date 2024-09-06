@@ -1,4 +1,4 @@
-From f2cbdb50ea9d015118c0acd76af9981cb2d2b346 Mon Sep 17 00:00:00 2001
+From ddfb85ece0d0df2ca17e96b5c0db5ccd8534e6b0 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 7 Nov 2023 12:53:51 +0800
 Subject: [PATCH 21/45] NABU: add vol and power keys
@@ -50,5 +50,5 @@ index 7ac34eb98..77bb0a8b9 100644
  };
  
 -- 
-2.34.1
+2.46.0
 

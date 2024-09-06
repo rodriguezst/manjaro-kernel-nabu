@@ -1,4 +1,4 @@
-From 566c0cdf75e9dbbd912227ae67b8daaa8bf7c48b Mon Sep 17 00:00:00 2001
+From cc24e3f984afdc37bf8a460b9b6037afcb6bc85e Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 19 Dec 2023 11:18:20 +0800
 Subject: [PATCH 34/45] DEBUG: update debug dts
@@ -76,5 +76,5 @@ index 71b1faa38..df8d26acb 100644
  
  &tlmm {
 -- 
-2.34.1
+2.46.0
 

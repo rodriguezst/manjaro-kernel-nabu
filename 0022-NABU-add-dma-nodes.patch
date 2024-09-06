@@ -1,4 +1,4 @@
-From 0feb95ad5f0136ff066b9fddf561b8faf1d6372e Mon Sep 17 00:00:00 2001
+From b21fd0b409bd4ecce70b0a9e244875c188829de4 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 11 Nov 2023 10:34:08 +0800
 Subject: [PATCH 22/45] NABU: add dma nodes
@@ -46,5 +46,5 @@ index 77bb0a8b9..98b8c5676 100644
  	status = "okay";
  };
 -- 
-2.34.1
+2.46.0
 

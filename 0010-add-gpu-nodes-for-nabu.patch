@@ -1,4 +1,4 @@
-From 017e61b1bdd71b286de5a432c6c79406505e0ec7 Mon Sep 17 00:00:00 2001
+From 0bc2073003dc584ae15bd7fa3595c63605cb186a Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 19:46:08 +0800
 Subject: [PATCH 10/45] add gpu nodes for nabu
@@ -501,5 +501,5 @@ index bbd322fc5..9a5eca412 100644
  			compatible = "qcom,sm8150-pdc", "qcom,pdc";
  			reg = <0 0x0b220000 0 0x30000>;
 -- 
-2.34.1
+2.46.0
 

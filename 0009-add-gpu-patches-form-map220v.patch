@@ -1,4 +1,4 @@
-From 096e43890dbfcc45d61d18a71f7553b76963b2bf Mon Sep 17 00:00:00 2001
+From ec65d71ecf62abd0316a75fea7fae5e1dbaa95c3 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 19:43:53 +0800
 Subject: [PATCH 09/45] add gpu patches form map220v
@@ -16,7 +16,7 @@ Subject: [PATCH 09/45] add gpu patches form map220v
  9 files changed, 43 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 3632f0768..1ec474e3d 100644
+index 1bf41a82c..169fede38 100644
 --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
 +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
 @@ -1112,14 +1112,18 @@ static void dpu_encoder_virt_atomic_mode_set(struct drm_encoder *drm_enc,
@@ -153,7 +153,7 @@ index 696c32d30..9800dea30 100644
  
  static void dpu_hw_ctl_intf_cfg(struct dpu_hw_ctl *ctx,
 diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-index 96c012ec8..e801a6daf 100644
+index ec5265771..b31f945e6 100644
 --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
 +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
 @@ -36,6 +36,7 @@ struct dpu_hw_stage_cfg {
@@ -225,5 +225,5 @@ index 59de72b38..2b9f7557d 100644
  
  /**
 -- 
-2.34.1
+2.46.0
 

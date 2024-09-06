@@ -1,4 +1,4 @@
-From 99707edbf947329964f542a56630d72c689bdaab Mon Sep 17 00:00:00 2001
+From 4cf2d28ad0de9f8f3203d69e04763cbc706bb719 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 7 Nov 2023 08:03:39 +0800
 Subject: [PATCH 20/45] NABU: add sound support
@@ -979,5 +979,5 @@ index 000000000..2b3b73100
 +MODULE_DESCRIPTION("SM8150 ASoC Machine Driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.34.1
+2.46.0
 

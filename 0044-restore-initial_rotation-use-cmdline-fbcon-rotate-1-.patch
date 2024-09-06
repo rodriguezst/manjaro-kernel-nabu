@@ -1,4 +1,4 @@
-From ffd655454ff2518a23a50b1eebcbc0a4d354bae1 Mon Sep 17 00:00:00 2001
+From bbf64a52315709d36ad44f04213f3888d911de58 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 17 Feb 2024 14:22:59 +0800
 Subject: [PATCH 44/45] restore initial_rotation, use cmdline "fbcon=rotate:1"
@@ -22,5 +22,5 @@ index 07fc4881b..14498a0d1 100644
  static int margin_color;
  
 -- 
-2.34.1
+2.46.0
 

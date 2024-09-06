@@ -1,4 +1,4 @@
-From 5c44cf4b230b54826428e413844825bdb3268eba Mon Sep 17 00:00:00 2001
+From 81d29bd0db3765ff364e7fdaf19ae312caaf86dd Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 25 May 2023 16:27:56 +0800
 Subject: [PATCH 02/45] add xiaomi pad5 support and pm8150b tcpm support
@@ -2585,7 +2585,7 @@ index 000000000..d4d358c68
 +
 +#endif /* __QCOM_PMIC_TYPE_C_PORT_H__ */
 diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index bb77f6463..879ccbe20 100644
+index 013f61bbf..bd3cf0f0d 100644
 --- a/drivers/usb/typec/tcpm/tcpm.c
 +++ b/drivers/usb/typec/tcpm/tcpm.c
 @@ -36,6 +36,7 @@
@@ -2782,5 +2782,5 @@ index bffc8d3e1..ab7ca8729 100644
  
  #endif /* __LINUX_USB_TCPM_H */
 -- 
-2.34.1
+2.46.0
 

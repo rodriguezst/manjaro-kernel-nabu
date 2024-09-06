@@ -1,4 +1,4 @@
-From ee43d8c2aeabb84b2816abe59a155f9ae3049d71 Mon Sep 17 00:00:00 2001
+From 76ec213977d45b7de685347b93f06c8a30478f6b Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 15:50:05 +0800
 Subject: [PATCH 07/45] set up runtime pm to gdsc
@@ -179,5 +179,5 @@ index 803512688..981a12c85 100644
  
  struct gdsc_desc {
 -- 
-2.34.1
+2.46.0
 

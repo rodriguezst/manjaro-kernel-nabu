@@ -1,4 +1,4 @@
-From b560c10392873b0db2caba28e32f7a8ba34de448 Mon Sep 17 00:00:00 2001
+From f1d991b9d1e40be9f3494f4fbc0cd3dec95e3152 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:32:51 +0800
 Subject: [PATCH 38/45] USBPD: update typec pdhpy driver
@@ -61,5 +61,5 @@ index 9a6ad74ea..52c81378e 100644
  
  struct pmic_typec_pdphy *qcom_pmic_typec_pdphy_alloc(struct device *dev)
 -- 
-2.34.1
+2.46.0
 

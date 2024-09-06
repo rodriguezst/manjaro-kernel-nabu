@@ -1,4 +1,4 @@
-From 3536f7d6b659fa642bc4c4acf0bb03566aa2c085 Mon Sep 17 00:00:00 2001
+From 126f067c76b561aa76e9407b472ab6fffae4a2f7 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 18 Feb 2024 17:03:16 +0800
 Subject: [PATCH 45/45] charge: support standard pps charges
@@ -249,7 +249,7 @@ index f6ecdf13d..b513d86f1 100644
  
  #endif
 diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 204fd1817..900c5fb95 100644
+index 3b3e9d0d5..9d2a00e54 100644
 --- a/drivers/usb/typec/tcpm/tcpm.c
 +++ b/drivers/usb/typec/tcpm/tcpm.c
 @@ -2560,6 +2560,8 @@ static int tcpm_register_sink_caps(struct tcpm_port *port)
@@ -272,5 +272,5 @@ index 204fd1817..900c5fb95 100644
  
  		/*
 -- 
-2.34.1
+2.46.0
 

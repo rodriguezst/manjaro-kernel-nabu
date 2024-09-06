@@ -1,4 +1,4 @@
-From b8984cc42b4d978978fa7cc9789fff2df0867b75 Mon Sep 17 00:00:00 2001
+From 7db77c61fbc8ca9c40df08da41d89a3e6fa52ff0 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:55:17 +0800
 Subject: [PATCH 41/45] charge: add dts configs for fast charge
@@ -104,5 +104,5 @@ index db8cb554e..b7c26cd75 100644
  		qcom,batt-id-range-pct = <15>;
  		#include "fg-gen4-batterydata-nabu-sunwoda-8720mah.dtsi"
 -- 
-2.34.1
+2.46.0
 

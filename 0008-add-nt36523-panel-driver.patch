@@ -1,4 +1,4 @@
-From bc2e268031bcf8f404fe75e7acbb3c322597d69d Mon Sep 17 00:00:00 2001
+From c10bfd18f077f9064de652e6e238547ce5a080a7 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 19:42:31 +0800
 Subject: [PATCH 08/45] add nt36523 panel driver
@@ -667,5 +667,5 @@ index 000000000..66c652bb5
 +MODULE_DESCRIPTION("Novatek NT36523 DriverIC panels driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.34.1
+2.46.0
 

@@ -1,4 +1,4 @@
-From daa29f2c0f03078ce98796e8e3eea43a981e2506 Mon Sep 17 00:00:00 2001
+From 4d28a5bd51e610e0730aec2514a2b6c7571093eb Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 17 Jan 2024 08:19:38 +0800
 Subject: [PATCH 35/45] Charger: update pm8150b driver
@@ -873,5 +873,5 @@ index 863ea0a07..46e0967bd 100644
  
  int smblib_init(struct smb_charger *chg);
 -- 
-2.34.1
+2.46.0
 

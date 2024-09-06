@@ -1,4 +1,4 @@
-From 970538cd6fa3bd115237594e86f695bdc6701b62 Mon Sep 17 00:00:00 2001
+From 2c5ac29e218c8ab5be5161e4794b1329a694ead3 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:42:38 +0800
 Subject: [PATCH 39/45] USBPD: trick Xiaomi charger to supporting PPS
@@ -9,7 +9,7 @@ Subject: [PATCH 39/45] USBPD: trick Xiaomi charger to supporting PPS
  2 files changed, 155 insertions(+), 88 deletions(-)
 
 diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 879ccbe20..204fd1817 100644
+index bd3cf0f0d..3b3e9d0d5 100644
 --- a/drivers/usb/typec/tcpm/tcpm.c
 +++ b/drivers/usb/typec/tcpm/tcpm.c
 @@ -137,6 +137,9 @@
@@ -371,5 +371,5 @@ index b05725070..cb5c92579 100644
  
  /* ChromeOS specific commands */
 -- 
-2.34.1
+2.46.0
 

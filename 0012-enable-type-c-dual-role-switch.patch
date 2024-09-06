@@ -1,4 +1,4 @@
-From 4fa0fdc2efc698f1b09bc16c60d44f197947497b Mon Sep 17 00:00:00 2001
+From 1fd72bf0854c660ecdda2f85c4b80e78fc4b2df8 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 28 Jun 2023 08:51:23 +0800
 Subject: [PATCH 12/45] enable type-c dual role switch
@@ -219,5 +219,5 @@ index f0ba35bb7..abbd2560f 100644
  
  	return PTR_ERR_OR_ZERO(phy_provider);
 -- 
-2.34.1
+2.46.0
 

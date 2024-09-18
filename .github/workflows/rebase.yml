@@ -1,0 +1,118 @@
+name: rebase-patches
+
+env:
+  REPO: 'https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
+  REF: 'linux-6.1.y'
+
+on:
+  workflow_dispatch:
+  schedule: 
+    - cron: '0 0 * * *'
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout srcdir
+        uses: actions/checkout@v4
+        with:
+          path: srcdir
+
+      - name: Get current kernel version
+        shell: bash
+        run: |
+          source srcdir/PKGBUILD
+          echo "PKGVER=$pkgver" >> $GITHUB_ENV
+          echo "PREV_REF=v$pkgver" >> $GITHUB_ENV
+
+      - name: Rebase & regenerate patches
+        shell: bash
+        run: |
+          git clone --depth=1 -b ${{ env.PREV_REF }} ${{ env.REPO }} linux
+          cd linux
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git am --whitespace=fix ../srcdir/*.patch
+          git fetch origin ${{ env.REF }}:${{ env.REF }} --depth=10000
+          git rebase ${{ env.REF }}
+          git log -1 ${{ env.REF }} > ../RELEASE.md
+          git format-patch ${{ env.REF }} --start-number=1 -o ../srcdir -- . ':!arch/*/configs/*' > /dev/null
+          KERNVER=$(grep -E '^VERSION|^PATCHLEVEL|^SUBLEVEL' Makefile | \
+            sed -E 's/[^0-9]*//g' | tr '\n' '.' | sed 's/\.$//' )
+          echo "KERNVER=${KERNVER}" >> $GITHUB_ENV
+
+      - name: Install kernel build deps
+        if: env.KERNVER != env.PKGVER
+        run: sudo apt update && sudo apt install build-essential gcc-aarch64-linux-gnu bc flex bison
+
+      - name: Update config & build
+        if: env.KERNVER != env.PKGVER
+        shell: bash
+        run: |
+          cp srcdir/config linux/.config
+          cd linux
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
+          make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image.gz dtbs modules
+          cp .config ../srcdir/config
+
+      - name: Install pacman build deps
+        if: env.KERNVER != env.PKGVER
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt install \
+            build-essential \
+            libarchive-dev \
+            libarchive-tools \
+            meson
+
+      - name: Install pacman & pacman-contrib
+        if: env.KERNVER != env.PKGVER
+        shell: bash
+        env:
+          PACMAN_VERSION: 6.0.2
+          PACMAN_CONTRIB_VERSION: 1.10.6
+        run: |
+          sudo git clone --depth 1 https://gitlab.manjaro.org/packages/core/pacman.git
+          pushd pacman
+            sudo wget https://sources.archlinux.org/other/pacman/pacman-${PACMAN_VERSION}.tar.xz
+            sudo tar -xvf pacman-${PACMAN_VERSION}.tar.xz
+            pushd pacman-${PACMAN_VERSION}
+              sudo meson --prefix=/usr \
+                        --buildtype=plain \
+                        -Ddoc=disabled \
+                        -Ddoxygen=enabled \
+                        -Dscriptlet-shell=/usr/bin/bash \
+                        -Dldconfig=/usr/bin/ldconfig \
+                        build
+              sudo meson compile -C build
+              sudo meson install -C build
+            popd
+            sudo install -m644 pacman.conf /etc/pacman.conf
+            sudo install -m644 makepkg.conf /etc/
+            sudo mkdir -p /etc/pacman.d
+            sudo touch /etc/pacman.d/mirrorlist
+          popd
+          git clone --depth 1 https://gitlab.archlinux.org/pacman/pacman-contrib.git -b v${PACMAN_CONTRIB_VERSION} pacman-contrib
+          pushd pacman-contrib
+            ./autogen.sh
+            ./configure --prefix=/usr \
+              --sysconfdir=/etc \
+              --localstatedir=/var \
+              --disable-doc
+            make
+            sudo make install
+          popd
+
+      - name: Update PKGBUILD and push new version
+        if: env.KERNVER != env.PKGVER
+        shell: bash
+        run: |
+          cd srcdir
+          sed -i 's/^pkgver=.*/pkgver='$KERNVER'/' PKGBUILD
+          sed -i 's/^pkgrel=.*/pkgrel=1/' PKGBUILD
+          updpkgsums
+          git add config *.patch PKGBUILD
+          git commit -m "update to $KERNVER"
+          git push

@@ -1,7 +1,7 @@
-From 61bd09e2d2e2e646842ba19acd3a308146f8c8f1 Mon Sep 17 00:00:00 2001
+From 96e2258a86a9f6579e927a5b19a963bd9e54b019 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 3 Jun 2023 15:54:59 +0800
-Subject: [PATCH 03/45] add wifi
+Subject: [PATCH 03/43] add wifi
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 19 ++++++++++++-------

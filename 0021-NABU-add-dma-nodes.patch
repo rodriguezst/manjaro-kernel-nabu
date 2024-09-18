@@ -1,7 +1,7 @@
-From b21fd0b409bd4ecce70b0a9e244875c188829de4 Mon Sep 17 00:00:00 2001
+From a67b26f5abc9beb7bf51eb6ca27f19bdaa86567e Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 11 Nov 2023 10:34:08 +0800
-Subject: [PATCH 22/45] NABU: add dma nodes
+Subject: [PATCH 21/43] NABU: add dma nodes
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 20 +++++++++++--------

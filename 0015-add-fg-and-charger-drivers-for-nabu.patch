@@ -1,7 +1,7 @@
-From a05935fff58774ba9ce2e6e12629105552b31b13 Mon Sep 17 00:00:00 2001
+From 1408bab2bb87b155ef1e8f6ec5eb6114a2c33d21 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 30 Jul 2023 10:57:52 +0800
-Subject: [PATCH 15/45] add fg and charger drivers for nabu
+Subject: [PATCH 15/43] add fg and charger drivers for nabu
 
 ---
  ...gen4-batterydata-nabu-sunwoda-8720mah.dtsi |  153 +
@@ -218,7 +218,7 @@ index 000000000..c152f8ed1
 +	];
 +};
 diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-index 048d79ef7..8e4bc485a 100644
+index 048d79ef7..47190ff31 100644
 --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
 +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
 @@ -46,6 +46,11 @@ pmic@2 {
@@ -288,7 +288,7 @@ index 048d79ef7..8e4bc485a 100644
 +					  "dcin-pon",
 +					  "dcin-en";
 +		};
-+	
++
  		pm8150b_vbus: dcdc@1100 {
  			compatible = "qcom,pm8150b-vbus-reg";
  			status = "disabled";
@@ -6517,7 +6517,7 @@ index 000000000..427dc2357
 +		int batt_id_kohm, struct soh_range *soh_data);
 diff --git a/drivers/power/supply/qcom/pm8150b_charger.c b/drivers/power/supply/qcom/pm8150b_charger.c
 new file mode 100644
-index 000000000..92d55ab54
+index 000000000..861a3b34f
 --- /dev/null
 +++ b/drivers/power/supply/qcom/pm8150b_charger.c
 @@ -0,0 +1,1091 @@
@@ -6700,7 +6700,7 @@ index 000000000..92d55ab54
 +		pr_err("batt power supply prop %d not supported\n", psp);
 +		return -EINVAL;
 +	}
-+	
++
 +	if (rc < 0) {
 +		pr_debug("Couldn't get prop %d rc = %d\n", psp, rc);
 +		return -ENODATA;
@@ -14435,7 +14435,7 @@ new file mode 100644
 index 000000000..e69de29bb
 diff --git a/drivers/power/supply/qcom/smb5-lib.c b/drivers/power/supply/qcom/smb5-lib.c
 new file mode 100644
-index 000000000..4a14c636e
+index 000000000..b9355d7db
 --- /dev/null
 +++ b/drivers/power/supply/qcom/smb5-lib.c
 @@ -0,0 +1,553 @@
@@ -14845,7 +14845,7 @@ index 000000000..4a14c636e
 +{
 +	int rc;
 +	u8 stat;
-+ 
++
 +	rc = smblib_read(chg, DCIN_BASE + INT_RT_STS_OFFSET, &stat);
 +	if (rc < 0) {
 +		smblib_err(chg, "Couldn't read DCIN_RT_STS rc=%d\n", rc);
@@ -14994,7 +14994,7 @@ index 000000000..4a14c636e
 +}
 diff --git a/drivers/power/supply/qcom/smb5-lib.h b/drivers/power/supply/qcom/smb5-lib.h
 new file mode 100644
-index 000000000..863ea0a07
+index 000000000..75a2a82c3
 --- /dev/null
 +++ b/drivers/power/supply/qcom/smb5-lib.h
 @@ -0,0 +1,201 @@

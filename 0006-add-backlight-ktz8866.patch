@@ -1,7 +1,7 @@
-From 740c4de36ab36319e6d9c980f9fbf5a3404d52be Mon Sep 17 00:00:00 2001
+From 1fe0a104ab955bbc17035b7a3b466328c707e994 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 10 Jun 2023 10:24:55 +0800
-Subject: [PATCH 06/45] add backlight ktz8866
+Subject: [PATCH 06/43] add backlight ktz8866
 
 ---
  drivers/video/backlight/Kconfig   |   9 ++

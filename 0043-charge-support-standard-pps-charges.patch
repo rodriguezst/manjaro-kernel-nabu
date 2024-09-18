@@ -1,7 +1,7 @@
-From 126f067c76b561aa76e9407b472ab6fffae4a2f7 Mon Sep 17 00:00:00 2001
+From 00095474e5eccf34502f1558bb63dc856f53213f Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 18 Feb 2024 17:03:16 +0800
-Subject: [PATCH 45/45] charge: support standard pps charges
+Subject: [PATCH 43/43] charge: support standard pps charges
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  |   1 +
@@ -23,7 +23,7 @@ index 4a959304d..2d6e955b2 100644
  		status = "ok";
  	};
 diff --git a/drivers/power/supply/qcom/usbpd_manager.c b/drivers/power/supply/qcom/usbpd_manager.c
-index a959b4e93..bace735d5 100644
+index 83415b757..d446cb2d2 100644
 --- a/drivers/power/supply/qcom/usbpd_manager.c
 +++ b/drivers/power/supply/qcom/usbpd_manager.c
 @@ -21,18 +21,24 @@
@@ -34,7 +34,7 @@ index a959b4e93..bace735d5 100644
  
  #include "usbpd_manager.h"
  
-+#define MIN_ADAPTER_VOLT_REQUIRED		10000		
++#define MIN_ADAPTER_VOLT_REQUIRED		10000
 +#define MIN_ADAPTER_CURR_REQUIRED		2000
 +
  #define BATT_MAX_CHG_VOLT		4450
@@ -201,7 +201,7 @@ index a959b4e93..bace735d5 100644
  }
  
 diff --git a/drivers/power/supply/qcom/usbpd_manager.h b/drivers/power/supply/qcom/usbpd_manager.h
-index f6ecdf13d..b513d86f1 100644
+index 647711096..bd83f93ef 100644
 --- a/drivers/power/supply/qcom/usbpd_manager.h
 +++ b/drivers/power/supply/qcom/usbpd_manager.h
 @@ -7,6 +7,11 @@

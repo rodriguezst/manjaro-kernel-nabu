@@ -1,7 +1,7 @@
-From c90ad10abec60b1872f13db0f6cea88134fe860f Mon Sep 17 00:00:00 2001
+From 54efb307a40ddf50e168a7407d32d413b2a5ab95 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 7 Dec 2023 10:20:37 +0800
-Subject: [PATCH 28/45] input: nt36xxx: Enable pen support
+Subject: [PATCH 27/43] input: nt36xxx: Enable pen support
 
 ---
  drivers/input/touchscreen/nt36523/nt36xxx.c   | 47 +++++++++++++++++--

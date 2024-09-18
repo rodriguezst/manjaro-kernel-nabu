@@ -1,7 +1,7 @@
-From 476971d7e06834f8bdae6ca1cd168016d1616fa9 Mon Sep 17 00:00:00 2001
+From 8d4382acefcd2affae575ce8b67afd7067fcfb2e Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 17 Jul 2023 11:57:56 +0800
-Subject: [PATCH 13/45] add qcom pmic revid driver
+Subject: [PATCH 13/43] add qcom pmic revid driver
 
 ---
  drivers/platform/Kconfig          |   2 +

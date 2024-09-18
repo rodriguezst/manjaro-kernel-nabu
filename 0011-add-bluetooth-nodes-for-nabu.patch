@@ -1,7 +1,7 @@
-From 53583631a804a4c6f1c063c0a5f74bcb772282a0 Mon Sep 17 00:00:00 2001
+From e167e972543d397aa7efd14becf0f373b4ea7f92 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 15 Jun 2023 14:51:29 +0800
-Subject: [PATCH 11/45] add bluetooth nodes for nabu
+Subject: [PATCH 11/43] add bluetooth nodes for nabu
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 69 +++++++++++++++++++

@@ -1,7 +1,7 @@
-From 81d29bd0db3765ff364e7fdaf19ae312caaf86dd Mon Sep 17 00:00:00 2001
+From 0ddacb4f53f8bbd77307de377cddcbde313a9208 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 25 May 2023 16:27:56 +0800
-Subject: [PATCH 02/45] add xiaomi pad5 support and pm8150b tcpm support
+Subject: [PATCH 02/43] add xiaomi pad5 support and pm8150b tcpm support
 
 ---
  arch/arm64/boot/dts/qcom/Makefile             |   1 +

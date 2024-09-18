@@ -1,7 +1,7 @@
-From 301bdb33bbb5fd2d3c21fda4eff7ca88e4970d53 Mon Sep 17 00:00:00 2001
+From 14b863d925b96e9dd0b572b93a977032f34e3d7b Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 12 Nov 2023 11:46:37 +0800
-Subject: [PATCH 24/45] NABU: change the path of the Bluetooth firmware to
+Subject: [PATCH 23/43] NABU: change the path of the Bluetooth firmware to
  default
 
 ---

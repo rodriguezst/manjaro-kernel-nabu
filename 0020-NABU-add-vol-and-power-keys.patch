@@ -1,7 +1,7 @@
-From ddfb85ece0d0df2ca17e96b5c0db5ccd8534e6b0 Mon Sep 17 00:00:00 2001
+From f2e176bfb47d8b8aa82d6a02f190fe70476e8637 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 7 Nov 2023 12:53:51 +0800
-Subject: [PATCH 21/45] NABU: add vol and power keys
+Subject: [PATCH 20/43] NABU: add vol and power keys
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 20 +++++++++++++++++--

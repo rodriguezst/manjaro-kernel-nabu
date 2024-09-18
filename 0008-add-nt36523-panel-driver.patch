@@ -1,7 +1,7 @@
-From c10bfd18f077f9064de652e6e238547ce5a080a7 Mon Sep 17 00:00:00 2001
+From 8a123bacd4a62eea642369f03fcb5aa6b3617695 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 19:42:31 +0800
-Subject: [PATCH 08/45] add nt36523 panel driver
+Subject: [PATCH 08/43] add nt36523 panel driver
 
 ---
  drivers/gpu/drm/panel/Kconfig                 |   9 +

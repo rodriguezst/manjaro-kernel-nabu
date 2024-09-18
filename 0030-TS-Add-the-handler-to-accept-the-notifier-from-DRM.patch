@@ -1,7 +1,7 @@
-From 14e65e53dad443602a7f5a9bd75f3e463398d272 Mon Sep 17 00:00:00 2001
+From 7482420494b78c76ccee5f80cbce96eabd802b0b Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:53:43 +0800
-Subject: [PATCH 31/45] TS: Add the handler  to accept the notifier from DRM
+Subject: [PATCH 30/43] TS: Add the handler to accept the notifier from DRM
 
 ---
  drivers/input/touchscreen/nt36523/nt36xxx.c | 61 +++++++++++++++++++++

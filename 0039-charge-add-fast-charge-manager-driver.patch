@@ -1,7 +1,7 @@
-From 70b10c68a37d4eedb994c3c223b5c9dd144894f5 Mon Sep 17 00:00:00 2001
+From 82d5546cf6494a739c640d2a11383b27d829b972 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:49:47 +0800
-Subject: [PATCH 40/45] charge: add fast charge manager driver
+Subject: [PATCH 39/43] charge: add fast charge manager driver
 
 ---
  drivers/power/supply/qcom/Makefile        |   1 +
@@ -22,7 +22,7 @@ index 8bfa46c93..ec8ab2200 100644
 +obj-$(CONFIG_QPNP_SMB5_NABU)	+= usbpd_manager.o
 diff --git a/drivers/power/supply/qcom/usbpd_manager.c b/drivers/power/supply/qcom/usbpd_manager.c
 new file mode 100644
-index 000000000..a959b4e93
+index 000000000..83415b757
 --- /dev/null
 +++ b/drivers/power/supply/qcom/usbpd_manager.c
 @@ -0,0 +1,844 @@
@@ -376,9 +376,9 @@ index 000000000..a959b4e93
 +		dev_err(pdpm->dev, "failed get battery temperature\n");
 +		return false;
 +	}
-+	
++
 +	pdbg("usbpd: battery temperature is %d\n", temperature);
-+	
++
 +	if ((temperature < 100) || (temperature > 450)) {
 +		pr_info("usbpd: fc_enable = 0, battery temperature is %d\n", temperature);
 +		return false;
@@ -466,7 +466,7 @@ index 000000000..a959b4e93
 +			break;
 +		}
 +
-+		rc = get_usbpd_bat_temperature(pdpm, &batt_temp);		
++		rc = get_usbpd_bat_temperature(pdpm, &batt_temp);
 +		if ((rc < 0) && ((batt_temp <= 100) || (batt_temp >= 450))) {
 +			pr_info("usbpd: fc_enable = 0, battery temperature is %d\n", batt_temp);
 +			break;
@@ -629,7 +629,7 @@ index 000000000..a959b4e93
 +			step_vbat = -1;
 +		else if (cp->vbat_volt < config->bat_volt_lp_lmt - 10)
 +			step_vbat = 1;
-+		
++
 +		/* battery charge current loop*/
 +		if (cp->ibat_curr < curr_fcc_limit)
 +			step_ibat = 1;
@@ -649,7 +649,7 @@ index 000000000..a959b4e93
 +
 +		steps = min(min(step_vbat, step_ibus), step_ibat);
 +
-+		new_voltage = pdpm->request_voltage + steps * STEP_MV;		
++		new_voltage = pdpm->request_voltage + steps * STEP_MV;
 +		new_current = min(pdpm->apdo_max_curr, curr_ibus_limit);
 +
 +		pdbg("steps: %d, pdpm->request_voltage: %d\n", steps, new_voltage);
@@ -872,7 +872,7 @@ index 000000000..a959b4e93
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/power/supply/qcom/usbpd_manager.h b/drivers/power/supply/qcom/usbpd_manager.h
 new file mode 100644
-index 000000000..f6ecdf13d
+index 000000000..647711096
 --- /dev/null
 +++ b/drivers/power/supply/qcom/usbpd_manager.h
 @@ -0,0 +1,97 @@
@@ -961,7 +961,7 @@ index 000000000..f6ecdf13d
 +	spinlock_t psy_change_lock;
 +
 +	struct power_supply *sw_psy;
-+	struct power_supply *fg_psy;	
++	struct power_supply *fg_psy;
 +	struct power_supply *cp_psy;
 +	struct power_supply *cp_batt_psy;
 +	struct power_supply *tcpm_psy;

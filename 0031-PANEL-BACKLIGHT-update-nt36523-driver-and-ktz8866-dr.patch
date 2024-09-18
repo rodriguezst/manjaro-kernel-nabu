@@ -1,7 +1,7 @@
-From 18ec9eaf94778f24d70cdef6a413b75e5fedfa1a Mon Sep 17 00:00:00 2001
+From 031d2672437449b00b34b05f683243d7c85eb31b Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 18 Dec 2023 10:57:45 +0800
-Subject: [PATCH 32/45] PANEL/BACKLIGHT: update nt36523 driver and ktz8866
+Subject: [PATCH 31/43] PANEL/BACKLIGHT: update nt36523 driver and ktz8866
  driver, move backlight power control to lcd panel
 
 ---

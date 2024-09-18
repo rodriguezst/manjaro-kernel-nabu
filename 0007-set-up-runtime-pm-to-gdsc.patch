@@ -1,7 +1,7 @@
-From 76ec213977d45b7de685347b93f06c8a30478f6b Mon Sep 17 00:00:00 2001
+From 2e9f649a22be8bb137404217dc11f09352bb8a84 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 15:50:05 +0800
-Subject: [PATCH 07/45] set up runtime pm to gdsc
+Subject: [PATCH 07/43] set up runtime pm to gdsc
 
 ---
  drivers/clk/qcom/gdsc.c | 70 ++++++++++++++++++++++++++++++++---------

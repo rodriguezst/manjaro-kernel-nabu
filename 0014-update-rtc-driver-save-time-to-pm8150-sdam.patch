@@ -1,7 +1,7 @@
-From 176b3a15d4c000b6a01c57feffff39a40c5165b8 Mon Sep 17 00:00:00 2001
+From 416303822b5d8e08c52c5ca89607fa4c132b5207 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 26 Jul 2023 15:54:35 +0800
-Subject: [PATCH 14/45] update rtc driver, save time to pm8150-sdam
+Subject: [PATCH 14/43] update rtc driver, save time to pm8150-sdam
 
 ---
  arch/arm64/boot/dts/qcom/pm8150.dtsi          |  10 +-

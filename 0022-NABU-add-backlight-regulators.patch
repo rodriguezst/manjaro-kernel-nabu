@@ -1,14 +1,14 @@
-From 5c230ac9ba95a494772247bfe2e628b09df11f3f Mon Sep 17 00:00:00 2001
+From 736ce415f414d62f863148f9cce5b4949d935077 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 12 Nov 2023 06:44:24 +0800
-Subject: [PATCH 23/45] NABU: add backlight regulators
+Subject: [PATCH 22/43] NABU: add backlight regulators
 
 ---
  .../sm8150-xiaomi-nabu-maverick-minimal.dts   | 26 +++++++++++++++++++
  1 file changed, 26 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick-minimal.dts b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick-minimal.dts
-index ec03a0730..71b1faa38 100644
+index 99f307c87..de34439c8 100644
 --- a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick-minimal.dts
 +++ b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick-minimal.dts
 @@ -165,6 +165,32 @@ vreg_s4a_1p8: pm8150-s4 {

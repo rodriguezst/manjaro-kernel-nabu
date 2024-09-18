@@ -1,7 +1,7 @@
-From 9191327821e5180662f269bbe848b3e20b2efa91 Mon Sep 17 00:00:00 2001
+From 791c65a8dff98ce8a105896960db6c094022cd0f Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 27 Nov 2023 16:38:27 +0800
-Subject: [PATCH 26/45] NABU: Modify the loading path of the firmwares
+Subject: [PATCH 25/43] NABU: Modify the loading path of the firmwares
 
 ---
  arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts | 6 +++---

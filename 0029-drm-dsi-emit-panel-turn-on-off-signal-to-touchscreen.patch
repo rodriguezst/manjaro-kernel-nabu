@@ -1,7 +1,7 @@
-From 2e89bf87a0475f64a177c85235684675b06c8282 Mon Sep 17 00:00:00 2001
+From 55bdd83d061271ed0364f398ba80144c6c40d1c0 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:48:55 +0800
-Subject: [PATCH 30/45] drm: dsi: emit panel turn on/off signal to touchscreen
+Subject: [PATCH 29/43] drm: dsi: emit panel turn on/off signal to touchscreen
 
 ---
  drivers/gpu/drm/msm/dsi/dsi_manager.c | 9 +++++++++

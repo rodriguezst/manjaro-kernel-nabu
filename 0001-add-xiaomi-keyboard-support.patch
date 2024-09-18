@@ -1,7 +1,7 @@
-From 169cdfe726b7c023314107fe1d2d7022714f59ac Mon Sep 17 00:00:00 2001
+From 75d179c843da8f5bf1eff7e4cf8b0cb1b059b7f0 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 25 May 2023 10:07:08 +0800
-Subject: [PATCH 01/45] add xiaomi keyboard support
+Subject: [PATCH 01/43] add xiaomi keyboard support
 
 ---
  drivers/misc/Kconfig        |   8 +
@@ -42,7 +42,7 @@ index ac9b3e757..0cc9a02f6 100644
 +obj-$(CONFIG_XIAOMI_KEYBOARD)	+= nabu_kb_ctrl.o
 diff --git a/drivers/misc/nabu_kb_ctrl.c b/drivers/misc/nabu_kb_ctrl.c
 new file mode 100644
-index 000000000..4a3275c52
+index 000000000..9547c5ebb
 --- /dev/null
 +++ b/drivers/misc/nabu_kb_ctrl.c
 @@ -0,0 +1,620 @@

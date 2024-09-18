@@ -1,7 +1,7 @@
-From 4d28a5bd51e610e0730aec2514a2b6c7571093eb Mon Sep 17 00:00:00 2001
+From 031f8b55a3044d0d7b013ae824aab593d896b82e Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 17 Jan 2024 08:19:38 +0800
-Subject: [PATCH 35/45] Charger: update pm8150b driver
+Subject: [PATCH 34/43] Charger: update pm8150b driver
 
 ---
  drivers/power/supply/qcom/fg-core.h         |   2 -
@@ -58,7 +58,7 @@ index 44f22baea..cd6b5bf64 100644
  {
  	if (!fg->parallel_psy)
 diff --git a/drivers/power/supply/qcom/pm8150b_charger.c b/drivers/power/supply/qcom/pm8150b_charger.c
-index 92d55ab54..88f15a82c 100644
+index 861a3b34f..bd0894b18 100644
 --- a/drivers/power/supply/qcom/pm8150b_charger.c
 +++ b/drivers/power/supply/qcom/pm8150b_charger.c
 @@ -10,11 +10,32 @@
@@ -346,7 +346,7 @@ diff --git a/drivers/power/supply/qcom/qpnp-smb5.c b/drivers/power/supply/qcom/q
 deleted file mode 100644
 index e69de29bb..000000000
 diff --git a/drivers/power/supply/qcom/smb5-lib.c b/drivers/power/supply/qcom/smb5-lib.c
-index 4a14c636e..12124f049 100644
+index b9355d7db..b90dee194 100644
 --- a/drivers/power/supply/qcom/smb5-lib.c
 +++ b/drivers/power/supply/qcom/smb5-lib.c
 @@ -4,8 +4,10 @@
@@ -810,7 +810,7 @@ index 4a14c636e..12124f049 100644
  	return 0;
  }
 diff --git a/drivers/power/supply/qcom/smb5-lib.h b/drivers/power/supply/qcom/smb5-lib.h
-index 863ea0a07..46e0967bd 100644
+index 75a2a82c3..60bc43489 100644
 --- a/drivers/power/supply/qcom/smb5-lib.h
 +++ b/drivers/power/supply/qcom/smb5-lib.h
 @@ -20,6 +20,13 @@ enum print_reason {

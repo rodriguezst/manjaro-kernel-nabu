@@ -1,7 +1,7 @@
-From 3cad06e01191ae3e273adecd41efe4f9e915885e Mon Sep 17 00:00:00 2001
+From 4dc6262abbcdaab15243a28df4f3889e5318c0bd Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 2 Feb 2024 13:04:39 +0800
-Subject: [PATCH 42/45] NABU: add cover detect
+Subject: [PATCH 41/43] NABU: add cover detect
 
 ---
  .../boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 14 ++++++++++++++

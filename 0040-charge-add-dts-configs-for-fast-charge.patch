@@ -1,7 +1,7 @@
-From 7db77c61fbc8ca9c40df08da41d89a3e6fa52ff0 Mon Sep 17 00:00:00 2001
+From 2afef60a58ddd1b7c5cd264172e3609ccf5ea4b9 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:55:17 +0800
-Subject: [PATCH 41/45] charge: add dts configs for fast charge
+Subject: [PATCH 40/43] charge: add dts configs for fast charge
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 71 +++++++++++++++++++

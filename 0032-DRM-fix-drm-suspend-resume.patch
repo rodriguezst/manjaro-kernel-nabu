@@ -1,7 +1,7 @@
-From 7415e809a62a4ebfe0cfab834243b352713bfe96 Mon Sep 17 00:00:00 2001
+From 776957c246f18fed764d527b5b11262133fde7b8 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 18 Dec 2023 10:59:50 +0800
-Subject: [PATCH 33/45] DRM: fix drm suspend/resume
+Subject: [PATCH 32/43] DRM: fix drm suspend/resume
 
 ---
  drivers/clk/qcom/dispcc-sm8250.c | 45 +++++++++++++++-----

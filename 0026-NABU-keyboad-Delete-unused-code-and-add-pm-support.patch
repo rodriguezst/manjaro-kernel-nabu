@@ -1,7 +1,7 @@
-From 361ef75b36c3cb682b0dbca9279a802c6204a200 Mon Sep 17 00:00:00 2001
+From 81018538bd1b475bbd474f25c0aae3b1c2451a92 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 27 Nov 2023 16:40:32 +0800
-Subject: [PATCH 27/45] NABU: keyboad: Delete unused code and add pm support
+Subject: [PATCH 26/43] NABU: keyboad: Delete unused code and add pm support
 
 ---
  drivers/misc/nabu_kb_ctrl.c | 271 ++----------------------------------
@@ -9,7 +9,7 @@ Subject: [PATCH 27/45] NABU: keyboad: Delete unused code and add pm support
  2 files changed, 15 insertions(+), 268 deletions(-)
 
 diff --git a/drivers/misc/nabu_kb_ctrl.c b/drivers/misc/nabu_kb_ctrl.c
-index 4a3275c52..7928669eb 100644
+index 9547c5ebb..2b15eaa7f 100644
 --- a/drivers/misc/nabu_kb_ctrl.c
 +++ b/drivers/misc/nabu_kb_ctrl.c
 @@ -32,77 +32,6 @@ static void xiaomi_keyboard_reset(void)

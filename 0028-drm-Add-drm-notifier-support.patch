@@ -1,7 +1,7 @@
-From 01527c655f862916a6be0e8a5d3ca4a114dae62e Mon Sep 17 00:00:00 2001
+From 12428c9cbc75d9c6a6dfd7ea43e77a2d46b9a494 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:45:42 +0800
-Subject: [PATCH 29/45] drm: Add drm notifier support
+Subject: [PATCH 28/43] drm: Add drm notifier support
 
 ---
  drivers/gpu/drm/Makefile       |  2 +-

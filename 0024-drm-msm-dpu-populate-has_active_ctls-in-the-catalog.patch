@@ -1,0 +1,158 @@
+From 95a5d72d81e15a06fd45d98b0cbde72a83bc1fc0 Mon Sep 17 00:00:00 2001
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 11 May 2023 18:44:50 +0300
+Subject: [PATCH 24/40] drm/msm/dpu: populate has_active_ctls in the catalog
+
+Set the has_active_ctls for all the platforms which need this bit.
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: map220v <map220v300@gmail.com>
+---
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_0_sm8150.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_1_sc8180x.h  | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_0_sm8250.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_2_sc7180.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_3_sm6115.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_5_qcm2290.h  | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_0_sm8350.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_2_sc7280.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_0_sc8280xp.h | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_1_sm8450.h   | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_9_0_sm8550.h   | 1 +
+ 11 files changed, 11 insertions(+)
+
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_0_sm8150.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_0_sm8150.h
+index 9392ad2b4d..35b3856f9d 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_0_sm8150.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_0_sm8150.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sm8150_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 4096,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ 	.max_hdeci_exp = MAX_HORZ_DECIMATION,
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_1_sc8180x.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_1_sc8180x.h
+index e07f4c8c25..b023c757fc 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_1_sc8180x.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_1_sc8180x.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sc8180x_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 4096,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ 	.max_hdeci_exp = MAX_HORZ_DECIMATION,
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_0_sm8250.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_0_sm8250.h
+index 94278a3e34..be95a27c45 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_0_sm8250.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_0_sm8250.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sm8250_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 4096,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_2_sc7180.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_2_sc7180.h
+index c0d88ddccb..2ed4ba156f 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_2_sc7180.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_2_sc7180.h
+@@ -13,6 +13,7 @@ static const struct dpu_caps sc7180_dpu_caps = {
+ 	.qseed_type = DPU_SSPP_SCALER_QSEED4,
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_3_sm6115.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_3_sm6115.h
+index 57ce14c18d..3a72e0c773 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_3_sm6115.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_3_sm6115.h
+@@ -13,6 +13,7 @@ static const struct dpu_caps sm6115_dpu_caps = {
+ 	.qseed_type = DPU_SSPP_SCALER_QSEED4,
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 2160,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_5_qcm2290.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_5_qcm2290.h
+index fb36fba517..d183f93247 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_5_qcm2290.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_5_qcm2290.h
+@@ -12,6 +12,7 @@ static const struct dpu_caps qcm2290_dpu_caps = {
+ 	.max_mixer_blendstages = 0x4,
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 2160,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_0_sm8350.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_0_sm8350.h
+index 1709ba57f3..918809fa71 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_0_sm8350.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_0_sm8350.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sm8350_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 4096,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_2_sc7280.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_2_sc7280.h
+index 15942fa5a8..99bd5e90b6 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_2_sc7280.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_7_2_sc7280.h
+@@ -13,6 +13,7 @@ static const struct dpu_caps sc7280_dpu_caps = {
+ 	.qseed_type = DPU_SSPP_SCALER_QSEED4,
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 2400,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_0_sc8280xp.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_0_sc8280xp.h
+index 4c0528794e..c1a2ea7364 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_0_sc8280xp.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_0_sc8280xp.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sc8280xp_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 5120,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_1_sm8450.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_1_sm8450.h
+index 7742f52be8..496a0fda0f 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_1_sm8450.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_1_sm8450.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sm8450_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 5120,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_9_0_sm8550.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_9_0_sm8550.h
+index 69b80af656..9afab813ac 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_9_0_sm8550.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_9_0_sm8550.h
+@@ -15,6 +15,7 @@ static const struct dpu_caps sm8550_dpu_caps = {
+ 	.has_dim_layer = true,
+ 	.has_idle_pc = true,
+ 	.has_3d_merge = true,
++	.has_active_ctls = true,
+ 	.max_linewidth = 5120,
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+-- 
+2.46.0
+

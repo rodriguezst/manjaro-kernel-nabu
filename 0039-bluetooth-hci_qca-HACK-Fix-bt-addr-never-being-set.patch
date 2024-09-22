@@ -1,0 +1,25 @@
+From b92e623e1f00531e6f82dbc11699a87676c2055e Mon Sep 17 00:00:00 2001
+From: map220v <map220v300@gmail.com>
+Date: Mon, 15 Jan 2024 21:25:10 +0000
+Subject: [PATCH 39/40] bluetooth: hci_qca: [HACK] Fix bt addr never being set.
+
+---
+ drivers/bluetooth/hci_qca.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
+index 067e248e35..ee4a9ace09 100644
+--- a/drivers/bluetooth/hci_qca.c
++++ b/drivers/bluetooth/hci_qca.c
+@@ -1886,7 +1886,7 @@ static int qca_setup(struct hci_uart *hu)
+ 	case QCA_WCN6750:
+ 	case QCA_WCN6855:
+ 	case QCA_WCN7850:
+-		set_bit(HCI_QUIRK_USE_BDADDR_PROPERTY, &hdev->quirks);
++		//set_bit(HCI_QUIRK_USE_BDADDR_PROPERTY, &hdev->quirks);
+ 		hci_set_aosp_capable(hdev);
+ 
+ 		ret = qca_read_soc_version(hdev, &ver, soc_type);
+-- 
+2.46.0
+

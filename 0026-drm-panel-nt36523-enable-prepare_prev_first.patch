@@ -1,0 +1,25 @@
+From 67c3606d441c528fea97771d24f2238da923dd9a Mon Sep 17 00:00:00 2001
+From: Jianhua Lu <lujianhua000@gmail.com>
+Date: Thu, 31 Aug 2023 21:18:48 +0800
+Subject: [PATCH 26/40] drm/panel: nt36523: enable prepare_prev_first
+
+Signed-off-by: map220v <map220v300@gmail.com>
+---
+ drivers/gpu/drm/panel/panel-novatek-nt36523.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36523.c b/drivers/gpu/drm/panel/panel-novatek-nt36523.c
+index 6e16e4d4a3..6aa5fba011 100644
+--- a/drivers/gpu/drm/panel/panel-novatek-nt36523.c
++++ b/drivers/gpu/drm/panel/panel-novatek-nt36523.c
+@@ -1493,6 +1493,7 @@ static int nt36523_probe(struct mipi_dsi_device *dsi)
+ 
+ 	pinfo->dsi[0] = dsi;
+ 	mipi_dsi_set_drvdata(dsi, pinfo);
++	pinfo->panel.prepare_prev_first = true;
+ 	drm_panel_init(&pinfo->panel, dev, &nt36523_panel_funcs, DRM_MODE_CONNECTOR_DSI);
+ 
+ 	ret = of_drm_get_panel_orientation(dev->of_node, &pinfo->orientation);
+-- 
+2.46.0
+

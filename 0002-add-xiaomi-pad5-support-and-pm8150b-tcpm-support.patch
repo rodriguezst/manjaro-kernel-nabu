@@ -1,4 +1,4 @@
-From 0ddacb4f53f8bbd77307de377cddcbde313a9208 Mon Sep 17 00:00:00 2001
+From e67d6ccb257444239ce1f5e443ecde4c36b4dfb9 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 25 May 2023 16:27:56 +0800
 Subject: [PATCH 02/43] add xiaomi pad5 support and pm8150b tcpm support
@@ -2782,5 +2782,5 @@ index bffc8d3e1..ab7ca8729 100644
  
  #endif /* __LINUX_USB_TCPM_H */
 -- 
-2.46.0
+2.46.1
 

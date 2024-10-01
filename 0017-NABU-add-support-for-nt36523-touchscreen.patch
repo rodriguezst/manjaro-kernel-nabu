@@ -1,4 +1,4 @@
-From 1db43567e9a8d2546b27ff67e2a8141168b5a501 Mon Sep 17 00:00:00 2001
+From de254db4e590dc87019329d7f34a0c1624242216 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 4 Nov 2023 12:37:16 +0800
 Subject: [PATCH 17/43] NABU: add support for nt36523 touchscreen
@@ -3472,5 +3472,5 @@ index 000000000..3f4195d63
 +		.mmap = &NT36676F_memory_map, .hwinfo = &NT36676F_hw_info}
 +};
 -- 
-2.46.0
+2.46.1
 

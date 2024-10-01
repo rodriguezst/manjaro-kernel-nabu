@@ -1,4 +1,4 @@
-From 1fe0a104ab955bbc17035b7a3b466328c707e994 Mon Sep 17 00:00:00 2001
+From 65b96a4549ec6e8537d90ca871d915044fdf9fbb Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 10 Jun 2023 10:24:55 +0800
 Subject: [PATCH 06/43] add backlight ktz8866
@@ -192,5 +192,5 @@ index 000000000..74a3f8de8
 +MODULE_DESCRIPTION("Kinetic KTZ8866 Backlight Driver");
 +MODULE_LICENSE("GPL");
 -- 
-2.46.0
+2.46.1
 

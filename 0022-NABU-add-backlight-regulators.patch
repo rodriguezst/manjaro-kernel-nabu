@@ -1,4 +1,4 @@
-From 736ce415f414d62f863148f9cce5b4949d935077 Mon Sep 17 00:00:00 2001
+From b824d83d5cb1271c7afe952621c8ebaa199d342e Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 12 Nov 2023 06:44:24 +0800
 Subject: [PATCH 22/43] NABU: add backlight regulators
@@ -45,5 +45,5 @@ index 99f307c87..de34439c8 100644
  
  &pm8150_gpios {
 -- 
-2.46.0
+2.46.1
 

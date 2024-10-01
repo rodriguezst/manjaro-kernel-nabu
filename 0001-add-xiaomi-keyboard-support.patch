@@ -1,4 +1,4 @@
-From 75d179c843da8f5bf1eff7e4cf8b0cb1b059b7f0 Mon Sep 17 00:00:00 2001
+From 96899020bb631dda8e777575677f2bd6d350d75b Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 25 May 2023 10:07:08 +0800
 Subject: [PATCH 01/43] add xiaomi keyboard support
@@ -718,5 +718,5 @@ index 000000000..954660dbf
 +};
 +#endif
 -- 
-2.46.0
+2.46.1
 

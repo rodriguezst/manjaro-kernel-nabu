@@ -1,4 +1,4 @@
-From 1408bab2bb87b155ef1e8f6ec5eb6114a2c33d21 Mon Sep 17 00:00:00 2001
+From 4aaaff65d47bc730bb2c137386ddea5586b0f132 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 30 Jul 2023 10:57:52 +0800
 Subject: [PATCH 15/43] add fg and charger drivers for nabu
@@ -16291,5 +16291,5 @@ index 000000000..5613ee213
 +
 +#endif
 -- 
-2.46.0
+2.46.1
 

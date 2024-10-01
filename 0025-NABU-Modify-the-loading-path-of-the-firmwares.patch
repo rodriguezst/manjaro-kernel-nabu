@@ -1,4 +1,4 @@
-From 791c65a8dff98ce8a105896960db6c094022cd0f Mon Sep 17 00:00:00 2001
+From 2af65da4cf37a69051a27c2149314d5d352e1eda Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 27 Nov 2023 16:38:27 +0800
 Subject: [PATCH 25/43] NABU: Modify the loading path of the firmwares
@@ -33,5 +33,5 @@ index 8c1b98e0d..60fc65901 100644
  
  &sound {
 -- 
-2.46.0
+2.46.1
 

@@ -1,4 +1,4 @@
-From 12428c9cbc75d9c6a6dfd7ea43e77a2d46b9a494 Mon Sep 17 00:00:00 2001
+From 24c27e290ee0b8b0f4136f122bdecf5232075bd0 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:45:42 +0800
 Subject: [PATCH 28/43] drm: Add drm notifier support
@@ -132,5 +132,5 @@ index 000000000..fd0e97655
 +
 +#endif /* _DRM_NOTIFIER_H */
 -- 
-2.46.0
+2.46.1
 

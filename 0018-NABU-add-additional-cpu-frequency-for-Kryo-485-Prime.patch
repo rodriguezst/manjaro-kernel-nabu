@@ -1,4 +1,4 @@
-From c2f969e276098ce9a32c63df1adfd08870914386 Mon Sep 17 00:00:00 2001
+From 21a5552aee56a1b29c0277bdaf06e4e32a4358b3 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 4 Nov 2023 17:26:44 +0800
 Subject: [PATCH 18/43] NABU: add additional cpu frequency for Kryo 485 Prime
@@ -27,5 +27,5 @@ index 797381aef..c931d9887 100644
  	status = "okay";
  };
 -- 
-2.46.0
+2.46.1
 

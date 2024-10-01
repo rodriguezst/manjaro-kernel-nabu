@@ -1,4 +1,4 @@
-From d958103fb344e444d895529339df5d16f1e33578 Mon Sep 17 00:00:00 2001
+From 14d23314a6b8fe173cd61afa102814be9a58c894 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 9 Jun 2023 15:16:01 +0800
 Subject: [PATCH 05/43] qcom: rpmhpd: Use highest corner until sync_state
@@ -80,5 +80,5 @@ index 6efe36aeb..7aff69f6f 100644
  	.probe = rpmhpd_probe,
  };
 -- 
-2.46.0
+2.46.1
 

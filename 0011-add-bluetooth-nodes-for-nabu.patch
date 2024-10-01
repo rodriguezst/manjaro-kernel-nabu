@@ -1,4 +1,4 @@
-From e167e972543d397aa7efd14becf0f373b4ea7f92 Mon Sep 17 00:00:00 2001
+From e09d19c55910504ef867296dc607c369b02c1aed Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 15 Jun 2023 14:51:29 +0800
 Subject: [PATCH 11/43] add bluetooth nodes for nabu
@@ -153,5 +153,5 @@ index 9a5eca412..6834db558 100644
  
  			qup_spi14_default: qup-spi14-default-state {
 -- 
-2.46.0
+2.46.1
 

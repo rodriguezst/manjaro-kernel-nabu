@@ -1,4 +1,4 @@
-From aafe560399f980de850e6254bffc883e2db05fb1 Mon Sep 17 00:00:00 2001
+From 21bc78e247963e62dfe7cdcf49a17a0eac822de7 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 9 Jun 2023 09:51:47 +0800
 Subject: [PATCH 04/43] fix drm probe failures
@@ -29,10 +29,10 @@ index 35bb70724..1d8a6a8d9 100644
  	scmi_dev->dev.release = scmi_device_release;
  	dev_set_name(&scmi_dev->dev, "scmi_dev.%d", id);
 diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-index 9d8c78312..8fd09a70a 100644
+index a0c1dabd2..a82c73696 100644
 --- a/drivers/gpio/gpiolib.c
 +++ b/drivers/gpio/gpiolib.c
-@@ -522,6 +522,12 @@ static int gpiochip_setup_dev(struct gpio_device *gdev)
+@@ -523,6 +523,12 @@ static int gpiochip_setup_dev(struct gpio_device *gdev)
  {
  	int ret;
  
@@ -46,5 +46,5 @@ index 9d8c78312..8fd09a70a 100644
  	if (ret)
  		return ret;
 -- 
-2.46.0
+2.46.1
 

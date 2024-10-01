@@ -1,4 +1,4 @@
-From 416303822b5d8e08c52c5ca89607fa4c132b5207 Mon Sep 17 00:00:00 2001
+From fbce396e24dc0ff5f609fc95b3ae93df835338b5 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 26 Jul 2023 15:54:35 +0800
 Subject: [PATCH 14/43] update rtc driver, save time to pm8150-sdam
@@ -800,5 +800,5 @@ index e10e2c873..372494e82 100644
  MODULE_AUTHOR("Anirudh Ghayal <aghayal@codeaurora.org>");
 +MODULE_AUTHOR("Johan Hovold <johan@kernel.org>");
 -- 
-2.46.0
+2.46.1
 

@@ -1,4 +1,4 @@
-From 00095474e5eccf34502f1558bb63dc856f53213f Mon Sep 17 00:00:00 2001
+From e9e1ba4093621bbf708d5b09ee65cc070b68e83b Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 18 Feb 2024 17:03:16 +0800
 Subject: [PATCH 43/43] charge: support standard pps charges
@@ -272,5 +272,5 @@ index 3b3e9d0d5..9d2a00e54 100644
  
  		/*
 -- 
-2.46.0
+2.46.1
 

@@ -1,4 +1,4 @@
-From 82d5546cf6494a739c640d2a11383b27d829b972 Mon Sep 17 00:00:00 2001
+From c650182db90a45da297b95a675150a526505df87 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:49:47 +0800
 Subject: [PATCH 39/43] charge: add fast charge manager driver
@@ -974,5 +974,5 @@ index 000000000..647711096
 +
 +#endif
 -- 
-2.46.0
+2.46.1
 

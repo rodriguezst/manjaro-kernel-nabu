@@ -2,12 +2,12 @@ name: rebase-patches
 
 env:
   REPO: 'https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
-  REF: 'linux-6.1.y'
+  REF: 'linux-6.11.y'
 
 on:
   workflow_dispatch:
-  schedule: 
-    - cron: '0 0 * * *'
+  #schedule: 
+  #  - cron: '0 0 * * *'
 
 jobs:
   rebase:
@@ -24,7 +24,7 @@ jobs:
         run: |
           source srcdir/PKGBUILD
           echo "PKGVER=$pkgver" >> $GITHUB_ENV
-          echo "PREV_REF=v$pkgver" >> $GITHUB_ENV
+          echo "PREV_REF=v${pkgver%.0}" >> $GITHUB_ENV
 
       - name: Rebase & regenerate patches
         shell: bash

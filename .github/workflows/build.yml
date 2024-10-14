@@ -63,7 +63,7 @@ jobs:
           export ARCH='arm64'
           export CROSS_COMPILE='aarch64-linux-gnu-'
           EOM
-          makepkg -d
+          makepkg -d --skipinteg
           source PKGBUILD
           echo "PACKAGE_NAME=$pkgbase-$pkgver-$pkgrel" >> $GITHUB_ENV
       - 

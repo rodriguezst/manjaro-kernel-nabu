@@ -1,17 +1,19 @@
 # AArch64 multi-platform
-# Maintainer: Dan Johansen <strit@manjaro.org>
+# Maintainer: rodriguezst <git@rodriguezst.es>
+# CONTRIBUTORS OF ORIGIN REPO:
+# Contributor: Dan Johansen <strit@manjaro.org>
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
-pkgbase=linux61-nabu
-pkgver=6.1.108
-pkgrel=3
+pkgbase=linux611-nabu
+pkgver=6.11.0
+pkgrel=1
 _kernelname=-MANJARO-NABU
-_basekernel=6.1
+_basekernel=6.11
 _srcname="linux-${pkgver/%.0/}"
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
-_dtbfile='qcom/sm8150-xiaomi-nabu-maverick.dtb'
+_dtbfile='qcom/sm8150-xiaomi-nabu.dtb'
 _desc="AArch64 multi-platform"
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -19,105 +21,103 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
 source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
-         '0001-add-xiaomi-keyboard-support.patch'
-         '0002-add-xiaomi-pad5-support-and-pm8150b-tcpm-support.patch'
-         '0003-add-wifi.patch'
-         '0004-fix-drm-probe-failures.patch'
-         '0005-qcom-rpmhpd-Use-highest-corner-until-sync_state.patch'
-         '0006-add-backlight-ktz8866.patch'
-         '0007-set-up-runtime-pm-to-gdsc.patch'
-         '0008-add-nt36523-panel-driver.patch'
-         '0009-add-gpu-patches-form-map220v.patch'
-         '0010-add-gpu-nodes-for-nabu.patch'
-         '0011-add-bluetooth-nodes-for-nabu.patch'
-         '0012-enable-type-c-dual-role-switch.patch'
-         '0013-add-qcom-pmic-revid-driver.patch'
-         '0014-update-rtc-driver-save-time-to-pm8150-sdam.patch'
-         '0015-add-fg-and-charger-drivers-for-nabu.patch'
-         '0016-add-minimal-dts-for-nabu.patch'
-         '0017-NABU-add-support-for-nt36523-touchscreen.patch'
-         '0018-NABU-add-additional-cpu-frequency-for-Kryo-485-Prime.patch'
-         '0019-NABU-add-sound-support.patch'
-         '0020-NABU-add-vol-and-power-keys.patch'
-         '0021-NABU-add-dma-nodes.patch'
-         '0022-NABU-add-backlight-regulators.patch'
-         '0023-NABU-change-the-path-of-the-Bluetooth-firmware-to-de.patch'
-         '0024-NABU-set-i2c7-speed-to-1M.patch'
-         '0025-NABU-Modify-the-loading-path-of-the-firmwares.patch'
-         '0026-NABU-keyboad-Delete-unused-code-and-add-pm-support.patch'
-         '0027-input-nt36xxx-Enable-pen-support.patch'
-         '0028-drm-Add-drm-notifier-support.patch'
-         '0029-drm-dsi-emit-panel-turn-on-off-signal-to-touchscreen.patch'
-         '0030-TS-Add-the-handler-to-accept-the-notifier-from-DRM.patch'
-         '0031-PANEL-BACKLIGHT-update-nt36523-driver-and-ktz8866-dr.patch'
-         '0032-DRM-fix-drm-suspend-resume.patch'
-         '0033-DEBUG-update-debug-dts.patch'
-         '0034-Charger-update-pm8150b-driver.patch'
-         '0035-charger-add-charge-pump-ln8000-driver.patch'
-         '0036-removed-a-log-print-because-it-printed-too-much.patch'
-         '0037-USBPD-update-typec-pdhpy-driver.patch'
-         '0038-USBPD-trick-Xiaomi-charger-to-supporting-PPS.patch'
-         '0039-charge-add-fast-charge-manager-driver.patch'
-         '0040-charge-add-dts-configs-for-fast-charge.patch'
-         '0041-NABU-add-cover-detect.patch'
-         '0042-dsi-fix-display-sync-problem-from-map220v.patch'
-         '0043-charge-support-standard-pps-charges.patch'
          'config' 
          'linux.preset'
          '60-linux.hook'
          '90-linux.hook'
          'uki.conf'
-         'cmdline' )
-sha256sums=('3f4e4e89a00e221a6dd1174779e0028794f44f4624ad6a31c79f3b7796688ca2'
-            '6ed81eef2b20fa9b42cf8e05e22ec7122bc51a1a9ddd082e1edc48adf81d7aae'
-            '35fb87d4e4775fb15998b9740d33f058e01f5d40f7427e529b2d352ec1e417c5'
-            'fed5d0ef1f2eb251c3293765d8ab2a5863bf37e0083148e118cd1fd6a6732034'
-            '23fccb4723cf2d09e4dccc72d3a3775d28440f00733cbaf1152dbfa3408c374e'
-            '2aa8ac449b69d36a06166c59917e277547a16663954c9200f58085e23ba3e803'
-            'af01844ea0dc7df8648930722b3cc50f2b9dc091fa374c4ec24765733d1a67f4'
-            '9baf9eb6e5260add9c2ffc233da66cc8cf0549c9da11c6e2eaffb07e5a27598e'
-            'a37731fe3dac77fa070b9fc6f1e53a17855b736b4a073359236ee9b5d98e6d1c'
-            '219065e7019515372db3c3d96ca0f13e53eb0a23736ff530ce6c43c07df67cda'
-            'cb3adfb5b2f9ffda561673eb1767eba4d5ca9d839bca6a7dcacea3fc4b4e4fd6'
-            '589c944d068bf30fac1df8f716a8e2acae2b5ac21d8c1f27b522c814c7c85983'
-            'bf9a1750bc795bf7cad7729f0801ec17bdb7e7a8e52fe5edd4bf8a8464fce045'
-            'beb8a006e52055626b7ec82cbefcad9a36d254017a31d19fe8e0fc958d09b992'
-            '80a6faf2d70b4848d1c6aa472160b9e433f26193bd19a74d1b5bfae381ca362a'
-            '9ed109408720f7f1682320970e36e85d9e21121434a4420c190e1d9c3ce1083c'
-            'd248759d399c7cfe923149996294a432b06e52cbcdbf2d6d024df2115e8e9f0f'
-            '8aad19928da5209578ab1d2d7afdb82a3ad7305bc2ca0d12d31fb88d311f5ab0'
-            'e7aa861b199dcf857c30aad7448d5a74a3738720ecb109ac76097dcd4c2a7717'
-            '13a11cebf55f2cf8851bb4c8ebc30e5c0c8b7c2cd372321e1a1ad6e930b278f5'
-            'fc1ac06b87c4e8178efcaee99e8e1c6998ff98fbb80c465024fc285a388c5111'
-            'aa7a4551c29ff9661f5c1561aa2ef616a5c1ccab9763fb9c2fdf60765b7047d9'
-            '707d53ca7b5de76315a2094af72950c8728ab43409024e553b1de546accfe113'
-            '8b7ac2a5ef91e19ca624b2ca9deecf7072247268f827efadb1426ebec6b5467b'
-            '3f8b03c9bdf1659c2f36d9ea0c2af038ca6247cd84e297855df6588f62d5df93'
-            '0fb78721f3ff37fa590822b18ddea0f1a269d34784c5fc049cc1952926e4c9ea'
-            '29b46985f194632774460bd46b673e2b3cae4a42fa92a59ac51131a4db9fd031'
-            'fa2b7057ed28a8d3c7253ae02522debed9cb498588107267ce82d8d9c9bf6002'
-            '0aa4e8f21fa190c309e3502310044cc9a64de29a43e074842ca087561007ba71'
-            'ec673374d484b4a209ba25e2e1631702331b9ea99f1031af5fa31ed472d3d7a2'
-            '57b428cff6c7b539d71ab14c4437b733032abb5d798669bb4a2c16710bf2cef5'
-            '189c20c6ab18057955678b2b457afb945604ddebb7fb8bc7a1debf59d213acd0'
-            '4859cdb137762c8e179e65a1c28f9f0ec7e86fa1eae6827fb0f354bafd9af8fb'
-            '3beba722f48b6bf77c9819c3764d45d262d069a377519f1cf3ab803902b26db9'
-            'aeeab5ddd99e066d8236e4857792de3e812b6b36970e8d0c5621d98f121a9970'
-            'bdda08672a27dc18e88f16362e4631af755d27671ff792e683a70706b6e157e1'
-            'eb054eefe77229b8093636fbc0c886e9d6798250e993975d58c7a79a88e0414c'
-            'dc6a627c7f04baec84edac5b3b4380576ee6a7614b0ed7f94ffe43bec98e8c97'
-            '1e4bf5a4f185f889940daa22f4d95929dbb06fb2fb6f8f4e568d730af68a16b3'
-            'c5c1b03c0c123acd805b939088e613c74212e6980bf6fdb23c69e4ecb0234af0'
-            '2e24d3725cd3d12f5f456b3ae9c6894cac236e75517f559daa7a91eb871fe7e4'
-            '60b3bd9ce2d9e36244219f37ef7a30d077d8636e31c5aa676b908cb150ba6000'
-            'a5dd6e626f7b7f907f3c8e1c6eeaa406d17ac210c6c75b5e48f67ce3cc5d4908'
-            '3643f834642281678fe6ad3524d5dec513aea90fd76e8c76dab50a85392b0c8a'
-            '8265cfd0a5e7e7c0063f99af6db5c2a99c82dd8a56845c3b8bd9d4875b58448e'
+         'cmdline'
+        "0001-SM8150-Add-uart13-node.patch"
+        "0002-SM8150-Add-device-tree-for-Xiaomi-Pad-5.patch"
+        "0003-drm-Add-drm-notifier-support.patch"
+        "0004-drm-dsi-emit-panel-turn-on-off-signal-to-touchscreen.patch"
+        "0005-Input-Add-nt36523-touchscreen-driver.patch"
+        "0006-nt36xxx-Fix-module-autoload.patch"
+        "0007-NABU-Added-novatek-touchscreen-node.patch"
+        "0008-drm-panel-nt36523-Add-Xiaomi-Pad-5-CSOT-panel.patch"
+        "0009-NABU-Enable-gpu-dsi0-and-dsi1.-Added-panel-and-backl.patch"
+        "0010-SM8150-Add-apr-nodes.patch"
+        "0011-ASoC-qcom-SM8150-Add-machine-driver.patch"
+        "0012-NABU-Add-sound-nodes.patch"
+        "0013-power-supply-Add-driver-for-Qualcomm-PMIC-fuel-gauge.patch"
+        "0014-power-qcom_fg-Add-initial-pm8150b-support.patch"
+        "0015-arm64-dts-qcom-pm8150b-Add-fuel-gauge.patch"
+        "0016-NABU-Add-pmic-fg-and-battery-nodes.patch"
+        "0017-SM8150-Add-slimbus-nodes.patch"
+        "0018-arm64-dts-add-wcd9340-device-tree-binding-for-sm8150.patch"
+        "0019-ASoC-qcom-SM8150-Add-slimbus-audio-support.patch"
+        "0020-ASoC-qcom-sm8150-Fix-compilation-in-v6.7.0.patch"
+        "0021-NABU-Add-wcd9340-and-microphone-dais.patch"
+        "0022-drm-msm-dsi-change-sync-mode-to-sync-on-DSI0-rather-.patch"
+        "0023-drm-msm-dpu1-improve-support-for-active-CTLs.patch"
+        "0024-drm-msm-dpu1-use-one-active-CTL-if-it-is-available.patch"
+        "0025-drm-msm-dpu-populate-has_active_ctls-in-the-catalog.patch"
+        "0026-drm-msm-dpu1-dpu_encoder_phys_-proper-support-for-ac.patch"
+        "0027-drm-panel-nt36523-enable-prepare_prev_first.patch"
+        "0028-input-nt36xxx-Enable-pen-support.patch"
+        "0029-drm-msm-dpu-Fix-dpu-sspp-features-for-sm8150.patch"
+        "0030-drm-panel-nt36523-Enable-120fps-for-nabu-csot.patch"
+        "0031-NABU-Add-pm8150b-type-c-node-and-enable-otg.patch"
+        "0032-NABU-Add-fsa4480-node.patch"
+        "0033-NABU-Enable-secondary-usb-and-keyboard-MCU.patch"
+        "0034-input-nt36523-Remove-fw-boot-delay.patch"
+        "0035-NABU-Add-flash-led-node.patch"
+        "0036-NABU-Add-ln8000-fast-charge-IC-for-testing.patch"
+        "0037-NABU-Add-hall-sensor-for-magnetic-cover-detection.patch"
+        "0038-NABU-Set-panel-rotation.patch"
+        "0039-NABU-Remove-framebuffer-initialized-by-XBL.patch"
+        "0040-NABU-Remove-deprecated-usb_1_role_switch_out-node.patch"
+        "0041-nt36xxx-Fix-compilation-in-6.8.patch"
+        "0042-Remove-missed-dsc_active-duplicate.patch"
+        "0043-nt36xxx-Fix-compilation-in-6.9.patch"
+        "0044-qcom_fg-Fix-compilation-in-6.11.patch" )
+sha256sums=('ef31144a2576d080d8c31698e83ec9f66bf97c677fa2aaf0d5bbb9f3345b1069'
+            '12e93de2db555bbf523d4d9d2d4dfd748e6e0c4aac5dc86160d353b1bd936706'
             'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
             '2d87c68d02f14ce14de548d2d9d79dcca34fa276ee535cad6da78584531baae1'
-            '4c06efd0966046827c7bc0fea11a9e5e298bd199cd4bdfe141795a3b62799cb9')
+            '4c06efd0966046827c7bc0fea11a9e5e298bd199cd4bdfe141795a3b62799cb9'
+            '5d9a3550811f79d34ec6caf9d49b510d61a6ca42e83e9a66ccafdeac62c22334'
+            'd74ea2bf89847c6fc6829d2ab1d9ee757179c5461ad8f5ebab9b18af0eaf3d1f'
+            'adf4f104ba0fb31140a132f78f7475cacad292c7a4d40465c9ce292091bd2dc0'
+            'a6d7a320a7bbc9f77807a25deb5236248de3b7ef50bf899580a36bd7a1060ecf'
+            'ca5f862dfcf26b20fdb3e4a8811895cb6b91852d5a2738c4f1d7a10e2e365898'
+            '44a3f784df2f8cd7e22781037262e0fdb1bf27b4bad98fd8e223afe1b6c82bee'
+            '15de0e60cd768900aac66bb3c4b128a06b226d80c44e9cfef3e955c297c8300d'
+            '26caa99dba0c48cd3c458d86b7a97ebbc5bee7527f256d48387514b459342086'
+            '309ecb2ea0ab94b34ab3bdcca83f07df7b3561cf29f87f594b7ea61385ea928a'
+            '2130f2de808e262cdcb7510f6712e2342f4821c4018a3196c35298701b008b45'
+            '7e39e71b14cbd124ca50044807de4c7592be3036cdedfca451e6bdd83bebd0aa'
+            'be9713773b99955561d5b268df10f04e7581a0641613947ce18022b0c2ecce63'
+            'c0051ad10c48c37c5ced85dbd03cc626e7ddf8781df45cda12713cb72718c9df'
+            '755ad43e4c7206f00e512c595712814b614d7ff4b168465e14c0a1064fc7453d'
+            'acfb02662b68c214705c9391f7eaf605303dd0223a84dd7861ac707eb8440930'
+            '39d4782f7911b79a67b309fb12f7722871ad87fdb88d6ee348161e5b0b4ee920'
+            'f244137306f91c1cb8c5f0ab222eb12b96853ac3404e1016bbed98586777982c'
+            '1d59558d39a901a6472287a6aec473977a3fb26a52ca8d7812b6f0e0988cabbf'
+            '79dac4520533ab2a0485f285780306bde5f74992f05d51e1663aa5e44d9de803'
+            '0f725aec20fd7c1af052c5e7a4e9d8e52b4df384119ea601f24467b84ce7174e'
+            'd9d0dbd56e8edbaae34ad346638837631b0390551856129882030f4bc09cfd8c'
+            '97c73b42bd9489ac475a5a5a45ba190a6971ab6a6c5a8ce9b2cc13de3f880091'
+            '230f865db2fc9f8a2bbe46c5c04ba481f771959cdf2f65cf143659ba83f2ab06'
+            '0edd0daccdef060881b385750c080608bdc52805bf74c8e51735bda3d0b35ff9'
+            'ec6055f4ed0e8cd49fa743ea47f3eabd5bbdae42b9bf4d556a10314f6233a89e'
+            '0771ec735ef7617bdbeac5302b33c9495104d6f1456450d7067e0c20a4c1a1f9'
+            'fc0a7d0434f5eae63e32b508ddce5575a5e286bd611d06973466f2b6fd4ecd04'
+            '56d38c2ff3e854de81fe9bc6fc690550fdee8acd169e7a95ca8bd585aede6e0b'
+            'a24bf2b7fab7c07707113591f8eabe9b0644848035db8bdfa3e29793f4bef869'
+            'd53d0412e95e7a771526a3534399b8ee34990d6f08e6b6587fd32b80962afc02'
+            '5afa3f5867eaaae9657c65e7781fc12f7942d5dce5a824b91849be5989f36390'
+            'c49e6b3ed3ac31204d779409cd3456030d668c15839715441c7150c22ba0e0c4'
+            '49c289cc967f5486540bdd0b252dc0bbd3f88283d92dbb4e1d49bff59a4bafe2'
+            '32ae99bb3de5487eceea64476a4937b306776cf6d2509375e86ac76b931bd087'
+            '071a50c1ae5bdf3be90e90f82233a3d7224dfecd0a89b2ba9919fdff082a3d21'
+            'e6bd58be211f65c4788e905df72ee5f6e0da6c6975912c1a1448c5004dc34bea'
+            'e7b399e4f9306800abf0cb0f98d72b3da1f1f05014c2a1ea6c07256147b8b254'
+            'b054e65655688ddbeb779d4cbfd5ac627305e9a571262ac7ffa030afd547bfe5'
+            '20227b04796707dcbc2a2fbf1d4b532d8d04ee00a30384c6641ea2430bcf336d'
+            '70d1b4163fdd46338ca596776578c5fd6e77564ef913a37e5acda1f06cb7d142')
 
 prepare() {
   cd "${_srcname}"
@@ -185,7 +185,7 @@ _package() {
   optdepends=('crda: to set the correct wireless channels of your country'
               'linux-firmware: additional firmware')
   provides=("linux=${pkgver}")
-  conflicts=('linux61')
+  #conflicts=('linux')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=${pkgname}.install
 
@@ -219,8 +219,8 @@ _package() {
   echo "${_kernver}" |
     install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_extramodules}/version"
 
-  # remove build and source links
-  rm "${pkgdir}"/usr/lib/modules/${_kernver}/{source,build}
+  # remove build link
+  rm "${pkgdir}"/usr/lib/modules/${_kernver}/build
 
   # now we call depmod...
   #depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"

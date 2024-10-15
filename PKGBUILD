@@ -5,7 +5,7 @@
 
 pkgbase=linux61-nabu
 pkgver=6.1.112
-pkgrel=1
+pkgrel=2
 _kernelname=-MANJARO-NABU
 _basekernel=6.1
 _srcname="linux-${pkgver/%.0/}"
@@ -62,6 +62,7 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0041-NABU-add-cover-detect.patch'
          '0042-dsi-fix-display-sync-problem-from-map220v.patch'
          '0043-charge-support-standard-pps-charges.patch'
+         '0044-ath-Disable-EEPROM-regulatory-restrictions-enforcing.patch'
          'config' 
          'linux.preset'
          '60-linux.hook'
@@ -112,7 +113,8 @@ sha256sums=('8bd8de3562fb006653e550a934e66ed9f80b7576258a03e2caa2e3ce1c1f9f24'
             'e573c399e174f4ef073c283f4a80c32acfe0069d39d71a74608b3b0d53656461'
             'd55c38edb8a48827da557070d4b6324b0eab884be7a41714e1f2a9e90a552a5f'
             '542de1a8d9edb4195474678c4a74a187f72cbd5541b039a64545e5de05316177'
-            '94d364c0364bd16e11da5cfc597f177df947b7b23324f6d859f428bbdc6fbe09'
+            'd8b13f4329d5fe396aefd489328a6dbfaaee4bd78ff7d1b2fe77c08575bb6e49'
+            '34417c48e5d421df9c46fe015cebd9606917fb40e944646135ea0fca58e75bf9'
             'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'

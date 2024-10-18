@@ -1,7 +1,7 @@
-From e9cb624dd4aabe44027e6078c21f260b819129f5 Mon Sep 17 00:00:00 2001
+From ccd7a4b911cfdfa230e6f140a42d83314c4c89b6 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 3 Jun 2023 15:54:59 +0800
-Subject: [PATCH 03/43] add wifi
+Subject: [PATCH 03/44] add wifi
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 19 ++++++++++++-------
@@ -71,5 +71,5 @@ index 329a92f32..f19abd9e9 100644
 +};
 \ No newline at end of file
 -- 
-2.46.1
+2.46.2
 

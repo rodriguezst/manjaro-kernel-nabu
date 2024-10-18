@@ -1,7 +1,7 @@
-From ce4286d3c0ee4745ff0c34f2406b11b366301dd4 Mon Sep 17 00:00:00 2001
+From e270b5a6a3d58b93cf3c3716cdd453602704dfce Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 19:43:53 +0800
-Subject: [PATCH 09/43] add gpu patches form map220v
+Subject: [PATCH 09/44] add gpu patches form map220v
 
 ---
  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c       |  8 ++++++--
@@ -225,5 +225,5 @@ index 59de72b38..2b9f7557d 100644
  
  /**
 -- 
-2.46.1
+2.46.2
 

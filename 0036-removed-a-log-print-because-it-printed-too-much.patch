@@ -1,7 +1,7 @@
-From 77d8bfac297feb8cdca4ceb9af0cbaa1af47ac8e Mon Sep 17 00:00:00 2001
+From 32f166f1b12289ccfb2ce465e8f2f490dca9bc33 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:25:55 +0800
-Subject: [PATCH 36/43] removed a log print because it printed too much
+Subject: [PATCH 36/44] removed a log print because it printed too much
 
 ---
  drivers/power/supply/qcom/smb5-lib.c | 2 +-
@@ -21,5 +21,5 @@ index b90dee194..4c8583351 100644
  	return IRQ_HANDLED;
  }
 -- 
-2.46.1
+2.46.2
 

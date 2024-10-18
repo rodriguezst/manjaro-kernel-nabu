@@ -1,7 +1,7 @@
-From a55c1bda58251660cee7707e5b1e2f5fc124e506 Mon Sep 17 00:00:00 2001
+From 34081f60996ff88a36bef9e4932c26c020e9c6da Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:53:43 +0800
-Subject: [PATCH 30/43] TS: Add the handler to accept the notifier from DRM
+Subject: [PATCH 30/44] TS: Add the handler to accept the notifier from DRM
 
 ---
  drivers/input/touchscreen/nt36523/nt36xxx.c | 61 +++++++++++++++++++++
@@ -139,5 +139,5 @@ index a19f07291..b8d569c21 100644
  	uint32_t config_array_size;
  	struct nvt_config_info *config_array;
 -- 
-2.46.1
+2.46.2
 

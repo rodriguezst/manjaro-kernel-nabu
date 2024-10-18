@@ -1,7 +1,7 @@
-From 21a5552aee56a1b29c0277bdaf06e4e32a4358b3 Mon Sep 17 00:00:00 2001
+From b6a2f73fec3982a42536ef2964c87ec33972f806 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 4 Nov 2023 17:26:44 +0800
-Subject: [PATCH 18/43] NABU: add additional cpu frequency for Kryo 485 Prime
+Subject: [PATCH 18/44] NABU: add additional cpu frequency for Kryo 485 Prime
 
 ---
  arch/arm64/boot/dts/qcom/sm8150-xiaomi-nabu-maverick.dts | 8 ++++++++
@@ -27,5 +27,5 @@ index 797381aef..c931d9887 100644
  	status = "okay";
  };
 -- 
-2.46.1
+2.46.2
 

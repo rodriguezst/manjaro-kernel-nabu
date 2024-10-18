@@ -1,7 +1,7 @@
-From 5574c8051d146a7f730e3fe48734b9297cc09ade Mon Sep 17 00:00:00 2001
+From 6f870d4e2884be41e42330a42f0f75c6e113b0d7 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 28 Jun 2023 08:51:23 +0800
-Subject: [PATCH 12/43] enable type-c dual role switch
+Subject: [PATCH 12/44] enable type-c dual role switch
 
 ---
  arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  4 +-
@@ -219,5 +219,5 @@ index f0ba35bb7..abbd2560f 100644
  
  	return PTR_ERR_OR_ZERO(phy_provider);
 -- 
-2.46.1
+2.46.2
 

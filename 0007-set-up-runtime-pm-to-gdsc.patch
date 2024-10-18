@@ -1,7 +1,7 @@
-From eb0929548d065de5465d24a3bfbb5cb0c4ffa238 Mon Sep 17 00:00:00 2001
+From e74afea512675f144212ed7ba047e9747397cc26 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 15:50:05 +0800
-Subject: [PATCH 07/43] set up runtime pm to gdsc
+Subject: [PATCH 07/44] set up runtime pm to gdsc
 
 ---
  drivers/clk/qcom/gdsc.c | 70 ++++++++++++++++++++++++++++++++---------
@@ -179,5 +179,5 @@ index 803512688..981a12c85 100644
  
  struct gdsc_desc {
 -- 
-2.46.1
+2.46.2
 

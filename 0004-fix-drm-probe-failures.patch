@@ -1,7 +1,7 @@
-From 21bc78e247963e62dfe7cdcf49a17a0eac822de7 Mon Sep 17 00:00:00 2001
+From f666d66f61c4574eabd70d3f9e63566334977d6d Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 9 Jun 2023 09:51:47 +0800
-Subject: [PATCH 04/43] fix drm probe failures
+Subject: [PATCH 04/44] fix drm probe failures
 
 ---
  drivers/firmware/arm_scmi/bus.c | 2 ++
@@ -46,5 +46,5 @@ index a0c1dabd2..a82c73696 100644
  	if (ret)
  		return ret;
 -- 
-2.46.1
+2.46.2
 

@@ -1,7 +1,7 @@
-From b824d83d5cb1271c7afe952621c8ebaa199d342e Mon Sep 17 00:00:00 2001
+From d0277cb8d6e00b905914d07f5f8f1de7a12d4768 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 12 Nov 2023 06:44:24 +0800
-Subject: [PATCH 22/43] NABU: add backlight regulators
+Subject: [PATCH 22/44] NABU: add backlight regulators
 
 ---
  .../sm8150-xiaomi-nabu-maverick-minimal.dts   | 26 +++++++++++++++++++
@@ -45,5 +45,5 @@ index 99f307c87..de34439c8 100644
  
  &pm8150_gpios {
 -- 
-2.46.1
+2.46.2
 

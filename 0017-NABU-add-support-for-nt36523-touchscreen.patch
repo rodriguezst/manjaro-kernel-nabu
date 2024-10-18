@@ -1,7 +1,7 @@
-From de254db4e590dc87019329d7f34a0c1624242216 Mon Sep 17 00:00:00 2001
+From a11686ed152f5b2cd4043cbd77d92acab199db77 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 4 Nov 2023 12:37:16 +0800
-Subject: [PATCH 17/43] NABU: add support for nt36523 touchscreen
+Subject: [PATCH 17/44] NABU: add support for nt36523 touchscreen
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  |   23 +-
@@ -3472,5 +3472,5 @@ index 000000000..3f4195d63
 +		.mmap = &NT36676F_memory_map, .hwinfo = &NT36676F_hw_info}
 +};
 -- 
-2.46.1
+2.46.2
 

@@ -1,7 +1,7 @@
-From 4479802b481f2605445988b95cda2693a7179271 Mon Sep 17 00:00:00 2001
+From 43fcee88ef6e30bd4a4bec9fd254864180b69c34 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 18 Dec 2023 10:57:45 +0800
-Subject: [PATCH 31/43] PANEL/BACKLIGHT: update nt36523 driver and ktz8866
+Subject: [PATCH 31/44] PANEL/BACKLIGHT: update nt36523 driver and ktz8866
  driver, move backlight power control to lcd panel
 
 ---
@@ -2386,5 +2386,5 @@ index 1a921e894..1e582216a 100644
   * mipi_dsi_dcs_write_seq - transmit a DCS command with payload
   * @dsi: DSI peripheral device
 -- 
-2.46.1
+2.46.2
 

@@ -1,7 +1,7 @@
-From a073be3eb2f1feb4496c0679381b2132c45c3faf Mon Sep 17 00:00:00 2001
+From 3e4a6b6c7fb746aad00a11726c5323d5c85a3ed4 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 9 Feb 2024 09:25:09 +0800
-Subject: [PATCH 42/43] dsi: fix display sync problem, from map220v
+Subject: [PATCH 42/44] dsi: fix display sync problem, from map220v
 
 ---
  drivers/gpu/drm/msm/dsi/dsi_manager.c | 24 ++++++++++++------------
@@ -71,5 +71,5 @@ index 980fa766e..b72d99784 100644
  	msm_dsi_host_cmd_xfer_commit(host, dma_base, len);
  
 -- 
-2.46.1
+2.46.2
 

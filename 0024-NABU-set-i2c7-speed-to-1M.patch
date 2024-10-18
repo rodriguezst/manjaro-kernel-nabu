@@ -1,7 +1,7 @@
-From 21f4f2928deded0812b0bf445d90aa96cf2c99fd Mon Sep 17 00:00:00 2001
+From 345d7c2de225520f51a28e3c348c4936fdb09faf Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 15 Nov 2023 09:35:09 +0800
-Subject: [PATCH 24/43] NABU: set i2c7 speed to 1M
+Subject: [PATCH 24/44] NABU: set i2c7 speed to 1M
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 161 +++++++++---------
@@ -187,5 +187,5 @@ index 64b77eb45..8c1b98e0d 100644
  	status = "okay";
  };
 -- 
-2.46.1
+2.46.2
 

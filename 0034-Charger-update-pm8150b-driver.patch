@@ -1,7 +1,7 @@
-From 5e732aef510f53bf097ed738a303d20a1828cf9f Mon Sep 17 00:00:00 2001
+From 182d9d9f338924d6b4578e7d7cc6f39b8aab67c1 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 17 Jan 2024 08:19:38 +0800
-Subject: [PATCH 34/43] Charger: update pm8150b driver
+Subject: [PATCH 34/44] Charger: update pm8150b driver
 
 ---
  drivers/power/supply/qcom/fg-core.h         |   2 -
@@ -873,5 +873,5 @@ index 75a2a82c3..60bc43489 100644
  
  int smblib_init(struct smb_charger *chg);
 -- 
-2.46.1
+2.46.2
 

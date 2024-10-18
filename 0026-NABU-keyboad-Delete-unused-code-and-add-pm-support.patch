@@ -1,7 +1,7 @@
-From c06c7e16450e1626c6e14e3ccc611125b0f5f456 Mon Sep 17 00:00:00 2001
+From 0eafbfbbaee70f0a363cd435c27cc818a9607be4 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 27 Nov 2023 16:40:32 +0800
-Subject: [PATCH 26/43] NABU: keyboad: Delete unused code and add pm support
+Subject: [PATCH 26/44] NABU: keyboad: Delete unused code and add pm support
 
 ---
  drivers/misc/nabu_kb_ctrl.c | 271 ++----------------------------------
@@ -413,5 +413,5 @@ index 954660dbf..1dfdd0aca 100644
  };
  #endif
 -- 
-2.46.1
+2.46.2
 

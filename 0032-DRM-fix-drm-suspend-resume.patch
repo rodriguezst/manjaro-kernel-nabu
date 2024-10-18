@@ -1,7 +1,7 @@
-From 3d4798f1ba4278fdecc0c084a6920623740ef214 Mon Sep 17 00:00:00 2001
+From d1520f421a7533ed102b4424e239ffd745edf1ac Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 18 Dec 2023 10:59:50 +0800
-Subject: [PATCH 32/43] DRM: fix drm suspend/resume
+Subject: [PATCH 32/44] DRM: fix drm suspend/resume
 
 ---
  drivers/clk/qcom/dispcc-sm8250.c | 45 +++++++++++++++-----
@@ -9,7 +9,7 @@ Subject: [PATCH 32/43] DRM: fix drm suspend/resume
  2 files changed, 54 insertions(+), 62 deletions(-)
 
 diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-index 709076f0f..c23d91e99 100644
+index dcd76977a..9723b9882 100644
 --- a/drivers/clk/qcom/dispcc-sm8250.c
 +++ b/drivers/clk/qcom/dispcc-sm8250.c
 @@ -462,6 +462,20 @@ static struct clk_branch disp_cc_mdss_edp_link_clk = {
@@ -42,7 +42,7 @@ index 709076f0f..c23d91e99 100644
  			},
  			.num_parents = 1,
  			.flags = CLK_GET_RATE_NOCACHE,
-@@ -1137,7 +1151,7 @@ static struct gdsc mdss_gdsc = {
+@@ -1140,7 +1154,7 @@ static struct gdsc mdss_gdsc = {
  		.name = "mdss_gdsc",
  	},
  	.pwrsts = PWRSTS_OFF_ON,
@@ -51,7 +51,7 @@ index 709076f0f..c23d91e99 100644
  };
  
  static struct clk_regmap *disp_cc_sm8250_clocks[] = {
-@@ -1236,19 +1250,12 @@ static const struct of_device_id disp_cc_sm8250_match_table[] = {
+@@ -1239,19 +1253,12 @@ static const struct of_device_id disp_cc_sm8250_match_table[] = {
  };
  MODULE_DEVICE_TABLE(of, disp_cc_sm8250_match_table);
  
@@ -72,7 +72,7 @@ index 709076f0f..c23d91e99 100644
  	if (ret)
  		return ret;
  
-@@ -1274,6 +1281,16 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+@@ -1277,6 +1284,16 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
  		disp_cc_pll1_config.config_ctl_hi1_val = 0x00000024;
  		disp_cc_pll1_config.user_ctl_hi1_val = 0x000000D0;
  		disp_cc_pll1_init.ops = &clk_alpha_pll_trion_ops;
@@ -89,7 +89,7 @@ index 709076f0f..c23d91e99 100644
  	} else if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8350-dispcc")) {
  		static struct clk_rcg2 * const rcgs[] = {
  			&disp_cc_mdss_byte0_clk_src,
-@@ -1285,7 +1302,11 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+@@ -1288,7 +1305,11 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
  			&disp_cc_mdss_dp_pixel1_clk_src,
  			&disp_cc_mdss_dp_pixel2_clk_src,
  			&disp_cc_mdss_dp_pixel_clk_src,
@@ -101,7 +101,7 @@ index 709076f0f..c23d91e99 100644
  			&disp_cc_mdss_mdp_clk_src,
  			&disp_cc_mdss_pclk0_clk_src,
  			&disp_cc_mdss_pclk1_clk_src,
-@@ -1297,6 +1318,7 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+@@ -1300,6 +1321,7 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
  			&disp_cc_mdss_byte1_div_clk_src,
  			&disp_cc_mdss_dp_link1_div_clk_src,
  			&disp_cc_mdss_dp_link_div_clk_src,
@@ -109,7 +109,7 @@ index 709076f0f..c23d91e99 100644
  		};
  		unsigned int i;
  		static bool offset_applied;
-@@ -1330,6 +1352,9 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+@@ -1333,6 +1355,9 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
  		disp_cc_pll1_config.test_ctl_hi1_val = 0x01800000;
  		disp_cc_pll1_init.ops = &clk_alpha_pll_lucid_5lpe_ops;
  		disp_cc_pll1.vco_table = lucid_5lpe_vco;
@@ -118,7 +118,7 @@ index 709076f0f..c23d91e99 100644
 +		disp_cc_sm8250_clocks[DISP_CC_MDSS_EDP_GTC_CLK_SRC] = NULL;
  	}
  
- 	clk_lucid_pll_configure(&disp_cc_pll0, regmap, &disp_cc_pll0_config);
+ 	if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8350-dispcc")) {
 diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
 index ccf63771e..b7943a6f4 100644
 --- a/drivers/clk/qcom/gdsc.c
@@ -271,5 +271,5 @@ index ccf63771e..b7943a6f4 100644
  
  int gdsc_register(struct gdsc_desc *desc,
 -- 
-2.46.1
+2.46.2
 

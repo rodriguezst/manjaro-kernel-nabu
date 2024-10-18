@@ -1,7 +1,7 @@
-From e09d19c55910504ef867296dc607c369b02c1aed Mon Sep 17 00:00:00 2001
+From d7f0288f0b08aaf7b15fee5c451841094a42e29d Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 15 Jun 2023 14:51:29 +0800
-Subject: [PATCH 11/43] add bluetooth nodes for nabu
+Subject: [PATCH 11/44] add bluetooth nodes for nabu
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  | 69 +++++++++++++++++++
@@ -153,5 +153,5 @@ index 9a5eca412..6834db558 100644
  
  			qup_spi14_default: qup-spi14-default-state {
 -- 
-2.46.1
+2.46.2
 

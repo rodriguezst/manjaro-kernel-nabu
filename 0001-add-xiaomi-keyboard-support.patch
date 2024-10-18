@@ -1,7 +1,7 @@
-From 96899020bb631dda8e777575677f2bd6d350d75b Mon Sep 17 00:00:00 2001
+From ad35e0e13eea99d16057e85da1d1f59419ce1656 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 25 May 2023 10:07:08 +0800
-Subject: [PATCH 01/43] add xiaomi keyboard support
+Subject: [PATCH 01/44] add xiaomi keyboard support
 
 ---
  drivers/misc/Kconfig        |   8 +
@@ -718,5 +718,5 @@ index 000000000..954660dbf
 +};
 +#endif
 -- 
-2.46.1
+2.46.2
 

@@ -1,7 +1,7 @@
-From e9e1ba4093621bbf708d5b09ee65cc070b68e83b Mon Sep 17 00:00:00 2001
+From 202b938ee20bb6e322d909f9f9a73f0488d16321 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 18 Feb 2024 17:03:16 +0800
-Subject: [PATCH 43/43] charge: support standard pps charges
+Subject: [PATCH 43/44] charge: support standard pps charges
 
 ---
  .../dts/qcom/sm8150-xiaomi-nabu-maverick.dts  |   1 +
@@ -272,5 +272,5 @@ index 3b3e9d0d5..9d2a00e54 100644
  
  		/*
 -- 
-2.46.1
+2.46.2
 

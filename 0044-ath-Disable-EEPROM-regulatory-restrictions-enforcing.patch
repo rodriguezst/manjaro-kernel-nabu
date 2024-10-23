@@ -1,4 +1,4 @@
-From 37dcc0ee7faa5d35ab6cc5046b7a7b36276d6e40 Mon Sep 17 00:00:00 2001
+From e91f235dfff9fcbeb22d7f6d1e824cf1070af7f4 Mon Sep 17 00:00:00 2001
 From: "github-actions[bot]" <github-actions[bot]@users.noreply.github.com>
 Date: Tue, 15 Oct 2024 14:51:14 +0000
 Subject: [PATCH 44/44] ath: Disable EEPROM regulatory restrictions enforcing
@@ -72,5 +72,5 @@ index f15e7bd69..4fe49dd7b 100644
  				   REGULATORY_CUSTOM_REG;
  
 -- 
-2.46.2
+2.47.0
 

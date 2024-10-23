@@ -1,4 +1,4 @@
-From ef4499c301fd98e5ea42834ff1117e1df45fe5ce Mon Sep 17 00:00:00 2001
+From e736d124b51f1a1ae5c9c04b5fe84235c35663ca Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 17 Jul 2023 11:57:56 +0800
 Subject: [PATCH 13/44] add qcom pmic revid driver
@@ -758,5 +758,5 @@ index 000000000..bfb1045ef
 +#endif
 +#endif
 -- 
-2.46.2
+2.47.0
 

@@ -1,4 +1,4 @@
-From 0eafbfbbaee70f0a363cd435c27cc818a9607be4 Mon Sep 17 00:00:00 2001
+From 0b3e22437eeaceecaf24f58ec66093be93d13025 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 27 Nov 2023 16:40:32 +0800
 Subject: [PATCH 26/44] NABU: keyboad: Delete unused code and add pm support
@@ -413,5 +413,5 @@ index 954660dbf..1dfdd0aca 100644
  };
  #endif
 -- 
-2.46.2
+2.47.0
 

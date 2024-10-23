@@ -1,4 +1,4 @@
-From 3e4a6b6c7fb746aad00a11726c5323d5c85a3ed4 Mon Sep 17 00:00:00 2001
+From 3ed3fa595eace2e9d2b280e0c1f70006c27f9275 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 9 Feb 2024 09:25:09 +0800
 Subject: [PATCH 42/44] dsi: fix display sync problem, from map220v
@@ -71,5 +71,5 @@ index 980fa766e..b72d99784 100644
  	msm_dsi_host_cmd_xfer_commit(host, dma_base, len);
  
 -- 
-2.46.2
+2.47.0
 

@@ -1,4 +1,4 @@
-From ccd7a4b911cfdfa230e6f140a42d83314c4c89b6 Mon Sep 17 00:00:00 2001
+From b4e04ac617650c71109df66f5df9cf9a41895f6f Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sat, 3 Jun 2023 15:54:59 +0800
 Subject: [PATCH 03/44] add wifi
@@ -71,5 +71,5 @@ index 329a92f32..f19abd9e9 100644
 +};
 \ No newline at end of file
 -- 
-2.46.2
+2.47.0
 

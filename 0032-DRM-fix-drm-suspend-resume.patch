@@ -1,4 +1,4 @@
-From d1520f421a7533ed102b4424e239ffd745edf1ac Mon Sep 17 00:00:00 2001
+From 8b6410a48952eb1527d49e81ddd845082e2aece6 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Mon, 18 Dec 2023 10:59:50 +0800
 Subject: [PATCH 32/44] DRM: fix drm suspend/resume
@@ -271,5 +271,5 @@ index ccf63771e..b7943a6f4 100644
  
  int gdsc_register(struct gdsc_desc *desc,
 -- 
-2.46.2
+2.47.0
 

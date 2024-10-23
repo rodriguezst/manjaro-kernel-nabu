@@ -1,4 +1,4 @@
-From 34081f60996ff88a36bef9e4932c26c020e9c6da Mon Sep 17 00:00:00 2001
+From b29865caaa5484e90143cd59981389ae74c02725 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:53:43 +0800
 Subject: [PATCH 30/44] TS: Add the handler to accept the notifier from DRM
@@ -139,5 +139,5 @@ index a19f07291..b8d569c21 100644
  	uint32_t config_array_size;
  	struct nvt_config_info *config_array;
 -- 
-2.46.2
+2.47.0
 

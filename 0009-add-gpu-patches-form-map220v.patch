@@ -1,4 +1,4 @@
-From e270b5a6a3d58b93cf3c3716cdd453602704dfce Mon Sep 17 00:00:00 2001
+From 76ee2a4c87ea6e0255fa479100ef37d4c6ad89c5 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 11 Jun 2023 19:43:53 +0800
 Subject: [PATCH 09/44] add gpu patches form map220v
@@ -225,5 +225,5 @@ index 59de72b38..2b9f7557d 100644
  
  /**
 -- 
-2.46.2
+2.47.0
 

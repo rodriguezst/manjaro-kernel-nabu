@@ -1,4 +1,4 @@
-From efb23578b1e83c6c65eeb34620d35537fca82a97 Mon Sep 17 00:00:00 2001
+From 2d487c4074b3980228c167a96e4c86c9cd408dda Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Fri, 2 Feb 2024 13:04:39 +0800
 Subject: [PATCH 41/44] NABU: add cover detect
@@ -33,5 +33,5 @@ index b7c26cd75..4a959304d 100644
  
  &pm8150_gpios {
 -- 
-2.46.2
+2.47.0
 

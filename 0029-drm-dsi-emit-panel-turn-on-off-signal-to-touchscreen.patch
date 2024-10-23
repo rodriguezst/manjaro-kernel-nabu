@@ -1,4 +1,4 @@
-From f16b0794d130f170620cd1c7ef5d70b0cf673952 Mon Sep 17 00:00:00 2001
+From 7cda9ed3806044c5dfe8ae75b040b78d50e320a8 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 12 Dec 2023 05:48:55 +0800
 Subject: [PATCH 29/44] drm: dsi: emit panel turn on/off signal to touchscreen
@@ -55,5 +55,5 @@ index 3a1417397..980fa766e 100644
  	 * Do nothing with the host if it is slave-DSI in case of bonded DSI.
  	 * It is safe to call dsi_mgr_phy_disable() here because a single PHY
 -- 
-2.46.2
+2.47.0
 

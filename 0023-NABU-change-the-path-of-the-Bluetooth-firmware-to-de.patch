@@ -1,4 +1,4 @@
-From 71aab9afe4a17551ddbfb813b97d8d91177ca22a Mon Sep 17 00:00:00 2001
+From cb43e6e962819de8c4d8078187a303b7b58f3a24 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Sun, 12 Nov 2023 11:46:37 +0800
 Subject: [PATCH 23/44] NABU: change the path of the Bluetooth firmware to
@@ -21,5 +21,5 @@ index 98b8c5676..64b77eb45 100644
  };
  
 -- 
-2.46.2
+2.47.0
 

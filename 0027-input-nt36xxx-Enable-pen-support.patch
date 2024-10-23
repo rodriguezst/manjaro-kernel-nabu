@@ -1,4 +1,4 @@
-From 219639cca963d3ef771e08639a445786ea2656d7 Mon Sep 17 00:00:00 2001
+From cc1a11c94e1c2c0f564a3190e7d4629d2e24bfc1 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Thu, 7 Dec 2023 10:20:37 +0800
 Subject: [PATCH 27/44] input: nt36xxx: Enable pen support
@@ -114,5 +114,5 @@ index 4f383dac2..71c271d8c 100644
  	mutex_unlock(&ts->lock);
  }
 -- 
-2.46.2
+2.47.0
 

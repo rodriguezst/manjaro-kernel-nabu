@@ -1,4 +1,4 @@
-From 66a8408f5cf988f7f4a9f307e546d1c83a745969 Mon Sep 17 00:00:00 2001
+From 380f4f59c9cab1dc7017d1c59f4c02e497ade99f Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:21:44 +0800
 Subject: [PATCH 35/44] charger: add charge pump ln8000 driver
@@ -2017,5 +2017,5 @@ index 000000000..2b93e86f3
 +
 +#endif  /* __LN8000_CHARGER_H__ */
 -- 
-2.46.2
+2.47.0
 

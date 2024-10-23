@@ -1,4 +1,4 @@
-From 345d7c2de225520f51a28e3c348c4936fdb09faf Mon Sep 17 00:00:00 2001
+From d55474e6b587ce93d7a597ecdfaa8cf560a4196e Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Wed, 15 Nov 2023 09:35:09 +0800
 Subject: [PATCH 24/44] NABU: set i2c7 speed to 1M
@@ -187,5 +187,5 @@ index 64b77eb45..8c1b98e0d 100644
  	status = "okay";
  };
 -- 
-2.46.2
+2.47.0
 

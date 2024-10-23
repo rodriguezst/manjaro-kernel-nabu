@@ -1,4 +1,4 @@
-From aded22465b128c2af3d062ebdb8955fca853d113 Mon Sep 17 00:00:00 2001
+From 9ef624c75c7b0e482c062466d77f6e4b52a241e6 Mon Sep 17 00:00:00 2001
 From: maverick <maverick_jia@sina.com>
 Date: Tue, 30 Jan 2024 14:42:38 +0800
 Subject: [PATCH 38/44] USBPD: trick Xiaomi charger to supporting PPS
@@ -371,5 +371,5 @@ index b05725070..cb5c92579 100644
  
  /* ChromeOS specific commands */
 -- 
-2.46.2
+2.47.0
 

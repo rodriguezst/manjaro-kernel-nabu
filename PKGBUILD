@@ -5,11 +5,11 @@
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
-pkgbase=linux611-nabu
-pkgver=6.11.0
+pkgbase=linux612-nabu
+pkgver=6.12.0
 pkgrel=1
 _kernelname=-MANJARO-NABU
-_basekernel=6.11
+_basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -27,97 +27,120 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '90-linux.hook'
          'uki.conf'
          'cmdline'
-        "0001-SM8150-Add-uart13-node.patch"
-        "0002-SM8150-Add-device-tree-for-Xiaomi-Pad-5.patch"
-        "0003-drm-Add-drm-notifier-support.patch"
-        "0004-drm-dsi-emit-panel-turn-on-off-signal-to-touchscreen.patch"
-        "0005-Input-Add-nt36523-touchscreen-driver.patch"
-        "0006-nt36xxx-Fix-module-autoload.patch"
-        "0007-NABU-Added-novatek-touchscreen-node.patch"
-        "0008-drm-panel-nt36523-Add-Xiaomi-Pad-5-CSOT-panel.patch"
-        "0009-NABU-Enable-gpu-dsi0-and-dsi1.-Added-panel-and-backl.patch"
-        "0010-SM8150-Add-apr-nodes.patch"
-        "0011-ASoC-qcom-SM8150-Add-machine-driver.patch"
-        "0012-NABU-Add-sound-nodes.patch"
-        "0013-power-supply-Add-driver-for-Qualcomm-PMIC-fuel-gauge.patch"
-        "0014-power-qcom_fg-Add-initial-pm8150b-support.patch"
-        "0015-arm64-dts-qcom-pm8150b-Add-fuel-gauge.patch"
-        "0016-NABU-Add-pmic-fg-and-battery-nodes.patch"
-        "0017-SM8150-Add-slimbus-nodes.patch"
-        "0018-arm64-dts-add-wcd9340-device-tree-binding-for-sm8150.patch"
-        "0019-ASoC-qcom-SM8150-Add-slimbus-audio-support.patch"
-        "0020-ASoC-qcom-sm8150-Fix-compilation-in-v6.7.0.patch"
-        "0021-NABU-Add-wcd9340-and-microphone-dais.patch"
-        "0022-drm-msm-dsi-change-sync-mode-to-sync-on-DSI0-rather-.patch"
-        "0023-drm-msm-dpu1-improve-support-for-active-CTLs.patch"
-        "0024-drm-msm-dpu1-use-one-active-CTL-if-it-is-available.patch"
-        "0025-drm-msm-dpu-populate-has_active_ctls-in-the-catalog.patch"
-        "0026-drm-msm-dpu1-dpu_encoder_phys_-proper-support-for-ac.patch"
-        "0027-drm-panel-nt36523-enable-prepare_prev_first.patch"
-        "0028-input-nt36xxx-Enable-pen-support.patch"
-        "0029-drm-msm-dpu-Fix-dpu-sspp-features-for-sm8150.patch"
-        "0030-drm-panel-nt36523-Enable-120fps-for-nabu-csot.patch"
-        "0031-NABU-Add-pm8150b-type-c-node-and-enable-otg.patch"
-        "0032-NABU-Add-fsa4480-node.patch"
-        "0033-NABU-Enable-secondary-usb-and-keyboard-MCU.patch"
-        "0034-input-nt36523-Remove-fw-boot-delay.patch"
-        "0035-NABU-Add-flash-led-node.patch"
-        "0036-NABU-Add-ln8000-fast-charge-IC-for-testing.patch"
-        "0037-NABU-Add-hall-sensor-for-magnetic-cover-detection.patch"
-        "0038-NABU-Set-panel-rotation.patch"
-        "0039-NABU-Remove-framebuffer-initialized-by-XBL.patch"
-        "0040-NABU-Remove-deprecated-usb_1_role_switch_out-node.patch"
-        "0041-nt36xxx-Fix-compilation-in-6.8.patch"
-        "0042-Remove-missed-dsc_active-duplicate.patch"
-        "0043-nt36xxx-Fix-compilation-in-6.9.patch"
-        "0044-qcom_fg-Fix-compilation-in-6.11.patch" )
-sha256sums=('ef31144a2576d080d8c31698e83ec9f66bf97c677fa2aaf0d5bbb9f3345b1069'
-            '12e93de2db555bbf523d4d9d2d4dfd748e6e0c4aac5dc86160d353b1bd936706'
-            'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
+         '0001-SM8150-Add-uart13-node.patch'
+         '0002-SM8150-Add-device-tree-for-Xiaomi-Pad-5.patch'
+         '0003-drm-Add-drm-notifier-support.patch'
+         '0004-drm-dsi-emit-panel-turn-on-off-signal-to-touchscreen.patch'
+         '0005-Input-Add-nt36523-touchscreen-driver.patch'
+         '0006-nt36xxx-Fix-module-autoload.patch'
+         '0007-Add-sm8150.config-fragment.patch'
+         '0008-NABU-Added-novatek-touchscreen-node.patch'
+         '0009-drm-panel-nt36523-Add-Xiaomi-Pad-5-CSOT-panel.patch'
+         '0010-SM8150-config-added-display-panel-and-backlight-modu.patch'
+         '0011-NABU-Enable-gpu-dsi0-and-dsi1.-Added-panel-and-backl.patch'
+         '0012-SM8150-Add-apr-nodes.patch'
+         '0013-ASoC-qcom-SM8150-Add-machine-driver.patch'
+         '0014-NABU-Add-sound-nodes.patch'
+         '0015-power-supply-Add-driver-for-Qualcomm-PMIC-fuel-gauge.patch'
+         '0016-power-qcom_fg-Add-initial-pm8150b-support.patch'
+         '0017-arm64-dts-qcom-pm8150b-Add-fuel-gauge.patch'
+         '0018-NABU-Add-pmic-fg-and-battery-nodes.patch'
+         '0019-SM8150-Add-slimbus-nodes.patch'
+         '0020-arm64-dts-add-wcd9340-device-tree-binding-for-sm8150.patch'
+         '0021-ASoC-qcom-SM8150-Add-slimbus-audio-support.patch'
+         '0022-ASoC-qcom-sm8150-Fix-compilation-in-v6.7.0.patch'
+         '0023-NABU-Add-wcd9340-and-microphone-dais.patch'
+         '0024-drm-msm-dsi-change-sync-mode-to-sync-on-DSI0-rather-.patch'
+         '0025-drm-msm-dpu1-improve-support-for-active-CTLs.patch'
+         '0026-drm-msm-dpu1-use-one-active-CTL-if-it-is-available.patch'
+         '0027-drm-msm-dpu-populate-has_active_ctls-in-the-catalog.patch'
+         '0028-drm-msm-dpu1-dpu_encoder_phys_-proper-support-for-ac.patch'
+         '0029-drm-panel-nt36523-enable-prepare_prev_first.patch'
+         '0030-input-nt36xxx-Enable-pen-support.patch'
+         '0031-drm-msm-dpu-Fix-dpu-sspp-features-for-sm8150.patch'
+         '0032-drm-panel-nt36523-Enable-120fps-for-nabu-csot.patch'
+         '0033-NABU-Add-pm8150b-type-c-node-and-enable-otg.patch'
+         '0034-NABU-Add-fsa4480-node.patch'
+         '0035-NABU-Enable-secondary-usb-and-keyboard-MCU.patch'
+         '0036-input-nt36523-Remove-fw-boot-delay.patch'
+         '0037-NABU-Add-flash-led-node.patch'
+         '0038-NABU-Add-ln8000-fast-charge-IC-for-testing.patch'
+         '0039-NABU-Add-hall-sensor-for-magnetic-cover-detection.patch'
+         '0040-NABU-Set-panel-rotation.patch'
+         '0041-NABU-Remove-framebuffer-initialized-by-XBL.patch'
+         '0042-NABU-Remove-deprecated-usb_1_role_switch_out-node.patch'
+         '0043-nt36xxx-Fix-compilation-in-6.8.patch'
+         '0044-Remove-missed-dsc_active-duplicate.patch'
+         '0045-nt36xxx-Fix-compilation-in-6.9.patch'
+         '0046-qcom_fg-Fix-compilation-in-6.11.patch'
+         '0047-drm-panel-nt36523-use-devm_mipi_dsi_-function-to-reg.patch'
+         '0048-drm-msm-dpu-Drop-BIT-DPU_CTL_SPLIT_DISPLAY-from-acti.patch'
+         '0049-of-property-fix-remote-endpoint-parse.patch'
+         '0050-drivers-gpu-drm-drm_notifier.c-add-include-drm-drm_n.patch'
+         '0051-arch-arm64-boot-dts-qcom-sm8150-xiaomi-nabu.dts-add-.patch'
+         '0052-arch-arm64-boot-dts-qcom-sm8150-xiaomi-nabu.dts-add-.patch'
+         '0053-arch-arm64-boot-dts-qcom-sm8150.dtsi-change-reset-na.patch' )
+
+sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
+            '5a14ea07d49c315d8b0861d5f1ef015e6bb0f83a8a3310e6f35c3f8ee0ec876a'
+            '28c9417c2700e89fc3b4e824781b968f1773c49aeaf9216bf265a15907b12f48'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
             '2d87c68d02f14ce14de548d2d9d79dcca34fa276ee535cad6da78584531baae1'
             '4c06efd0966046827c7bc0fea11a9e5e298bd199cd4bdfe141795a3b62799cb9'
-            '5d9a3550811f79d34ec6caf9d49b510d61a6ca42e83e9a66ccafdeac62c22334'
-            'd74ea2bf89847c6fc6829d2ab1d9ee757179c5461ad8f5ebab9b18af0eaf3d1f'
-            'adf4f104ba0fb31140a132f78f7475cacad292c7a4d40465c9ce292091bd2dc0'
-            'a6d7a320a7bbc9f77807a25deb5236248de3b7ef50bf899580a36bd7a1060ecf'
-            'ca5f862dfcf26b20fdb3e4a8811895cb6b91852d5a2738c4f1d7a10e2e365898'
-            '44a3f784df2f8cd7e22781037262e0fdb1bf27b4bad98fd8e223afe1b6c82bee'
-            '15de0e60cd768900aac66bb3c4b128a06b226d80c44e9cfef3e955c297c8300d'
-            '26caa99dba0c48cd3c458d86b7a97ebbc5bee7527f256d48387514b459342086'
-            '309ecb2ea0ab94b34ab3bdcca83f07df7b3561cf29f87f594b7ea61385ea928a'
-            '2130f2de808e262cdcb7510f6712e2342f4821c4018a3196c35298701b008b45'
-            '7e39e71b14cbd124ca50044807de4c7592be3036cdedfca451e6bdd83bebd0aa'
-            'be9713773b99955561d5b268df10f04e7581a0641613947ce18022b0c2ecce63'
-            'c0051ad10c48c37c5ced85dbd03cc626e7ddf8781df45cda12713cb72718c9df'
-            '755ad43e4c7206f00e512c595712814b614d7ff4b168465e14c0a1064fc7453d'
-            'acfb02662b68c214705c9391f7eaf605303dd0223a84dd7861ac707eb8440930'
-            '39d4782f7911b79a67b309fb12f7722871ad87fdb88d6ee348161e5b0b4ee920'
-            'f244137306f91c1cb8c5f0ab222eb12b96853ac3404e1016bbed98586777982c'
-            '1d59558d39a901a6472287a6aec473977a3fb26a52ca8d7812b6f0e0988cabbf'
-            '79dac4520533ab2a0485f285780306bde5f74992f05d51e1663aa5e44d9de803'
-            '0f725aec20fd7c1af052c5e7a4e9d8e52b4df384119ea601f24467b84ce7174e'
-            'd9d0dbd56e8edbaae34ad346638837631b0390551856129882030f4bc09cfd8c'
-            '97c73b42bd9489ac475a5a5a45ba190a6971ab6a6c5a8ce9b2cc13de3f880091'
-            '230f865db2fc9f8a2bbe46c5c04ba481f771959cdf2f65cf143659ba83f2ab06'
-            '0edd0daccdef060881b385750c080608bdc52805bf74c8e51735bda3d0b35ff9'
-            'ec6055f4ed0e8cd49fa743ea47f3eabd5bbdae42b9bf4d556a10314f6233a89e'
-            '0771ec735ef7617bdbeac5302b33c9495104d6f1456450d7067e0c20a4c1a1f9'
-            'fc0a7d0434f5eae63e32b508ddce5575a5e286bd611d06973466f2b6fd4ecd04'
-            '56d38c2ff3e854de81fe9bc6fc690550fdee8acd169e7a95ca8bd585aede6e0b'
-            'a24bf2b7fab7c07707113591f8eabe9b0644848035db8bdfa3e29793f4bef869'
-            'd53d0412e95e7a771526a3534399b8ee34990d6f08e6b6587fd32b80962afc02'
-            '5afa3f5867eaaae9657c65e7781fc12f7942d5dce5a824b91849be5989f36390'
-            'c49e6b3ed3ac31204d779409cd3456030d668c15839715441c7150c22ba0e0c4'
-            '49c289cc967f5486540bdd0b252dc0bbd3f88283d92dbb4e1d49bff59a4bafe2'
-            '32ae99bb3de5487eceea64476a4937b306776cf6d2509375e86ac76b931bd087'
-            '071a50c1ae5bdf3be90e90f82233a3d7224dfecd0a89b2ba9919fdff082a3d21'
-            'e6bd58be211f65c4788e905df72ee5f6e0da6c6975912c1a1448c5004dc34bea'
-            'e7b399e4f9306800abf0cb0f98d72b3da1f1f05014c2a1ea6c07256147b8b254'
-            'b054e65655688ddbeb779d4cbfd5ac627305e9a571262ac7ffa030afd547bfe5'
-            '20227b04796707dcbc2a2fbf1d4b532d8d04ee00a30384c6641ea2430bcf336d'
-            '70d1b4163fdd46338ca596776578c5fd6e77564ef913a37e5acda1f06cb7d142')
+            '7b0db41df0775cd92419f3ac0a84ec3bb11c713905290c6593ed403afb1c1706'
+            '74b584aae2a1c9a5cde6206feac6656cb8ff714dc16966e0620f8e212a26364a'
+            '389ba34137bccfcd498092dfef7e7c5975de0a5b202a8846f31649622d0cb023'
+            'eb9977e7e02dc894df903407aa454747c1c37b4739ba78226aa667919d7045f0'
+            '69cb666e20639304fc865722cf18a29ee19ec23197db98c14dbcd45f5de6a58b'
+            'dae56dd98ea74450ee816116608edac9a4a479fff1b5e5efed0fab12c44bbcca'
+            '099001775afac771283c9bb05f513fd98ce528e110ba17c9f5c2cfde019441e1'
+            '13fc785df882a60970b7b907366251baeb1ccb6d5d997589400f6cdb39b58a3f'
+            '94c67a14faa0e0756798b54866c5b73de9e5a1b545a2624868d777ab9894408c'
+            'b209580fe42142a66c687007db70e2a03b5628915c7c57d26b44acbc60716abb'
+            'cad5474cc0ad030bdcb4cf7c9fda2aa021be294f6ceb9852112e8609ad07c5aa'
+            'e2200d78c10babe1b365ac7b9a6d9a4389f62fd9a2a75d38a935b2c4cefd9b2d'
+            'd0775637c54dfe4f4c75793a872d7d510d1770266e4119d78c03f0f301eede55'
+            'd41f27eace227918d4e035b44cd8c92fa7d66e91c5f0db4f44495dc8f5dd2ad8'
+            'e471b6b4d49ca75e357244ce1c0d5e95c09d5da7266b19c21503d7ac9ed3261e'
+            '2bb7dd0cba966fe33f61db6c2760407f34def25c158b0b84da4fa6e1a22e1b78'
+            '779aa88563df0da170c97644dc8c2bc3ea7fe21c1d1e021e0f7bb07bccaec8ce'
+            'f69be01be3e6281ab847984045fe3ffb39a64ccc6d7ab58fb9f8f54ccaa951c1'
+            'a2e89dd7e9db3e1315ba490b1425680b853842a77e0c29e791d19871a41dab38'
+            '6f4314cb5625471e8095240c4ceff117070832aac3dee42074e21e8fdb4dc4eb'
+            'c03605a0941fa776b9a72a56e94fe64e866870c0df6b87da729f150287ad48fc'
+            'ede91271be8d403fb815cd2d63ba49df2db8e270d2e24b8527a0057e8c2218a8'
+            '4419b89855888e134951f9723dc7b75b2f3ad0914e7a29a15e27e037161bb6ad'
+            'df4eae5ca49fb3369823eb9c07104d6763aef823d782ba7399f0eefa50ceefd0'
+            '3af1b5fe5167d47adcab2cc7f567484e825831d7cb79dadf0d48b5588ca14cb6'
+            '7a5672b30fbc088d63217ddc50882529397b6fde27b0bbc80e905f429686c47a'
+            'c78fa5ab7b92032eaaf2074d5ce6ee80daa1284a4fbbd75e9c57cc1aad8d4918'
+            'd4f23acf9a90a518988a192313b85068a24f17c0ebfd06d5c01fe283994db809'
+            '2b23e8ac7928f40646d0867e285aadb1bc2dd2d921daa84915193cc2c0f58dc8'
+            '4dd81d424c3eb7098fa1dd06aea68385f693754467facffa017780f89075b237'
+            'bfcaeef55a1e7e87f971e787be6f6ef76c141eee01804a4b67413e44b43d4076'
+            '36fedce422e49f845e9e0bf466992bfec4841d5bb89710fcf6528088325b65ea'
+            '7eda82af5aa0b2b0ec689d153ba1651bbe5630ea93fd0d97ce73bf6430bc34d2'
+            '387b287ec4648a5fe24c118bfe08e462a8fdd603392b3df952870f5d2a930dd2'
+            '1c17504e2a839b3b414c20520ede673b6864d3024a1be823064fc76e971e5ba1'
+            'c297011c0a4a52046b25c5cecdec11bc855665a5fe7e5921eaa785a9fc31f6a0'
+            '77628247f8855ea54ad5acbc36f02ddd05c74f2baa482f9d1fe09912a522e642'
+            '5565b77672cac54551d679ba7f24d360913ad01996551e468a36c3e6db77ffc2'
+            'eb5aaf0a0ea2073cade27fce868b7ef854eae7934ec4b90302f382fa15edfe59'
+            '25948e8e4ed0fc63f0ce2ba5117d000983c6a1498bade9b1d12ef352c096d0e3'
+            '7edc559278afc13b4b7fdfd9a36ede239982d1b168aa15bb77d21a032ebb0ed0'
+            '672118b8682627f676794318b2a26d9af1ae24779835dc98107398597659c3b5'
+            'a4493f7e5f49491858768547fd91e0e589bbfa69694cb159f7e21c0348fb37d9'
+            'b22ad5b80f8e3c2e1721d320dad8e4020d175b4d8c688fc9bc954fa9df90c476'
+            '1f73808cc5c8a4803e23035923696e47761d2ec62c08fdb0165d1e76f6edc7aa'
+            'd615363dcf087d1fa2ae9a3d5d24883a832e8750de8dec9eb376f668483fbf4b'
+            'dfcc228f5e1099f68bb2aaf54f23f8cca09a3e21c0df200c58283c29d4590de4'
+            '8734e3e5fb0d0b03687d396b7d5a95c73c7d949acc0031e27c4d26bc33430141'
+            'f462b36a22e7e05d904715e16f9649acf7ae75040518942b25e21c3d1750cc64'
+            '5496756e6388149c8aca5ce077cfc0fd411d83c8e75041a49b4ad143404fc37d'
+            'c5b7166cf2b6806c762844aeeac0bbe80c97afc4613488c2196a54d10eafccc4'
+            'cff3cdef7b10b135078193a337b6b20b5a1d1ad94a1f755a6bda13936b95c7c3'
+            '397eb486f22f2fc5694c779c57dc47eabda53638ae6d5a87af45cabfa6165435')
 
 prepare() {
   cd "${_srcname}"

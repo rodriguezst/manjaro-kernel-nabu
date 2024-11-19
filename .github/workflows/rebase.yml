@@ -2,7 +2,7 @@ name: rebase-patches
 
 env:
   REPO: 'https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
-  REF: 'linux-6.11.y'
+  REF: 'linux-6.12.y'
 
 on:
   workflow_dispatch:

@@ -1,7 +1,7 @@
-From 9f5c863f6c1967d4975ab9addffdc0298c4c35fb Mon Sep 17 00:00:00 2001
+From 0d8fa213935c8db81415913d64f0a0ece1eff685 Mon Sep 17 00:00:00 2001
 From: Jianhua Lu <lujianhua000@gmail.com>
 Date: Thu, 4 Aug 2022 13:26:53 +0800
-Subject: [PATCH 03/44] drm: Add drm notifier support
+Subject: [PATCH 03/53] drm: Add drm notifier support
 
 Signed-off-by: map220v <map220v300@gmail.com>
 ---
@@ -13,7 +13,7 @@ Signed-off-by: map220v <map220v300@gmail.com>
  create mode 100644 include/drm/drm_notifier.h
 
 diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index fa432a1ac9e2..36e656667e26 100644
+index 784229d4504d..0cb9e9c3875a 100644
 --- a/drivers/gpu/drm/Makefile
 +++ b/drivers/gpu/drm/Makefile
 @@ -74,7 +74,8 @@ drm-y := \

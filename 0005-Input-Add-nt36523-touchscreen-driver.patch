@@ -1,7 +1,7 @@
-From f50554c8180cb45fe56e4e194712c1a734528595 Mon Sep 17 00:00:00 2001
+From 05aef5922959d5a352c3b6176903728a0c448c26 Mon Sep 17 00:00:00 2001
 From: Jianhua Lu <lujianhua000@gmail.com>
 Date: Thu, 4 Aug 2022 13:26:26 +0800
-Subject: [PATCH 05/44] Input: Add nt36523 touchscreen driver
+Subject: [PATCH 05/53] Input: Add nt36523 touchscreen driver
 
 Signed-off-by: map220v <map220v300@gmail.com>
 ---
@@ -22,7 +22,7 @@ Signed-off-by: map220v <map220v300@gmail.com>
  create mode 100644 drivers/input/touchscreen/nt36523/nt36xxx_mem_map.h
 
 diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index c821fe3ee794..6a538a0824da 100644
+index 1ac26fc2e3eb..e65684597863 100644
 --- a/drivers/input/touchscreen/Kconfig
 +++ b/drivers/input/touchscreen/Kconfig
 @@ -12,6 +12,8 @@ menuconfig INPUT_TOUCHSCREEN
@@ -35,10 +35,10 @@ index c821fe3ee794..6a538a0824da 100644
  	tristate "Marvell 88PM860x touchscreen"
  	depends on MFD_88PM860X
 diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index a81cb5aa21a5..6a7e7c319682 100644
+index 82bc837ca01e..bc6aa4b9d165 100644
 --- a/drivers/input/touchscreen/Makefile
 +++ b/drivers/input/touchscreen/Makefile
-@@ -121,3 +121,4 @@ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
+@@ -117,3 +117,4 @@ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
  obj-$(CONFIG_TOUCHSCREEN_IQS7211)	+= iqs7211.o
  obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
  obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX83112B)	+= himax_hx83112b.o

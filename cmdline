@@ -1,1 +1,1 @@
-console=tty0 root=PARTLABEL=linux rw rootwait debug=vc selinux=0 audit=0
+pd_ignore_unused clk_ignore_unused console=tty0 root=PARTLABEL=linux rw debug=vc selinux=0 audit=0

@@ -7,5 +7,5 @@ PRESETS=('default')
 
 #default_config="/etc/mkinitcpio.conf"
 default_image="/boot/initramfs-linux.img"
-default_uki="/boot/efi/EFI/manjaro/linux-6.12.efi"
+default_uki="/boot/efi/EFI/manjaro/grubaa64.efi"
 default_options="--kernelimage /boot/vmlinux-%KERNVER% --ukiconfig /etc/kernel/uki.conf --cmdline /etc/kernel/cmdline"

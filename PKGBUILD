@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=2
+pkgrel=3
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -83,7 +83,7 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             '5a14ea07d49c315d8b0861d5f1ef015e6bb0f83a8a3310e6f35c3f8ee0ec876a'
-            '28c9417c2700e89fc3b4e824781b968f1773c49aeaf9216bf265a15907b12f48'
+            'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
             '2d87c68d02f14ce14de548d2d9d79dcca34fa276ee535cad6da78584531baae1'
@@ -208,7 +208,7 @@ _package() {
   optdepends=('crda: to set the correct wireless channels of your country'
               'linux-firmware: additional firmware')
   provides=("linux=${pkgver}")
-  #conflicts=('linux')
+  conflicts=('linux')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=${pkgname}.install
 

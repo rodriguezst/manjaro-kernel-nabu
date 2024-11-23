@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=3
+pkgrel=4
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -79,7 +79,9 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0050-drivers-gpu-drm-drm_notifier.c-add-include-drm-drm_n.patch'
          '0051-arch-arm64-boot-dts-qcom-sm8150-xiaomi-nabu.dts-add-.patch'
          '0052-arch-arm64-boot-dts-qcom-sm8150-xiaomi-nabu.dts-add-.patch'
-         '0053-arch-arm64-boot-dts-qcom-sm8150.dtsi-change-reset-na.patch' )
+         '0053-arch-arm64-boot-dts-qcom-sm8150.dtsi-change-reset-na.patch'
+         '0054-NABU-enable-rtc.patch'
+         '0055-NABU-disable-Sensor-Low-Power-Island.patch' )
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             '5a14ea07d49c315d8b0861d5f1ef015e6bb0f83a8a3310e6f35c3f8ee0ec876a'
@@ -140,7 +142,9 @@ sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             '5496756e6388149c8aca5ce077cfc0fd411d83c8e75041a49b4ad143404fc37d'
             'c5b7166cf2b6806c762844aeeac0bbe80c97afc4613488c2196a54d10eafccc4'
             'cff3cdef7b10b135078193a337b6b20b5a1d1ad94a1f755a6bda13936b95c7c3'
-            '397eb486f22f2fc5694c779c57dc47eabda53638ae6d5a87af45cabfa6165435')
+            '397eb486f22f2fc5694c779c57dc47eabda53638ae6d5a87af45cabfa6165435'
+            '683a0b60dbcbf83c2918b6df9995418e283a6407c49302550be833d188c1ccb6'
+            'b647e452907f1ff74247cc5675d69e929b316f982e26d4ae2012788f41461d20')
 
 prepare() {
   cd "${_srcname}"

@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=4
+pkgrel=5
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -84,7 +84,7 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0055-NABU-disable-Sensor-Low-Power-Island.patch' )
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
-            '5a14ea07d49c315d8b0861d5f1ef015e6bb0f83a8a3310e6f35c3f8ee0ec876a'
+            '497854058e4b8b779d1b4ccadcfae3d4ccfa64005b9b01af43f98fb478187b47'
             'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'

@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=5
+pkgrel=6
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -81,10 +81,11 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0052-arch-arm64-boot-dts-qcom-sm8150-xiaomi-nabu.dts-add-.patch'
          '0053-arch-arm64-boot-dts-qcom-sm8150.dtsi-change-reset-na.patch'
          '0054-NABU-enable-rtc.patch'
-         '0055-NABU-disable-Sensor-Low-Power-Island.patch' )
+         '0055-NABU-disable-Sensor-Low-Power-Island.patch'
+         '0056-NABU-enable-ln8000-charger-driver.patch' )
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
-            '497854058e4b8b779d1b4ccadcfae3d4ccfa64005b9b01af43f98fb478187b47'
+            'a12c268bff3744492d0122f903c95b54a28079c2d0b8d1ade899321349917a9f'
             'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
@@ -144,7 +145,8 @@ sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             'cff3cdef7b10b135078193a337b6b20b5a1d1ad94a1f755a6bda13936b95c7c3'
             '397eb486f22f2fc5694c779c57dc47eabda53638ae6d5a87af45cabfa6165435'
             '683a0b60dbcbf83c2918b6df9995418e283a6407c49302550be833d188c1ccb6'
-            'b647e452907f1ff74247cc5675d69e929b316f982e26d4ae2012788f41461d20')
+            'b647e452907f1ff74247cc5675d69e929b316f982e26d4ae2012788f41461d20'
+            '4e4acc15be68500acf2a5cf7c98b152b69edd5802ef539179b3c9e0e5e27e8e6')
 
 prepare() {
   cd "${_srcname}"

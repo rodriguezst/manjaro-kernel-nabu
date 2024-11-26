@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=7
+pkgrel=8
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -85,7 +85,7 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0056-NABU-enable-ln8000-charger-driver.patch' )
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
-            '8254f80f1ee14e1db76892e3ee600f56eb75bb3456beda2084d35d3af98cee3c'
+            '70ec4661c9d05555c341400e8873accb8163dd2f0a5a746ff76ffba1a94ced06'
             'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'

@@ -1,6 +1,8 @@
 post_install() {
   # Generated UKI image is named grubaa64.efi to match the hardcoded paths in https://github.com/BigfootACA/simple-init/blob/master/src/boot/efi_path.c
   mkdir -p "/boot/efi/EFI/manjaro"
+  # Generate Secure Boot certificates (if needed)
+  ukify genkey --config=/etc/kernel/uki.conf || true
 }
 
 post_upgrade() {

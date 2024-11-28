@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=9
+pkgrel=10
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -82,7 +82,8 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0053-arch-arm64-boot-dts-qcom-sm8150.dtsi-change-reset-na.patch'
          '0054-NABU-enable-rtc.patch'
          '0055-NABU-disable-Sensor-Low-Power-Island.patch'
-         '0056-NABU-enable-ln8000-charger-driver.patch' )
+         '0056-NABU-enable-ln8000-charger-driver.patch'
+         '0057-clk-qcom-gcc-change-halt_check-for-gcc_ufs_phy_tx-rx.patch' )
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             '70ec4661c9d05555c341400e8873accb8163dd2f0a5a746ff76ffba1a94ced06'
@@ -146,7 +147,8 @@ sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             '397eb486f22f2fc5694c779c57dc47eabda53638ae6d5a87af45cabfa6165435'
             '683a0b60dbcbf83c2918b6df9995418e283a6407c49302550be833d188c1ccb6'
             'b647e452907f1ff74247cc5675d69e929b316f982e26d4ae2012788f41461d20'
-            '4e4acc15be68500acf2a5cf7c98b152b69edd5802ef539179b3c9e0e5e27e8e6')
+            '4e4acc15be68500acf2a5cf7c98b152b69edd5802ef539179b3c9e0e5e27e8e6'
+            '9566aceba7a724f8776b1ed6664f60f004dc651e0c9278181791e3ff369cfb5a')
 
 prepare() {
   cd "${_srcname}"

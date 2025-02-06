@@ -7,7 +7,7 @@
 
 pkgbase=linux612-nabu
 pkgver=6.12.0
-pkgrel=11
+pkgrel=12
 _kernelname=-MANJARO-NABU
 _basekernel=6.12
 _srcname="linux-${pkgver/%.0/}"
@@ -18,15 +18,10 @@ _desc="AArch64 multi-platform"
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'systemd-ukify' 'sbsigntools')
 options=('!strip')
 source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
-         'config' 
-         'linux.preset'
-         '60-linux.hook'
-         '90-linux.hook'
-         'uki.conf'
-         'cmdline'
+         'config'
          '0001-SM8150-Add-uart13-node.patch'
          '0002-SM8150-Add-device-tree-for-Xiaomi-Pad-5.patch'
          '0003-drm-Add-drm-notifier-support.patch'
@@ -88,11 +83,6 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             'd63f348cbb453629a97acf425d8d74aaf589d864f512577b27cb16cddee320c6'
-            'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
-            'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
-            '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
-            'f8f534bb60d53f5fe0b0e30a50191da7e7d80645e3dec831e269f785e62f25eb'
-            'c0040ff0642b29bdf364c5d7c066a1ea6c593d94c9b87cbf9b3ecfb75dc31c26'
             '7b0db41df0775cd92419f3ac0a84ec3bb11c713905290c6593ed403afb1c1706'
             '74b584aae2a1c9a5cde6206feac6656cb8ff714dc16966e0620f8e212a26364a'
             '389ba34137bccfcd498092dfef7e7c5975de0a5b202a8846f31649622d0cb023'
@@ -214,12 +204,10 @@ build() {
 
 _package() {
   pkgdesc="The Linux ${_basekernel} Kernel and modules - ${_desc}"
-  depends=('coreutils' 'kmod' 'initramfs' 'systemd-ukify' 'openssl' 'sbsigntools')
-  optdepends=('crda: to set the correct wireless channels of your country'
-              'linux-firmware: additional firmware')
+  depends=('coreutils' 'kmod')
+  optdepends=()
   provides=("linux=${pkgver}")
   conflicts=('linux')
-  backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=${pkgname}.install
 
   cd "${_srcname}"
@@ -236,6 +224,18 @@ _package() {
   cp arch/$KARCH/boot/Image "${pkgdir}/boot/vmlinux-${_kernver}"
   cp arch/$KARCH/boot/Image.gz "${pkgdir}/boot/vmlinuz-${_kernver}"
   cp arch/$KARCH/boot/dts/${_dtbfile} "${pkgdir}/boot/dtb-${_kernver}"
+
+  # Generate and sign UKI during package creation
+  mkdir -p "${pkgdir}/boot/efi/EFI/manjaro"
+  ukify build \
+    --linux="${pkgdir}/boot/vmlinux-${_kernver}" \
+    --cmdline="console=tty0 root=PARTLABEL=linux rw debug=vc selinux=0 audit=0" \
+    --uname="${_kernver}" \
+    --devicetree="${pkgdir}/boot/dtb-${_kernver}" \
+    --os-release="Manjaro ARM" \
+    --secureboot-private-key="${startdir}/sb.key" \
+    --secureboot-certificate="${startdir}/sb.crt" \
+    --output="${pkgdir}/boot/efi/EFI/manjaro/uki-${_kernver}.efi"
 
   # used by mkinitcpio to name the kernel
   echo "${_kernver}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/pkgbase"
@@ -259,26 +259,6 @@ _package() {
   #depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
   #depmod -b "${pkgdir}" -F System.map "${_kernver}"
 
-  # sed expression for following substitutions
-  local _subst="
-    s|%PKGBASE%|${pkgbase}|g
-    s|%KERNVER%|${_kernver}|g
-    s|%EXTRAMODULES%|${_extramodules}|g
-  "
-  # install mkinitcpio preset file
-  sed "${_subst}" "${srcdir}/linux.preset" |
-    install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgbase}.preset"
-
-  # install pacman hooks
-  sed "${_subst}" ../60-linux.hook |
-    install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/60-${pkgbase}.hook"
-  sed "${_subst}" ../90-linux.hook |
-    install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgbase}.hook"
-  
-  # install uki.conf file and cmdline
-  sed "${_subst}" "${srcdir}/uki.conf" |
-    install -Dm644 /dev/stdin "${pkgdir}/etc/kernel/uki.conf"
-  install -Dm644 "${srcdir}/cmdline" "${pkgdir}/etc/kernel/cmdline"
 }
 
 _package-headers() {

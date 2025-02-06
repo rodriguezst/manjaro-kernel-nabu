@@ -1,1 +1,0 @@
-console=tty0 root=PARTLABEL=linux rw debug=vc selinux=0 audit=0

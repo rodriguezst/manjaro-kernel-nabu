@@ -34,7 +34,8 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git am --whitespace=fix ../srcdir/*.patch
-          git fetch origin ${{ env.REF }}:${{ env.REF }} --depth=10000
+          rm -rf ../srcdir/*.patch
+          git fetch --unshallow origin ${{ env.REF }}:${{ env.REF }}
           git rebase ${{ env.REF }}
           git log -1 ${{ env.REF }} > ../RELEASE.md
           git format-patch ${{ env.REF }} --start-number=1 -o ../srcdir -- . ':!arch/*/configs/*' > /dev/null
@@ -108,11 +109,29 @@ jobs:
       - name: Update PKGBUILD and push new version
         if: env.KERNVER != env.PKGVER
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cd srcdir
+          # Update version numbers in PKGBUILD
           sed -i 's/^pkgver=.*/pkgver='$KERNVER'/' PKGBUILD
           sed -i 's/^pkgrel=.*/pkgrel=1/' PKGBUILD
+          # Remove all patch entries from source array
+          awk '/^source=/{p=1;print;next} /^[^[:space:]]/{p=0} p&&/\.patch/{next} {print}' PKGBUILD > PKGBUILD.new 
+          mv PKGBUILD.new PKGBUILD
+          # Add all new patch files to source array after config
+          for patch in $(ls -1 *.patch | sort -r); do
+            sed -i "/config'/a\\         '$patch'" PKGBUILD
+          done
+          # Replace sha256sums with SKIP
+          sed -i -e '/^sha256sums=/,/^[^[:space:]]/{/^sha256sums=/!{/^[^[:space:]]/!d}}' \
+                 -e 's/^sha256sums=.*/sha256sums=('\''SKIP'\'')\n/' PKGBUILD
+          # Calculate new sha256sums
           updpkgsums
+          # Commit & push changes
+          git diff --name-only --diff-filter=D | xargs git add
           git add config *.patch PKGBUILD
           git commit -m "update to $KERNVER"
           git push
+          # Trigger build workflow
+          gh workflow run build.yml --ref $(git rev-parse --abbrev-ref HEAD)

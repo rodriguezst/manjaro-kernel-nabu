@@ -34,7 +34,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git am --whitespace=fix ../srcdir/*.patch
-          git fetch origin ${{ env.REF }}:${{ env.REF }} --depth=10000
+          git fetch --unshallow origin ${{ env.REF }}:${{ env.REF }}
           git rebase ${{ env.REF }}
           git log -1 ${{ env.REF }} > ../RELEASE.md
           git format-patch ${{ env.REF }} --start-number=1 -o ../srcdir -- . ':!arch/*/configs/*' > /dev/null

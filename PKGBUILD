@@ -22,11 +22,6 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
 source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          'config' 
-         'linux.preset'
-         '60-linux.hook'
-         '90-linux.hook'
-         'uki.conf'
-         'cmdline'
          '0001-SM8150-Add-uart13-node.patch'
          '0002-SM8150-Add-device-tree-for-Xiaomi-Pad-5.patch'
          '0003-drm-Add-drm-notifier-support.patch'
@@ -84,15 +79,15 @@ source=( "http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
          '0055-NABU-disable-Sensor-Low-Power-Island.patch'
          '0056-NABU-enable-ln8000-charger-driver.patch'
          '0057-clk-qcom-gcc-change-halt_check-for-gcc_ufs_phy_tx-rx.patch'
-         '0058-clk-qcom-clk-regmap-Add-udelay-in-clk_enable_regmap-.patch' )
+         '0058-clk-qcom-clk-regmap-Add-udelay-in-clk_enable_regmap-.patch'
+         'linux.preset'
+         '60-linux.hook'
+         '90-linux.hook'
+         'uki.conf'
+         'cmdline')
 
 sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             'd63f348cbb453629a97acf425d8d74aaf589d864f512577b27cb16cddee320c6'
-            'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
-            'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
-            '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
-            'f8f534bb60d53f5fe0b0e30a50191da7e7d80645e3dec831e269f785e62f25eb'
-            'c0040ff0642b29bdf364c5d7c066a1ea6c593d94c9b87cbf9b3ecfb75dc31c26'
             '7b0db41df0775cd92419f3ac0a84ec3bb11c713905290c6593ed403afb1c1706'
             '74b584aae2a1c9a5cde6206feac6656cb8ff714dc16966e0620f8e212a26364a'
             '389ba34137bccfcd498092dfef7e7c5975de0a5b202a8846f31649622d0cb023'
@@ -150,7 +145,12 @@ sha256sums=('b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb'
             'b647e452907f1ff74247cc5675d69e929b316f982e26d4ae2012788f41461d20'
             '4e4acc15be68500acf2a5cf7c98b152b69edd5802ef539179b3c9e0e5e27e8e6'
             '9566aceba7a724f8776b1ed6664f60f004dc651e0c9278181791e3ff369cfb5a'
-            'baf1601a77d63076703c77880aef0947195294bb3ba70f827a40abd5b59363dc')
+            'baf1601a77d63076703c77880aef0947195294bb3ba70f827a40abd5b59363dc'
+            'ab4e207d675f8ce4eb2be2c291d4858e2172ed2e31cb11ad18c0ad8b3318b6d0'
+            'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
+            '2c8a3715103d55947a96dd074efe6d5439bef2d4fecc15f5b3d268e2033abbd5'
+            'f8f534bb60d53f5fe0b0e30a50191da7e7d80645e3dec831e269f785e62f25eb'
+            'c0040ff0642b29bdf364c5d7c066a1ea6c593d94c9b87cbf9b3ecfb75dc31c26')
 
 prepare() {
   cd "${_srcname}"

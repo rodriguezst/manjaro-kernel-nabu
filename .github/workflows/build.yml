@@ -9,23 +9,66 @@ concurrency:
 
 jobs:
   package:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       -
         uses: actions/checkout@v4
         with:
           fetch-depth: '1'
+
+      - name: setup deb822 repos
+        run: |
+          cat <<EOF > deb822sources
+          Types: deb
+          URIs: http://archive.ubuntu.com/ubuntu/
+          Suites: noble
+          Components: main restricted universe
+          Architectures: amd64
+          
+          Types: deb
+          URIs: http://security.ubuntu.com/ubuntu/
+          Suites: noble-security
+          Components: main restricted universe
+          Architectures: amd64
+          
+          Types: deb
+          URIs: http://archive.ubuntu.com/ubuntu/
+          Suites: noble-updates
+          Components: main restricted universe
+          Architectures: amd64
+          
+          Types: deb
+          URIs: http://azure.ports.ubuntu.com/ubuntu-ports/
+          Suites: noble
+          Components: main restricted multiverse universe
+          Architectures: arm64
+          
+          Types: deb
+          URIs: http://azure.ports.ubuntu.com/ubuntu-ports/
+          Suites: noble-updates
+          Components: main restricted multiverse universe
+          Architectures: arm64
+          EOF
+  
+          sudo mv deb822sources /etc/apt/sources.list.d/ubuntu.sources
       - 
         name: Install dependencies
         shell: bash
         run: |
+          sudo dpkg --add-architecture arm64
           sudo apt-get update
           sudo apt install \
             build-essential \
             gcc-aarch64-linux-gnu \
             libarchive-dev \
             libarchive-tools \
-            meson
+            meson \
+            sbsigntool \
+            systemd-ukify \
+            systemd-boot-efi:arm64
+          # dirty hack to make systemd-ukify use aarch64 EFI stub
+          sudo cp /usr/lib/systemd/boot/efi/linuxaa64.efi.stub \
+            /usr/lib/systemd/boot/efi/linuxx64.efi.stub
       - 
         name: Install pacman
         shell: bash
@@ -53,6 +96,17 @@ jobs:
             sudo mkdir -p /etc/pacman.d
             sudo touch /etc/pacman.d/mirrorlist
           popd
+      -
+        name: Setup SSL Files
+        shell: bash
+        run: |
+          # Decode and store key
+          echo "${{ secrets.SECURE_BOOT_KEY }}" | base64 -d > sb.key
+          # Decode and store certificate
+          echo "${{ secrets.SECURE_BOOT_CERTIFICATE }}" | base64 -d > sb.crt
+          # Set correct permissions
+          chmod 600 sb.key
+          chmod 644 sb.crt
       -
         name: Run makepkg
         shell: bash

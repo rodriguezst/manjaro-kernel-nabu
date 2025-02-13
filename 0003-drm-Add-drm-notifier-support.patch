@@ -1,7 +1,7 @@
-From 0d8fa213935c8db81415913d64f0a0ece1eff685 Mon Sep 17 00:00:00 2001
+From e700a33557ab411c6c2107d278e386624d27e0fc Mon Sep 17 00:00:00 2001
 From: Jianhua Lu <lujianhua000@gmail.com>
 Date: Thu, 4 Aug 2022 13:26:53 +0800
-Subject: [PATCH 03/53] drm: Add drm notifier support
+Subject: [PATCH 03/56] drm: Add drm notifier support
 
 Signed-off-by: map220v <map220v300@gmail.com>
 ---
@@ -134,5 +134,5 @@ index 000000000000..fd0e976559b8
 +
 +#endif /* _DRM_NOTIFIER_H */
 -- 
-2.34.1
+2.48.1
 

@@ -1,7 +1,7 @@
-From 1ed6ba1fdd581d9c1cea5ca4c5df970bfa5320ed Mon Sep 17 00:00:00 2001
+From cd8e0891d0d7106674a05e29a64c22f2c18ebcd7 Mon Sep 17 00:00:00 2001
 From: map220v <map220v300@gmail.com>
 Date: Wed, 20 Mar 2024 14:19:19 +0000
-Subject: [PATCH 39/56] NABU: Remove framebuffer initialized by XBL
+Subject: [PATCH 39/55] NABU: Remove framebuffer initialized by XBL
  https://gitlab.com/sm8250-mainline/linux/-/commit/63d0b62efcabccfa063c1774b2bdb3aa8631e013
 
 ---

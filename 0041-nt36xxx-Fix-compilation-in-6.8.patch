@@ -1,7 +1,7 @@
-From fb23f82749545fd482a2185f4ef44e594278807b Mon Sep 17 00:00:00 2001
+From 01d21ddc67c584363a9d6e7df9379210fa431d0e Mon Sep 17 00:00:00 2001
 From: map220v <map220v300@gmail.com>
 Date: Wed, 20 Mar 2024 14:30:56 +0000
-Subject: [PATCH 41/56] nt36xxx: Fix compilation in 6.8
+Subject: [PATCH 41/55] nt36xxx: Fix compilation in 6.8
 
 ---
  drivers/input/touchscreen/nt36523/nt36xxx.c | 2 +-

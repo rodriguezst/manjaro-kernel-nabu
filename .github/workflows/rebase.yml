@@ -116,6 +116,7 @@ jobs:
           # Update version numbers in PKGBUILD
           sed -i 's/^pkgver=.*/pkgver='$KERNVER'/' PKGBUILD
           sed -i 's/^pkgrel=.*/pkgrel=1/' PKGBUILD
+          sed -i 's/^_basekernel=.*/_basekernel='${KERNVER%.*}'/' PKGBUILD
           # Remove all patch entries from source array
           awk '/^source=/{p=1;print;next} /^[^[:space:]]/{p=0} p&&/\.patch/{next} {print}' PKGBUILD > PKGBUILD.new 
           mv PKGBUILD.new PKGBUILD

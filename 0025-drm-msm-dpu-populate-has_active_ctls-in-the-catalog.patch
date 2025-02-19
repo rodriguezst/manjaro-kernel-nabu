@@ -1,7 +1,7 @@
-From 4dd3fc229d4d02b4e9e382f49b2121e9bdfe89d1 Mon Sep 17 00:00:00 2001
+From a61a7aa6f11499ddd994784d98dc9520c0136390 Mon Sep 17 00:00:00 2001
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Date: Thu, 11 May 2023 18:44:50 +0300
-Subject: [PATCH 25/56] drm/msm/dpu: populate has_active_ctls in the catalog
+Subject: [PATCH 25/55] drm/msm/dpu: populate has_active_ctls in the catalog
 
 Set the has_active_ctls for all the platforms which need this bit.
 

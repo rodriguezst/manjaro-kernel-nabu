@@ -1,7 +1,7 @@
-From f270f1883a9f1252f52fde9ff315b0eb130a7649 Mon Sep 17 00:00:00 2001
+From 000d8a34165a87e347ded4ae3ad64ac0b3286b21 Mon Sep 17 00:00:00 2001
 From: map220v <map220v300@gmail.com>
 Date: Sun, 23 Jul 2023 17:32:10 +0300
-Subject: [PATCH 06/56] nt36xxx: Fix module autoload
+Subject: [PATCH 06/55] nt36xxx: Fix module autoload
 
 ---
  drivers/input/touchscreen/nt36523/nt36xxx.c | 2 ++

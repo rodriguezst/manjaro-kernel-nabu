@@ -1,4 +1,4 @@
-From e94cee482a78d9cf4a4fcdfba6d4ad1618ba0f89 Mon Sep 17 00:00:00 2001
+From 2a10a505ccb8fe34e67ed04768d92b7a270734b1 Mon Sep 17 00:00:00 2001
 From: rodriguezst <2828844+rodriguezst@users.noreply.github.com>
 Date: Tue, 26 Nov 2024 10:54:51 +0000
 Subject: [PATCH 53/55] NABU: enable ln8000 charger driver

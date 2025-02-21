@@ -1,4 +1,4 @@
-From 5d42c705bbce2cc821492277ad104138f1df6dd4 Mon Sep 17 00:00:00 2001
+From a9458b73a1490aae14dd356ff6db8d3362b35e89 Mon Sep 17 00:00:00 2001
 From: map220v <map220v300@gmail.com>
 Date: Tue, 9 Jan 2024 11:18:40 +0000
 Subject: [PATCH 31/55] NABU: Add pm8150b type-c node and enable otg

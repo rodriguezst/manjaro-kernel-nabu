@@ -1,4 +1,4 @@
-From 9b88ff705ea5ad21a79b346ae312569eb3618119 Mon Sep 17 00:00:00 2001
+From bcc4a0f65d48961dd51989447cbbe89cef13d210 Mon Sep 17 00:00:00 2001
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Date: Sun, 14 Mar 2021 04:52:34 +0300
 Subject: [PATCH 23/55] drm/msm/dpu1: improve support for active CTLs

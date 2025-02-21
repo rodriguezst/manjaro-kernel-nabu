@@ -1,4 +1,4 @@
-From 01d21ddc67c584363a9d6e7df9379210fa431d0e Mon Sep 17 00:00:00 2001
+From bc806ef593ed1f0187b23788082eb5b7d7a5cb86 Mon Sep 17 00:00:00 2001
 From: map220v <map220v300@gmail.com>
 Date: Wed, 20 Mar 2024 14:30:56 +0000
 Subject: [PATCH 41/55] nt36xxx: Fix compilation in 6.8

@@ -1,4 +1,4 @@
-From 1d0d607513d5f693c1862c4fa988cf3e680eff49 Mon Sep 17 00:00:00 2001
+From 52afebf3f923553ee3297eb7d59623aae7d0b4b3 Mon Sep 17 00:00:00 2001
 From: map220v <map220v300@gmail.com>
 Date: Sun, 15 Sep 2024 16:31:42 +0000
 Subject: [PATCH 44/55] qcom_fg: Fix compilation in 6.11

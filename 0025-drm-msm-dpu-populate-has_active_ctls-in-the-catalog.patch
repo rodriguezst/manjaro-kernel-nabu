@@ -1,4 +1,4 @@
-From a61a7aa6f11499ddd994784d98dc9520c0136390 Mon Sep 17 00:00:00 2001
+From ceeaec27cf64a9b13f19b538666b6b1e8eaf3373 Mon Sep 17 00:00:00 2001
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Date: Thu, 11 May 2023 18:44:50 +0300
 Subject: [PATCH 25/55] drm/msm/dpu: populate has_active_ctls in the catalog

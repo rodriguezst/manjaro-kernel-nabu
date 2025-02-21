@@ -1,4 +1,4 @@
-From f53533702462c036d1b1175a57edc577e15335e1 Mon Sep 17 00:00:00 2001
+From 1bab971c537cc37a372fe3f515cc592ff53ece74 Mon Sep 17 00:00:00 2001
 From: Jianhua Lu <lujianhua000@gmail.com>
 Date: Thu, 4 Aug 2022 13:26:26 +0800
 Subject: [PATCH 05/55] Input: Add nt36523 touchscreen driver
